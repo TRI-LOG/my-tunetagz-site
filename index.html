@@ -193,6 +193,7 @@
       color: var(--bg2); background: var(--cream);
       padding: 14px 34px; border-radius: 2px;
       text-decoration: none; border: none;
+      cursor: pointer;
       transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, background 0.2s;
     }
     .btn-primary:hover { transform: translateY(-3px); background: #ffffff; box-shadow: 0 14px 36px rgba(220,20,60,0.35); }
@@ -449,6 +450,7 @@
       color: var(--bg2); background: var(--cream);
       border: none; padding: 10px 20px; border-radius: 1px;
       text-decoration: none;
+      cursor: pointer;
       transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, box-shadow 0.2s;
     }
     .pbtn:hover { transform: translateY(-2px) scale(1.04); background: #fff; box-shadow: 0 4px 16px rgba(220,20,60,0.35); }
@@ -693,6 +695,7 @@
       color: var(--bg2); background: var(--cream);
       padding: 14px 40px; border-radius: 2px;
       text-decoration: none;
+      cursor: pointer;
     }
 
     /* ── STICKY MOBILE ORDER BAR ── */
@@ -714,6 +717,7 @@
       color: var(--bg2); background: var(--cream);
       padding: 15px; border-radius: 2px;
       text-decoration: none;
+      cursor: pointer;
       transition: background 0.2s, color 0.2s;
     }
     .mobile-order-bar a:active { background: var(--crimson-bright); color: #050608; }
@@ -832,6 +836,412 @@
     /* ── FOCUS VISIBLE ── */
     :focus-visible { outline: 2px solid var(--crimson-bright); outline-offset: 3px; border-radius: 2px; }
     main:focus { outline: none; }
+
+    /* ── IN-PAGE ORDER DRAWER / MODAL ── */
+    .order-drawer-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(4, 2, 3, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1), visibility 0.35s;
+    }
+    .order-drawer-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .order-drawer {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: min(640px, 100vw);
+      background: #110a0c;
+      border-left: 1px solid rgba(220,20,60,0.3);
+      box-shadow: -20px 0 60px rgba(0,0,0,0.9), 0 0 50px rgba(220,20,60,0.15);
+      z-index: 2010;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .order-drawer-backdrop.open .order-drawer {
+      transform: translateX(0);
+    }
+    .order-drawer-header {
+      padding: 20px 24px;
+      background: rgba(12,7,8,0.95);
+      border-bottom: 1px solid rgba(250,247,242,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .drawer-title-wrap h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .drawer-title-wrap h2 span { color: var(--scarlet); }
+    .drawer-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .drawer-close-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(250,247,242,0.06);
+      border: 1px solid rgba(250,247,242,0.12);
+      color: var(--cream);
+      font-size: 1.2rem;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .drawer-close-btn:hover {
+      background: rgba(220,20,60,0.2);
+      border-color: var(--crimson-bright);
+      color: var(--crimson-bright);
+      transform: rotate(90deg);
+    }
+    .order-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      overscroll-behavior: contain;
+    }
+
+    /* Product Selector */
+    .drawer-prod-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .drawer-prod-opt {
+      background: var(--bg2);
+      border: 1px solid rgba(250,247,242,0.1);
+      border-radius: 3px;
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .drawer-prod-opt:hover {
+      border-color: rgba(220,20,60,0.4);
+      transform: translateY(-2px);
+    }
+    .drawer-prod-opt.active {
+      border-color: var(--crimson-bright);
+      background: rgba(220,20,60,0.12);
+      box-shadow: 0 0 16px rgba(220,20,60,0.2);
+    }
+    .drawer-opt-badge {
+      position: absolute;
+      top: -7px;
+      right: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      background: var(--crimson);
+      color: #fff;
+      padding: 2px 5px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .drawer-opt-name {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+    .drawer-opt-price {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--scarlet);
+      font-weight: 500;
+    }
+
+    /* Mini Mockup Visualizer */
+    .drawer-mockup-wrap {
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(220,20,60,0.14) 0%, #060405 100%);
+      border: 1px solid rgba(250,247,242,0.08);
+      border-radius: 4px;
+      padding: 20px 16px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .drawer-mockup-tag {
+      width: 250px;
+      height: 125px;
+      background: #0f0a0c;
+      border: 2px solid #2a1519;
+      border-radius: 6px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.9), 0 0 20px rgba(220,20,60,0.15);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .drawer-keyring {
+      position: absolute;
+      top: 50%;
+      left: -16px;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      border: 3.5px solid #777;
+      border-radius: 50%;
+    }
+    .drawer-tag-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 32px;
+      padding: 2px 0;
+      justify-content: center;
+    }
+    .drawer-tag-bar {
+      width: 3px;
+      background: #e5b84c;
+      border-radius: 2px;
+      box-shadow: 0 0 4px rgba(229,184,76,0.3);
+    }
+    .drawer-flip-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: rgba(250,247,242,0.06);
+      border: 1px solid rgba(250,247,242,0.12);
+      color: var(--cream);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      padding: 3px 8px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .drawer-flip-btn:hover {
+      background: rgba(220,20,60,0.15);
+      border-color: var(--crimson-bright);
+      color: var(--crimson-bright);
+    }
+
+    /* Drawer Form Fields */
+    .dform-group {
+      margin-bottom: 16px;
+    }
+    .dform-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .dform-label small {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-transform: none;
+    }
+    .dform-input, .dform-textarea {
+      width: 100%;
+      background: #080405;
+      border: 1px solid rgba(250,247,242,0.12);
+      color: var(--cream);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.86rem;
+      padding: 10px 14px;
+      border-radius: 3px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .dform-input:focus, .dform-textarea:focus {
+      border-color: var(--crimson-bright);
+      box-shadow: 0 0 12px rgba(220,20,60,0.25);
+    }
+    .dform-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .dfinish-opts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .dfinish-btn {
+      background: var(--bg2);
+      border: 1px solid rgba(250,247,242,0.08);
+      border-radius: 2px;
+      padding: 8px 4px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--cream);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .dfinish-btn.active {
+      border-color: var(--crimson-bright);
+      background: rgba(220,20,60,0.15);
+      color: var(--crimson-bright);
+      font-weight: 600;
+    }
+
+    /* Qty & Addon inside drawer */
+    .dqty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 0;
+      padding: 12px 14px;
+      background: rgba(250,247,242,0.03);
+      border: 1px solid rgba(250,247,242,0.07);
+      border-radius: 3px;
+    }
+    .dqty-picker {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(250,247,242,0.12);
+      border-radius: 2px;
+      background: #080405;
+    }
+    .dqty-btn {
+      background: transparent;
+      border: none;
+      color: var(--cream);
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .dqty-btn:hover { background: rgba(220,20,60,0.15); color: var(--crimson-bright); }
+    .dqty-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+      width: 34px;
+      text-align: center;
+    }
+
+    /* Drawer Footer Summary */
+    .drawer-summary {
+      background: #080405;
+      border: 1px solid rgba(220,20,60,0.22);
+      border-radius: 4px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .dsummary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+    .dsummary-row.total {
+      border-top: 1px solid rgba(220,20,60,0.25);
+      margin-top: 8px;
+      padding-top: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+    .dsummary-row.total span:last-child {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.25rem;
+      color: var(--scarlet);
+    }
+
+    .drawer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn-dwa {
+      background: #25d366;
+      color: #060405;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.25);
+      transition: background 0.2s, transform 0.18s;
+    }
+    .btn-dwa:hover { background: #2ee26f; transform: translateY(-2px); }
+    .btn-dig {
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 11px;
+      border: 1px solid rgba(220,20,60,0.35);
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-dig:hover { border-color: var(--crimson-bright); background: rgba(220,20,60,0.12); color: var(--crimson-bright); }
+    .btn-ddirect {
+      background: var(--cream);
+      color: #060405;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 11px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-ddirect:hover { background: #fff; }
+
+    @media (max-width: 600px) {
+      .drawer-prod-grid { grid-template-columns: 1fr; }
+      .dform-row { grid-template-columns: 1fr; }
+      .dfinish-opts { grid-template-columns: 1fr; }
+      .order-drawer { width: 100vw; }
+    }
   </style>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" /><style>.reveal{opacity:1!important;transform:none!important}.progress-bar,.hero-controls{display:none!important}.hero-product-img.is-side{display:none!important}@media(hover:hover){*{cursor:auto!important}}</style></noscript>
   <script type="application/ld+json">
@@ -1041,7 +1451,7 @@
     <a href="#spotlight" class="d-link" data-drawer-close>Rocky</a>
     <a href="#faq"      class="d-link" data-drawer-close>FAQ</a>
     <a href="#cta"      class="d-link" data-drawer-close>Order</a>
-    <a href="order.html" class="d-cta" aria-label="Order TuneTagZ Keychain">Customize & Order</a>
+    <a href="order.html" class="d-cta" data-open-order="spt001" aria-label="Order TuneTagZ Keychain">Customize & Order</a>
   </div>
 
   <!-- NAV -->
@@ -1054,7 +1464,7 @@
       <a href="#faq"      class="nav-link">FAQ</a>
       <a href="#cta"      class="nav-link">Order</a>
     </div>
-    <a href="order.html" class="nav-cta" aria-label="Order TuneTagZ Keychain">Order Now</a>
+    <a href="order.html" class="nav-cta" data-open-order="spt001" aria-label="Order TuneTagZ Keychain">Order Now</a>
     <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileDrawer">
       <span></span><span></span><span></span>
     </button>
@@ -1062,7 +1472,7 @@
 
   <!-- STICKY MOBILE ORDER BAR -->
   <div class="mobile-order-bar" role="region" aria-label="Quick order">
-    <a href="order.html" aria-label="Order TuneTagZ Keychain">Customize & Order Now</a>
+    <a href="order.html" data-open-order="spt001" aria-label="Order TuneTagZ Keychain">Customize & Order Now</a>
   </div>
 
   <main id="main-content" tabindex="-1">
@@ -1077,7 +1487,7 @@
       <h1 id="hero-heading" class="hero-title">Wear<br/>Your<br/><span class="accent">Sound</span></h1>
       <p class="hero-sub">Custom-engraved keychains for music lovers. Scan your Spotify code, carry your favorite song — everywhere you go.</p>
       <div class="hero-cta-row">
-        <a href="#products" class="btn-primary">Shop Collection</a>
+        <a href="order.html" class="btn-primary" data-open-order="spt001">Customize Your Tag</a>
         <a href="#why" class="btn-ghost">Our Story</a>
       </div>
     </div>
@@ -1140,7 +1550,7 @@
           <p class="pdesc">Scan and play. Your favorite track engraved in gold on matte black — with your name on the back. The ultimate gift for any music lover.</p>
           <div class="pfooter">
             <div class="pprice">₹699 <small>/ piece</small></div>
-            <a href="order.html?product=spt001" class="pbtn" aria-label="Customize and Order Spotify Code Tag">Customize & Order</a>
+            <a href="order.html?product=spt001" class="pbtn" data-open-order="spt001" aria-label="Customize and Order Spotify Code Tag">Customize & Order</a>
           </div>
         </div>
       </article>
@@ -1158,7 +1568,7 @@
           <p class="pdesc">A wearable sculpture for your keys. Intricate maze-pattern 3D printed figure in matte black — bold, tactile, and unlike anything else on the market.</p>
           <div class="pfooter">
             <div class="pprice">₹300 <small>/ piece</small></div>
-            <a href="order.html?product=rky001" class="pbtn" aria-label="Order Rocky Keychain">Order Now</a>
+            <a href="order.html?product=rky001" class="pbtn" data-open-order="rky001" aria-label="Order Rocky Keychain">Order Now</a>
           </div>
         </div>
       </article>
@@ -1249,7 +1659,7 @@
         </div>
         <div class="spot-cta-row">
           <span class="spot-price">₹300</span>
-          <a href="order.html?product=rky001" class="btn-primary" aria-label="Order Rocky Keychain">Order Rocky</a>
+          <a href="order.html?product=rky001" class="btn-primary" data-open-order="rky001" aria-label="Order Rocky Keychain">Order Rocky</a>
         </div>
       </div>
     </div>
@@ -1292,7 +1702,7 @@
     <h2 id="cta-heading" class="cta-title reveal">Your song.<br/><span>Your tag.</span></h2>
     <p class="cta-sub reveal"><abbr title="Direct Message">DM</abbr> us on Instagram or click below to place your custom order. Ships across India.</p>
     <div class="reveal" style="display:flex;gap:14px;justify-content:center">
-      <a href="order.html" class="btn-primary" aria-label="Customize and Order your TuneTagZ Keychain">Customize Your Tag</a>
+      <a href="order.html" class="btn-primary" data-open-order="spt001" aria-label="Customize and Order your TuneTagZ Keychain">Customize Your Tag</a>
     </div>
   </section>
 
@@ -1308,6 +1718,241 @@
       <a href="#faq" class="flink">FAQ</a>
     </nav>
   </footer>
+
+  <!-- IN-PAGE ORDER DRAWER (SUB-PORTAL) -->
+  <div class="order-drawer-backdrop" id="orderDrawerBackdrop" aria-hidden="true">
+    <div class="order-drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      
+      <!-- Drawer Header -->
+      <div class="order-drawer-header">
+        <div class="drawer-title-wrap">
+          <h2 id="drawerTitle">Customize & <span>Order</span></h2>
+          <p class="drawer-sub">Free Tracked Shipping Across India</p>
+        </div>
+        <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close order drawer">✕</button>
+      </div>
+
+      <!-- Drawer Body -->
+      <div class="order-drawer-body">
+
+        <!-- 1. Model Switcher -->
+        <div class="dform-group">
+          <label class="dform-label">Select Model</label>
+          <div class="drawer-prod-grid">
+            <div class="drawer-prod-opt active" data-dproduct="spt001" data-dprice="699">
+              <span class="drawer-opt-badge">Bestseller</span>
+              <div class="drawer-opt-name">Spotify Tag</div>
+              <div class="drawer-opt-price">₹699</div>
+            </div>
+            <div class="drawer-prod-opt" data-dproduct="rky001" data-dprice="300">
+              <span class="drawer-opt-badge">3D Print</span>
+              <div class="drawer-opt-name">Rocky Tag</div>
+              <div class="drawer-opt-price">₹300</div>
+            </div>
+            <div class="drawer-prod-opt" data-dproduct="bundle" data-dprice="899">
+              <span class="drawer-opt-badge" style="background:#e5b84c;color:#000;">Save ₹100</span>
+              <div class="drawer-opt-name">Duo Bundle</div>
+              <div class="drawer-opt-price">₹899</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Live Tag Visualizer Preview -->
+        <div class="drawer-mockup-wrap" id="drawerVisualizer">
+          <button type="button" class="drawer-flip-btn" id="drawerFlipBtn">Flip Tag (Back)</button>
+          
+          <div class="drawer-mockup-tag">
+            <div class="drawer-keyring"></div>
+            
+            <!-- Front -->
+            <div id="dtagFront">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <svg style="width:16px;height:16px;fill:#e5b84c;" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.498 17.306c-.217.355-.675.469-1.03.252-2.825-1.727-6.38-2.118-10.569-1.161-.406.092-.813-.159-.905-.565-.093-.406.159-.813.565-.905 4.582-1.047 8.513-.604 11.687 1.348.355.218.47.676.252 1.031zm1.467-3.26c-.273.444-.855.586-1.299.313-3.235-1.988-8.167-2.564-11.993-1.402-.497.151-1.026-.134-1.177-.631-.151-.498.134-1.027.632-1.178 4.373-1.328 9.805-.688 13.524 1.6 444.273.587.855.313 1.298zm.126-3.395C15.22 8.35 8.847 8.135 5.15 9.257c-.604.184-1.246-.164-1.43-.768-.184-.604.164-1.246.768-1.43 4.25-1.29 11.293-1.042 15.753 1.606.543.322.722 1.028.4 1.571-.322.544-1.028.723-1.571.401z"/></svg>
+                <span style="font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--muted); text-transform:uppercase;" id="dtagSide">Front (Code)</span>
+              </div>
+              <div class="drawer-tag-bars">
+                <div class="drawer-tag-bar" style="height:10px;"></div>
+                <div class="drawer-tag-bar" style="height:20px;"></div>
+                <div class="drawer-tag-bar" style="height:14px;"></div>
+                <div class="drawer-tag-bar" style="height:28px;"></div>
+                <div class="drawer-tag-bar" style="height:18px;"></div>
+                <div class="drawer-tag-bar" style="height:24px;"></div>
+                <div class="drawer-tag-bar" style="height:12px;"></div>
+                <div class="drawer-tag-bar" style="height:30px;"></div>
+                <div class="drawer-tag-bar" style="height:16px;"></div>
+                <div class="drawer-tag-bar" style="height:22px;"></div>
+                <div class="drawer-tag-bar" style="height:12px;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(250,247,242,0.08); padding-top:6px;">
+                <div style="font-size:0.68rem; font-weight:600; color:var(--cream); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:140px;" id="dpreviewSong">Starboy</div>
+                <div style="font-family:'DM Mono',monospace; font-size:0.55rem; color:#e5b84c;" id="dpreviewArtist">The Weeknd</div>
+              </div>
+            </div>
+
+            <!-- Back -->
+            <div id="dtagBack" style="display:none; height:100%; flex-direction:column; justify-content:space-between;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--muted);">Back Engraving</span>
+                <span style="font-family:'DM Mono',monospace; font-size:0.55rem; color:#e5b84c;">TUNETAGZ</span>
+              </div>
+              <div style="text-align:center; padding:6px 0;">
+                <div style="font-family:'DM Mono',monospace; font-size:0.85rem; font-weight:600; color:#e5b84c; text-transform:uppercase;" id="dpreviewEngrave">Alex & Sarah</div>
+                <div style="font-size:0.6rem; color:var(--muted); margin-top:2px;">24.08.2023</div>
+              </div>
+              <div style="text-align:right; font-size:0.5rem; color:var(--muted); font-family:'DM Mono',monospace;">Laser Precision</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. Customization Options -->
+        <div id="dcustomSpotify">
+          <div class="dform-group">
+            <label class="dform-label" for="dsongName">Song & Artist <small>Required</small></label>
+            <input type="text" id="dsongName" class="dform-input" placeholder="e.g. Starboy — The Weeknd" value="Starboy" />
+          </div>
+
+          <div class="dform-group">
+            <label class="dform-label" for="dspotifyUrl">Spotify Song Link <small>Paste URL</small></label>
+            <input type="url" id="dspotifyUrl" class="dform-input" placeholder="https://open.spotify.com/track/..." />
+          </div>
+
+          <div class="dform-group">
+            <label class="dform-label" for="dengraveText">Custom Name / Date on Back <small>Max 30 chars</small></label>
+            <input type="text" id="dengraveText" class="dform-input" maxlength="30" placeholder="e.g. Alex & Sarah • 24.08.23" value="Alex & Sarah" />
+          </div>
+
+          <div class="dform-group">
+            <label class="dform-label">Laser Engraving Tone</label>
+            <div class="dfinish-opts">
+              <div class="dfinish-btn active" data-dfinish="Gold Laser">Matte + Gold</div>
+              <div class="dfinish-btn" data-dfinish="Silver Laser">Matte + Silver</div>
+              <div class="dfinish-btn" data-dfinish="Crimson Laser">Matte + Crimson</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="dcustomRocky" style="display:none;">
+          <div class="dform-group">
+            <label class="dform-label">Rocky Hardware Ring</label>
+            <div class="dfinish-opts" style="grid-template-columns:1fr 1fr;">
+              <div class="dfinish-btn active" data-drocky="Silver Hardware">Silver Steel</div>
+              <div class="dfinish-btn" data-drocky="Gunmetal Ring">Gunmetal Black</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Qty and Gift Box -->
+        <div class="dqty-row">
+          <div>
+            <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase;">Quantity</div>
+            <div style="font-size:0.65rem; color:var(--muted);">Units to order</div>
+          </div>
+          <div class="dqty-picker">
+            <button type="button" class="dqty-btn" id="dqtyMinus">-</button>
+            <div class="dqty-val" id="dqtyVal">1</div>
+            <button type="button" class="dqty-btn" id="dqtyPlus">+</button>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:rgba(220,20,60,0.06); border:1px dashed rgba(220,20,60,0.3); border-radius:3px; margin-bottom:18px; cursor:pointer;" id="dgiftBoxWrap">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.75rem; font-weight:600;">
+            <input type="checkbox" id="dgiftBoxCheck" style="accent-color:var(--crimson-bright); width:16px; height:16px;" />
+            Luxury Gift Box (+₹99)
+          </label>
+          <span style="font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--scarlet);">+₹99</span>
+        </div>
+
+        <!-- 4. Shipping Information -->
+        <div style="border-top:1px solid rgba(250,247,242,0.08); padding-top:16px; margin-top:16px;">
+          <div style="font-family:'Anton',sans-serif; font-size:1.05rem; text-transform:uppercase; color:var(--cream); margin-bottom:12px;">Delivery Address</div>
+
+          <div class="dform-group">
+            <label class="dform-label" for="dcustName">Full Name <small>Required</small></label>
+            <input type="text" id="dcustName" class="dform-input" placeholder="Your Name" required />
+          </div>
+
+          <div class="dform-group">
+            <label class="dform-label" for="dcustPhone">WhatsApp Phone <small>Required</small></label>
+            <input type="tel" id="dcustPhone" class="dform-input" placeholder="WhatsApp Number (+91)" required />
+          </div>
+
+          <div class="dform-group">
+            <label class="dform-label" for="dcustAddress">Delivery Address <small>House, Street, Locality</small></label>
+            <textarea id="dcustAddress" class="dform-textarea" rows="2" placeholder="Full shipping address" required></textarea>
+          </div>
+
+          <div class="dform-row">
+            <div class="dform-group">
+              <label class="dform-label" for="dcustCity">City</label>
+              <input type="text" id="dcustCity" class="dform-input" placeholder="City" required />
+            </div>
+            <div class="dform-group">
+              <label class="dform-label" for="dcustPincode">Pincode</label>
+              <input type="text" id="dcustPincode" class="dform-input" maxlength="6" placeholder="Pincode" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Price Summary -->
+        <div class="drawer-summary">
+          <div class="dsummary-row">
+            <span id="dsummaryProd">Spotify Code Tag (x1)</span>
+            <span id="dsummaryProdPrice">₹699</span>
+          </div>
+          <div class="dsummary-row" id="dsummaryGiftRow" style="display:none;">
+            <span>Luxury Gift Packaging</span>
+            <span>₹99</span>
+          </div>
+          <div class="dsummary-row">
+            <span>Custom Laser Engraving</span>
+            <span style="color:#25d366; font-weight:600; font-family:'DM Mono',monospace;">FREE</span>
+          </div>
+          <div class="dsummary-row">
+            <span>Tracked Shipping Across India</span>
+            <span style="color:#25d366; font-weight:600; font-family:'DM Mono',monospace;">FREE</span>
+          </div>
+          <div class="dsummary-row total">
+            <span>Total Payable:</span>
+            <span id="dsummaryTotal">₹699</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="drawer-actions">
+          <button type="button" class="btn-dwa" id="dbtnWhatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.928l-1.564 5.714 5.861-1.537c1.7 1.006 3.684 1.572 5.803 1.572 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22.083c-1.895 0-3.662-.518-5.183-1.422l-.372-.222-3.851 1.01 1.028-3.753-.243-.387c-1.007-1.603-1.543-3.468-1.543-5.309 0-5.56 4.523-10.083 10.083-10.083 5.56 0 10.083 4.523 10.083 10.083 0 5.56-4.523 10.083-10.083 10.083z"/></svg>
+            Order via WhatsApp
+          </button>
+          <button type="button" class="btn-dig" id="dbtnInstagram">
+            Copy Order & DM on Instagram
+          </button>
+          <button type="button" class="btn-ddirect" id="dbtnDirect">
+            Submit Online Order Receipt
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ORDER MODAL RECEIPT -->
+  <div class="order-drawer-backdrop" id="dreceiptModal" style="z-index: 2100;">
+    <div style="background:#140d0f; border:1px solid var(--crimson-bright); border-radius:4px; max-width:480px; width:90%; margin:auto; padding:28px; text-align:center; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.9);">
+      <div style="width:48px; height:48px; border-radius:50%; background:rgba(37,211,102,0.15); border:2px solid #25d366; color:#25d366; display:grid; place-items:center; font-size:1.4rem; margin:0 auto 14px;">✓</div>
+      <h3 style="font-family:'Anton',sans-serif; font-size:1.4rem; text-transform:uppercase; color:var(--cream); margin-bottom:4px;">Order Recorded!</h3>
+      <div style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--scarlet); background:rgba(220,20,60,0.1); padding:4px 10px; border-radius:2px; display:inline-block; margin:6px 0 14px;" id="dreceiptId">Order #TZ-77123</div>
+      <div style="background:#060405; border:1px solid rgba(250,247,242,0.08); border-radius:3px; padding:14px; text-align:left; font-size:0.78rem; color:var(--muted); margin-bottom:20px; line-height:1.6;" id="dreceiptDetails"></div>
+      <div style="display:flex; gap:10px; justify-content:center;">
+        <button type="button" class="btn-dwa" id="dreceiptWaBtn" style="padding:10px 18px; font-size:0.75rem;">Confirm on WhatsApp</button>
+        <button type="button" class="btn-ddirect" id="dreceiptCloseBtn" style="padding:10px 18px; font-size:0.75rem;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="dtoast" style="position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px); background:#1e1114; border:1px solid var(--crimson-bright); color:var(--cream); padding:10px 20px; border-radius:4px; font-family:'DM Mono',monospace; font-size:0.78rem; z-index:3000; box-shadow:0 10px 30px rgba(0,0,0,0.8); transition:transform 0.3s cubic-bezier(0.16,1,0.3,1); pointer-events:none;">Order copied! Paste in @tune.tagz Instagram DM</div>
 
   <script>
 
@@ -1570,6 +2215,310 @@
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+    /* ── IN-PAGE ORDER DRAWER LOGIC ── */
+    const orderDrawer = document.getElementById('orderDrawerBackdrop');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const dprodOpts = document.querySelectorAll('.drawer-prod-opt');
+    const dsongInput = document.getElementById('dsongName');
+    const dspotifyUrlInput = document.getElementById('dspotifyUrl');
+    const dengraveInput = document.getElementById('dengraveText');
+    const dpreviewSong = document.getElementById('dpreviewSong');
+    const dpreviewArtist = document.getElementById('dpreviewArtist');
+    const dpreviewEngrave = document.getElementById('dpreviewEngrave');
+    const drawerFlipBtn = document.getElementById('drawerFlipBtn');
+    const dtagFront = document.getElementById('dtagFront');
+    const dtagBack = document.getElementById('dtagBack');
+    const dtagSide = document.getElementById('dtagSide');
+    const dcustomSpotify = document.getElementById('dcustomSpotify');
+    const dcustomRocky = document.getElementById('dcustomRocky');
+    const dfinishBtns = document.querySelectorAll('.dfinish-btn');
+    const dqtyVal = document.getElementById('dqtyVal');
+    const dqtyMinus = document.getElementById('dqtyMinus');
+    const dqtyPlus = document.getElementById('dqtyPlus');
+    const dgiftBoxWrap = document.getElementById('dgiftBoxWrap');
+    const dgiftBoxCheck = document.getElementById('dgiftBoxCheck');
+    const dsummaryGiftRow = document.getElementById('dsummaryGiftRow');
+    const dsummaryProd = document.getElementById('dsummaryProd');
+    const dsummaryProdPrice = document.getElementById('dsummaryProdPrice');
+    const dsummaryTotal = document.getElementById('dsummaryTotal');
+
+    const dstate = {
+      product: 'spt001',
+      basePrice: 699,
+      productName: 'Spotify Code Tag',
+      finish: 'Matte Black + Gold',
+      song: 'Starboy',
+      artist: 'The Weeknd',
+      spotifyUrl: '',
+      engrave: 'Alex & Sarah',
+      quantity: 1,
+      hasGiftBox: false,
+      isFlipped: false
+    };
+
+    function openOrderDrawer(productKey = 'spt001') {
+      selectDrawerProduct(productKey);
+      orderDrawer.classList.add('open');
+      orderDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOrderDrawer() {
+      orderDrawer.classList.remove('open');
+      orderDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    drawerCloseBtn.addEventListener('click', closeOrderDrawer);
+    orderDrawer.addEventListener('click', e => {
+      if (e.target === orderDrawer) closeOrderDrawer();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && orderDrawer.classList.contains('open')) closeOrderDrawer();
+    });
+
+    // Wire all order buttons on the page to open drawer directly
+    document.querySelectorAll('[data-open-order], a[href="order.html"], a[href^="order.html?"]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const href = btn.getAttribute('href') || '';
+        let targetProduct = 'spt001';
+        if (btn.dataset.openOrder) {
+          targetProduct = btn.dataset.openOrder;
+        } else if (href.includes('product=rky001')) {
+          targetProduct = 'rky001';
+        } else if (href.includes('product=bundle')) {
+          targetProduct = 'bundle';
+        }
+        openOrderDrawer(targetProduct);
+      });
+    });
+
+    function selectDrawerProduct(key) {
+      dstate.product = key;
+      if (key === 'rky001') {
+        dstate.basePrice = 300;
+        dstate.productName = 'Rocky Keychain';
+        dcustomSpotify.style.display = 'none';
+        dcustomRocky.style.display = 'block';
+        document.getElementById('drawerVisualizer').style.display = 'none';
+      } else if (key === 'bundle') {
+        dstate.basePrice = 899;
+        dstate.productName = 'Duo Bundle (Both)';
+        dcustomSpotify.style.display = 'block';
+        dcustomRocky.style.display = 'block';
+        document.getElementById('drawerVisualizer').style.display = 'flex';
+      } else {
+        dstate.basePrice = 699;
+        dstate.productName = 'Spotify Code Tag';
+        dcustomSpotify.style.display = 'block';
+        dcustomRocky.style.display = 'none';
+        document.getElementById('drawerVisualizer').style.display = 'flex';
+      }
+
+      dprodOpts.forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.dproduct === key);
+      });
+
+      updateDrawerTotals();
+    }
+
+    dprodOpts.forEach(opt => {
+      opt.addEventListener('click', () => selectDrawerProduct(opt.dataset.dproduct));
+    });
+
+    // Live preview typing
+    dsongInput.addEventListener('input', e => {
+      const val = e.target.value.trim() || 'Song Name';
+      if (val.includes('—') || val.includes('-')) {
+        const parts = val.split(/[—\-]/);
+        dstate.song = parts[0].trim();
+        dstate.artist = parts[1] ? parts[1].trim() : '';
+      } else {
+        dstate.song = val;
+        dstate.artist = '';
+      }
+      dpreviewSong.textContent = dstate.song;
+      dpreviewArtist.textContent = dstate.artist || 'Spotify Code';
+    });
+
+    dengraveInput.addEventListener('input', e => {
+      dstate.engrave = e.target.value.trim() || 'Your Engraving';
+      dpreviewEngrave.textContent = dstate.engrave;
+    });
+
+    // Flip Tag
+    drawerFlipBtn.addEventListener('click', () => {
+      dstate.isFlipped = !dstate.isFlipped;
+      if (dstate.isFlipped) {
+        dtagFront.style.display = 'none';
+        dtagBack.style.display = 'flex';
+        drawerFlipBtn.textContent = 'Show Front (Soundwave)';
+        dtagSide.textContent = 'Back (Engraved)';
+      } else {
+        dtagFront.style.display = 'block';
+        dtagBack.style.display = 'none';
+        drawerFlipBtn.textContent = 'Flip Tag (Back)';
+        dtagSide.textContent = 'Front (Code)';
+      }
+    });
+
+    // Finish selection
+    dfinishBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.parentElement;
+        parent.querySelectorAll('.dfinish-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        dstate.finish = btn.dataset.dfinish || btn.dataset.drocky;
+      });
+    });
+
+    // Quantity
+    dqtyMinus.addEventListener('click', () => {
+      if (dstate.quantity > 1) {
+        dstate.quantity--;
+        dqtyVal.textContent = dstate.quantity;
+        updateDrawerTotals();
+      }
+    });
+    dqtyPlus.addEventListener('click', () => {
+      if (dstate.quantity < 20) {
+        dstate.quantity++;
+        dqtyVal.textContent = dstate.quantity;
+        updateDrawerTotals();
+      }
+    });
+
+    // Gift box
+    dgiftBoxWrap.addEventListener('click', e => {
+      if (e.target !== dgiftBoxCheck) dgiftBoxCheck.checked = !dgiftBoxCheck.checked;
+      dstate.hasGiftBox = dgiftBoxCheck.checked;
+      dsummaryGiftRow.style.display = dstate.hasGiftBox ? 'flex' : 'none';
+      updateDrawerTotals();
+    });
+
+    function updateDrawerTotals() {
+      const itemSubtotal = dstate.basePrice * dstate.quantity;
+      const addonSubtotal = dstate.hasGiftBox ? (99 * dstate.quantity) : 0;
+      const total = itemSubtotal + addonSubtotal;
+
+      dsummaryProd.textContent = `${dstate.productName} (x${dstate.quantity})`;
+      dsummaryProdPrice.textContent = `₹${itemSubtotal}`;
+      dsummaryTotal.textContent = `₹${total}`;
+      return total;
+    }
+
+    function generateDrawerOrder() {
+      const name = document.getElementById('dcustName').value.trim();
+      const phone = document.getElementById('dcustPhone').value.trim();
+      const address = document.getElementById('dcustAddress').value.trim();
+      const city = document.getElementById('dcustCity').value.trim();
+      const pincode = document.getElementById('dcustPincode').value.trim();
+      const total = updateDrawerTotals();
+
+      return {
+        name, phone,
+        address: `${address}, ${city} - ${pincode}`,
+        product: dstate.productName,
+        quantity: dstate.quantity,
+        song: dstate.product !== 'rky001' ? dsongInput.value.trim() : 'N/A',
+        spotifyUrl: dstate.product !== 'rky001' ? dspotifyUrlInput.value.trim() : 'N/A',
+        engraveText: dstate.product !== 'rky001' ? dengraveInput.value.trim() : 'N/A',
+        finish: dstate.finish,
+        giftBox: dstate.hasGiftBox ? 'Yes (+₹99)' : 'No',
+        totalPrice: total
+      };
+    }
+
+    function validateDrawerForm() {
+      const name = document.getElementById('dcustName').value.trim();
+      const phone = document.getElementById('dcustPhone').value.trim();
+      const address = document.getElementById('dcustAddress').value.trim();
+      const city = document.getElementById('dcustCity').value.trim();
+      const pincode = document.getElementById('dcustPincode').value.trim();
+
+      if (!name || !phone || !address || !city || !pincode) {
+        alert('Please fill in your name, phone number, and delivery address to proceed.');
+        return false;
+      }
+      return true;
+    }
+
+    function formatDrawerWhatsAppText(o) {
+      return `*NEW TUNETAGZ ORDER* 🎵%0A` +
+        `----------------------------%0A` +
+        `*Product:* ${encodeURIComponent(o.product)} (x${o.quantity})%0A` +
+        (o.song !== 'N/A' ? `*Song:* ${encodeURIComponent(o.song)}%0A` : '') +
+        (o.spotifyUrl !== 'N/A' && o.spotifyUrl ? `*Spotify Link:* ${encodeURIComponent(o.spotifyUrl)}%0A` : '') +
+        (o.engraveText !== 'N/A' ? `*Back Engraving:* ${encodeURIComponent(o.engraveText)}%0A` : '') +
+        `*Finish Tone:* ${encodeURIComponent(o.finish)}%0A` +
+        `*Gift Box:* ${encodeURIComponent(o.giftBox)}%0A` +
+        `*Total Price:* ₹${o.totalPrice} (Free Shipping)%0A` +
+        `----------------------------%0A` +
+        `*Customer:* ${encodeURIComponent(o.name)}%0A` +
+        `*Phone:* ${encodeURIComponent(o.phone)}%0A` +
+        `*Delivery Address:* ${encodeURIComponent(o.address)}%0A` +
+        `----------------------------%0A` +
+        `Please confirm my custom keychain order and send preview proof!`;
+    }
+
+    function showDrawerToast(msg) {
+      const t = document.getElementById('dtoast');
+      t.textContent = msg;
+      t.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => { t.style.transform = 'translateX(-50%) translateY(100px)'; }, 3200);
+    }
+
+    document.getElementById('dbtnWhatsapp').addEventListener('click', () => {
+      if (!validateDrawerForm()) return;
+      const o = generateDrawerOrder();
+      const text = formatDrawerWhatsAppText(o);
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    });
+
+    document.getElementById('dbtnInstagram').addEventListener('click', () => {
+      if (!validateDrawerForm()) return;
+      const o = generateDrawerOrder();
+      const clipboardText = `TuneTagZ Order Request:\n` +
+        `Product: ${o.product} (x${o.quantity})\n` +
+        (o.song !== 'N/A' ? `Song: ${o.song}\n` : '') +
+        (o.spotifyUrl !== 'N/A' && o.spotifyUrl ? `Link: ${o.spotifyUrl}\n` : '') +
+        (o.engraveText !== 'N/A' ? `Engraving: ${o.engraveText}\n` : '') +
+        `Finish: ${o.finish}\n` +
+        `Total: ₹${o.totalPrice}\n` +
+        `Name: ${o.name}\n` +
+        `Address: ${o.address}`;
+      
+      navigator.clipboard.writeText(clipboardText).then(() => {
+        showDrawerToast('Order copied! Paste in @tune.tagz Instagram DM');
+        setTimeout(() => window.open('https://www.instagram.com/tune.tagz/', '_blank'), 1000);
+      });
+    });
+
+    const dreceiptModal = document.getElementById('dreceiptModal');
+    document.getElementById('dbtnDirect').addEventListener('click', () => {
+      if (!validateDrawerForm()) return;
+      const o = generateDrawerOrder();
+      const orderId = 'TZ-' + Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('dreceiptId').textContent = `Order #${orderId}`;
+      document.getElementById('dreceiptDetails').innerHTML = `
+        <b>Product:</b> ${o.product} (x${o.quantity})<br/>
+        ${o.song !== 'N/A' ? `<b>Song:</b> ${o.song}<br/>` : ''}
+        ${o.engraveText !== 'N/A' ? `<b>Engraving:</b> ${o.engraveText}<br/>` : ''}
+        <b>Finish:</b> ${o.finish}<br/>
+        <b>Deliver to:</b> ${o.name} (${o.address})<br/>
+        <b>Total Amount:</b> ₹${o.totalPrice} (Free Tracked Delivery)
+      `;
+      document.getElementById('dreceiptWaBtn').onclick = () => {
+        const text = formatDrawerWhatsAppText(o);
+        window.open(`https://wa.me/?text=${text}`, '_blank');
+      };
+      dreceiptModal.classList.add('open');
+    });
+
+    document.getElementById('dreceiptCloseBtn').addEventListener('click', () => dreceiptModal.classList.remove('open'));
+    dreceiptModal.addEventListener('click', e => { if (e.target === dreceiptModal) dreceiptModal.classList.remove('open'); });
   </script>
 </body>
 </html>
