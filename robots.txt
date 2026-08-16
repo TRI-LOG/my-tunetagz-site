@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devlokey.github.io/Tune/sitemap.xml

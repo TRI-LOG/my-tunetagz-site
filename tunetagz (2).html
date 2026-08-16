@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuneTagZ — Wear Your Sound</title>
+  <meta name="description" content="Custom-engraved Spotify code keychains for music lovers. Scan your favorite song, carry it everywhere. Ships across India." />
+  <meta property="og:title" content="TuneTagZ — Wear Your Sound" />
+  <meta property="og:description" content="Custom-engraved Spotify code keychains. Your favorite song, always with you." />
+  <meta property="og:image" content="https://devlokey.github.io/Tune/POSTER%201.png" />
+  <meta property="og:url" content="https://devlokey.github.io/Tune/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1f13;
+      --bg2: #0a1a0f;
+      --bg3: #112018;
+      --cream: #e8e4c8;
+      --cream-dim: rgba(232,228,200,0.55);
+      --cream-faint: rgba(232,228,200,0.08);
+      --green-glow: rgba(34,197,94,0.18);
+      --green-mid: #1a4a28;
+      --gold: #c9a84c;
+      --text: #e8e4c8;
+      --muted: rgba(232,228,200,0.45);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 22px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: padding 0.35s ease, background 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    #nav.scrolled {
+      padding: 14px 52px;
+      background: rgba(10,26,15,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(232,228,200,0.07);
+    }
+    .nav-logo img { height: 38px; width: auto; }
+    .nav-links { display: flex; gap: 38px; align-items: center; }
+    .nav-link {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; position: relative;
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--cream);
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--cream); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-cta {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      border: none; padding: 10px 24px; border-radius: 2px;
+      text-decoration: none;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,228,200,0.22); }
+    .nav-cta:active { transform: scale(0.97); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 52px 80px;
+      gap: 60px;
+    }
+    .hero-spotlight {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 70% at 72% 30%, rgba(74,222,128,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 20% 60%, rgba(34,197,94,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(34,197,94,0.06) 0%, transparent 60%);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.6;
+    }
+    .hero-left { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 28px;
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+    }
+    .hero-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(64px, 9vw, 140px);
+      font-weight: 400; line-height: 0.88;
+      letter-spacing: -0.02em; text-transform: uppercase;
+      color: var(--cream);
+      animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.18s both;
+    }
+    .hero-title .accent { color: var(--gold); }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.75;
+      color: var(--muted); max-width: 400px;
+      margin-top: 28px; margin-bottom: 40px;
+      animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+    }
+    .hero-cta-row {
+      display: flex; gap: 14px; align-items: center;
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.42s both;
+    }
+    .btn-primary {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      padding: 14px 34px; border-radius: 2px;
+      text-decoration: none; border: none;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(232,228,200,0.28); }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-ghost {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cream); background: transparent;
+      border: 1px solid rgba(232,228,200,0.28);
+      padding: 13px 28px; border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.18s;
+    }
+    .btn-ghost:hover { border-color: var(--cream); background: var(--cream-faint); transform: translateY(-2px); }
+
+    /* Hero right — product carousel */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn 1.1s ease 0.3s both;
+    }
+    .hero-product-wrap {
+      position: relative;
+      width: min(780px, 100%);
+      min-height: 680px;
+    }
+    .hero-product-stage {
+      position: relative;
+      width: 100%;
+      min-height: 640px;
+    }
+    .hero-product-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(680px, 90vw);
+      max-height: 680px;
+      object-fit: contain;
+      border-radius: 0;
+      box-shadow: none;
+      transform: translate(-50%, -50%) scale(0.62);
+      opacity: 0.42;
+      filter: blur(5px) saturate(0.75);
+      z-index: 1;
+      --hero-x: -50%;
+      --hero-y: -50%;
+      --hero-scale: 0.62;
+      transition: transform 0.65s cubic-bezier(0.16,1,0.3,1), opacity 0.45s, filter 0.45s, z-index 0s 0.25s;
+    }
+    .hero-product-img.is-active {
+      --hero-x: -50%;
+      --hero-y: -50%;
+      --hero-scale: 1;
+      transform: translate(var(--hero-x), var(--hero-y)) scale(var(--hero-scale));
+      opacity: 1;
+      filter: blur(0) saturate(1);
+      z-index: 3;
+      animation: floatImg 6s ease-in-out infinite;
+    }
+    .hero-product-img.is-side {
+      --hero-x: 18%;
+      --hero-y: -56%;
+      --hero-scale: 0.48;
+      transform: translate(var(--hero-x), var(--hero-y)) scale(var(--hero-scale));
+    }
+    .hero-product-img.is-active + .hero-product-img.is-side {
+      --hero-x: -112%;
+      --hero-y: -42%;
+      --hero-scale: 0.48;
+      transform: translate(var(--hero-x), var(--hero-y)) scale(var(--hero-scale));
+      opacity: 0.08;
+    }
+    @keyframes floatImg {
+      0%, 100% { transform: translate(var(--hero-x), var(--hero-y)) scale(var(--hero-scale)); }
+      50% { transform: translate(var(--hero-x), calc(var(--hero-y) - 14px)) scale(var(--hero-scale)); }
+    }
+    .hero-product-tag {
+      position: absolute; bottom: -20px; left: 24px;
+      background: rgba(10,26,15,0.92);
+      border: 1px solid rgba(232,228,200,0.12);
+      backdrop-filter: blur(12px);
+      padding: 14px 20px;
+      border-radius: 3px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-tag-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero-tag-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); }
+    .hero-tag-price { font-family: 'DM Mono', monospace; font-size: 0.9rem; font-weight: 500; color: var(--gold); }
+    .hero-arrows {
+      position: absolute;
+      right: 24px;
+      bottom: -18px;
+      z-index: 5;
+      display: flex;
+      gap: 10px;
+    }
+    .hero-arrow {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(232,228,200,0.22);
+      border-radius: 2px;
+      color: var(--cream);
+      background: rgba(10,26,15,0.82);
+      backdrop-filter: blur(12px);
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: transform 0.18s, border-color 0.2s, background 0.2s;
+    }
+    .hero-arrow:hover {
+      transform: translateY(-2px);
+      border-color: var(--cream);
+      background: rgba(232,228,200,0.08);
+    }
+    .hero-arrow:active { transform: scale(0.96); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid rgba(232,228,200,0.07);
+      border-bottom: 1px solid rgba(232,228,200,0.07);
+      padding: 16px 0;
+      background: var(--bg2);
+    }
+    .marquee-track {
+      display: flex; width: max-content;
+      animation: marquee 24s linear infinite;
+    }
+    .marquee-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); padding: 0 40px;
+      display: flex; align-items: center; gap: 36px; white-space: nowrap;
+    }
+    .mdot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── PRODUCTS ── */
+    #products { padding: 130px 52px; position: relative; }
+    .section-label {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 64px;
+    }
+    .s-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .s-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(40px, 6vw, 86px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.01em; text-transform: uppercase;
+      color: var(--cream);
+    }
+    .s-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; color: var(--muted);
+      letter-spacing: 0.1em; padding-bottom: 6px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* Product Card */
+    .pcard {
+      background: var(--bg2);
+      border: 1px solid rgba(232,228,200,0.07);
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, box-shadow 0.4s;
+    }
+    .pcard:hover {
+      transform: translateY(-8px);
+      border-color: rgba(74,222,128,0.25);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 30px rgba(34,197,94,0.08);
+    }
+    .pcard:hover .pimg { transform: scale(1.05); }
+    .pcard:hover .pbar { width: 100%; }
+
+    .pimg-wrap {
+      aspect-ratio: 1/1; overflow: hidden;
+      background: #081209; position: relative;
+    }
+    .pimg {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      transition: transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .pbadge {
+      position: absolute; top: 14px; left: 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--bg2); background: var(--gold);
+      padding: 4px 10px; border-radius: 1px;
+    }
+    .psku {
+      position: absolute; bottom: 14px; right: 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--cream); opacity: 0.4;
+      border: 1px solid rgba(232,228,200,0.2);
+      padding: 3px 8px; border-radius: 1px;
+    }
+
+    .pbody { padding: 26px 26px 30px; flex: 1; display: flex; flex-direction: column; }
+    .pbar {
+      height: 1px; background: linear-gradient(90deg, var(--gold), #4ade80);
+      width: 0; transition: width 0.45s cubic-bezier(0.16,1,0.3,1);
+      margin-bottom: 20px;
+    }
+    .pname {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.7rem; font-weight: 400;
+      text-transform: uppercase; letter-spacing: 0.01em;
+      color: var(--cream); line-height: 1; margin-bottom: 10px;
+    }
+    .pdesc {
+      font-size: 0.82rem; line-height: 1.68;
+      color: var(--muted); flex: 1; margin-bottom: 22px;
+    }
+    .pfooter { display: flex; align-items: center; justify-content: space-between; }
+    .pprice {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.1rem; color: var(--cream); font-weight: 500;
+    }
+    .pprice small { font-size: 0.65rem; color: var(--muted); margin-left: 4px; }
+    .pbtn {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      border: none; padding: 10px 20px; border-radius: 1px;
+      text-decoration: none;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
+    }
+    .pbtn:hover { transform: translateY(-2px) scale(1.04); background: #fff; }
+    .pbtn:active { transform: scale(0.97); }
+
+    /* Coming soon */
+    .pcard.soon .pimg-wrap {
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(34,197,94,0.06) 0%, transparent 70%), #081209;
+    }
+    .soon-inner { text-align: center; padding: 40px 20px; }
+    .soon-icon { font-size: 2.8rem; opacity: 0.25; margin-bottom: 14px; }
+    .soon-label {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.5rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--cream); opacity: 0.18;
+    }
+    .soon-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-top: 10px; opacity: 0.6;
+    }
+
+    /* ── WHY SECTION ── */
+    #why {
+      padding: 130px 52px;
+      background: var(--bg2);
+      border-top: 1px solid rgba(232,228,200,0.06);
+      border-bottom: 1px solid rgba(232,228,200,0.06);
+      position: relative; overflow: hidden;
+    }
+    .why-bg-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(34,197,94,0.07) 0%, transparent 60%);
+    }
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; margin-top: 64px;
+    }
+    .why-headline {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(42px, 5.5vw, 88px);
+      font-weight: 400; text-transform: uppercase;
+      line-height: 0.95; letter-spacing: -0.01em;
+      color: var(--cream); margin-bottom: 28px;
+    }
+    .why-headline span { color: var(--gold); }
+    .why-body { font-size: 0.95rem; line-height: 1.8; color: var(--muted); max-width: 380px; }
+    .feats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .feat {
+      padding: 24px 22px;
+      border: 1px solid rgba(232,228,200,0.07);
+      border-radius: 2px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .feat:hover { border-color: rgba(74,222,128,0.3); background: rgba(34,197,94,0.04); }
+    .feat-icon { font-size: 1.4rem; margin-bottom: 12px; }
+    .feat-title { font-weight: 600; font-size: 0.82rem; color: var(--cream); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .feat-desc { font-size: 0.78rem; line-height: 1.6; color: var(--muted); }
+
+    /* ── FEAT CARD ACCENT ── */
+    .feat { position: relative; }
+    .feat::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 16px;
+      border-radius: 1px;
+    }
+
+    /* ── PRODUCT SPOTLIGHT ── */
+    #spotlight {
+      padding: 130px 52px;
+      position: relative; overflow: hidden;
+    }
+    .spot-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 80% at 50% 0%, rgba(74,222,128,0.1) 0%, transparent 55%);
+    }
+    .spot-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; margin-top: 64px;
+    }
+    .spot-img-wrap {
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 50px rgba(34,197,94,0.1);
+    }
+    .spot-img-wrap img { width: 100%; display: block; border-radius: 4px; object-fit: contain; }
+    .spot-right { }
+    .spot-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .spot-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 400; text-transform: uppercase;
+      line-height: 0.9; color: var(--cream); margin-bottom: 24px;
+    }
+    .spot-desc { font-size: 0.95rem; line-height: 1.75; color: var(--muted); margin-bottom: 36px; }
+    .spot-features { margin-bottom: 40px; }
+    .spot-feat {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(232,228,200,0.07);
+    }
+    .spot-feat:first-child { border-top: 1px solid rgba(232,228,200,0.07); }
+    .spot-feat-icon {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      font-size: 0;
+    }
+    .spot-feat-text { font-size: 0.84rem; color: var(--cream); }
+    .spot-feat-text span { color: var(--muted); font-size: 0.78rem; display: block; margin-top: 2px; }
+
+    /* ── CTA BANNER ── */
+    #cta {
+      padding: 140px 52px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      background: var(--bg2);
+    }
+    .cta-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(74,222,128,0.12) 0%, transparent 65%);
+    }
+    .cta-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 24px;
+    }
+    .cta-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(52px, 10vw, 150px);
+      font-weight: 400; text-transform: uppercase;
+      line-height: 0.88; letter-spacing: -0.02em;
+      color: var(--cream); margin-bottom: 48px;
+    }
+    .cta-title span { color: var(--gold); }
+    .cta-sub {
+      font-size: 1rem; color: var(--muted); line-height: 1.7;
+      max-width: 420px; margin: 0 auto 48px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 44px 52px 36px;
+      border-top: 1px solid rgba(232,228,200,0.07);
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg2);
+    }
+    footer img { height: 28px; width: auto; opacity: 0.6; }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .flink {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .flink:hover { color: var(--cream); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal:nth-child(1){transition-delay:0s}
+    .reveal:nth-child(2){transition-delay:0.09s}
+    .reveal:nth-child(3){transition-delay:0.18s}
+    .reveal:nth-child(4){transition-delay:0.27s}
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(34px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    /* ── SCROLL PROGRESS ── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--gold), #4ade80);
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 36px; height: 36px;
+      background: none; border: none; padding: 4px;
+      z-index: 1100;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--cream); border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.2s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE DRAWER ── */
+    .mobile-drawer {
+      display: none;
+      position: fixed; inset: 0; z-index: 1050;
+      background: rgba(10,26,15,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 36px;
+      transform: translateY(-100%);
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    .mobile-drawer.open { transform: translateY(0); }
+    .mobile-drawer .d-link {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2rem, 9vw, 3.2rem);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--cream); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-drawer .d-link:hover { color: var(--gold); }
+    .mobile-drawer .d-cta {
+      margin-top: 8px;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      padding: 14px 40px; border-radius: 2px;
+      text-decoration: none;
+    }
+
+    /* ── STICKY MOBILE ORDER BAR ── */
+    .mobile-order-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 12px 20px;
+      background: rgba(10,26,15,0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(232,228,200,0.1);
+    }
+    .mobile-order-bar a {
+      display: block; width: 100%; text-align: center;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      padding: 15px; border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .mobile-order-bar a:active { background: #d4d0b5; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      #nav { padding: 16px 20px; }
+      #nav.scrolled { padding: 12px 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-cta { display: none; }
+      .mobile-drawer { display: flex; }
+      .mobile-order-bar { display: block; }
+
+      #hero { grid-template-columns: 1fr; padding: 80px 20px 100px; gap: 20px; }
+      .hero-right { order: -1; }
+      .hero-product-wrap { min-height: 300px; }
+      .hero-product-stage { min-height: 260px; }
+      .hero-product-img { width: min(300px, 78vw); max-height: 280px; }
+      .hero-product-tag { left: 0; bottom: -10px; padding: 10px 12px; }
+      .hero-arrows { right: 0; bottom: -8px; }
+      .hero-title { font-size: clamp(52px, 15vw, 80px); }
+
+      #products, #why, #spotlight, #cta, footer { padding-left: 20px; padding-right: 20px; }
+      #products, #why, #spotlight { padding-top: 70px; padding-bottom: 70px; }
+      #cta { padding-top: 80px; padding-bottom: 100px; }
+      footer { padding-bottom: 90px; }
+
+      .products-grid { grid-template-columns: 1fr; }
+      .why-grid, .spot-grid { grid-template-columns: 1fr; gap: 36px; }
+      .feats { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .feat { padding: 18px 16px; }
+      .section-label { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+      .spot-img-wrap img { object-fit: contain; max-height: none; }
+
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+
+      body { padding-bottom: 70px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#products" class="d-link" data-drawer-close>Shop</a>
+    <a href="#why"      class="d-link" data-drawer-close>Why Us</a>
+    <a href="#spotlight" class="d-link" data-drawer-close>Rocky</a>
+    <a href="#cta"      class="d-link" data-drawer-close>Order</a>
+    <a href="https://www.instagram.com/tune.tagz/" class="d-cta" target="_blank" rel="noopener">Order on Instagram</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-logo"><img src="TUNETAGZ%20LOGO.png" alt="TuneTagZ" /></div>
+    <div class="nav-links">
+      <a href="#products" class="nav-link">Shop</a>
+      <a href="#why"      class="nav-link">Why Us</a>
+      <a href="#spotlight" class="nav-link">Rocky</a>
+      <a href="#cta"      class="nav-link">Order</a>
+    </div>
+    <a href="https://www.instagram.com/tune.tagz/" class="nav-cta" target="_blank" rel="noopener">Shop Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- STICKY MOBILE ORDER BAR -->
+  <div class="mobile-order-bar">
+    <a href="https://www.instagram.com/tune.tagz/" target="_blank" rel="noopener">Order on Instagram</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-spotlight"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-left">
+      <p class="hero-eyebrow">Personalized Music Keychains</p>
+      <h1 class="hero-title">Wear<br/>Your<br/><span class="accent">Sound</span></h1>
+      <p class="hero-sub">Custom-engraved keychains for music lovers. Scan your Spotify code, carry your favorite song — everywhere you go.</p>
+      <div class="hero-cta-row">
+        <a href="#products" class="btn-primary">Shop Collection</a>
+        <a href="#why" class="btn-ghost">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-product-wrap">
+        <div class="hero-product-stage" aria-live="polite">
+          <img class="hero-product-img is-active" src="PRODUCT%201.png" alt="Spotify Code Tag" data-name="Spotify Code Tag" data-price="₹699" />
+          <img class="hero-product-img is-side" src="PRODUCT%202.png" alt="Rocky Keychain" data-name="Rocky Keychain" data-price="₹300" />
+        </div>
+        <div class="hero-product-tag">
+          <div class="hero-tag-dot"></div>
+          <span class="hero-tag-label">Spotify Code Tag</span>
+          <span class="hero-tag-price">₹699</span>
+        </div>
+        <div class="hero-arrows">
+          <button class="hero-arrow" type="button" data-hero-prev aria-label="Previous product">‹</button>
+          <button class="hero-arrow" type="button" data-hero-next aria-label="Next product">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item">Custom Engraved<span class="mdot"></span>Spotify Code Keychains<span class="mdot"></span>3D Printed<span class="mdot"></span>Premium Finish<span class="mdot"></span>Ships Across India<span class="mdot"></span>Personalized Gift<span class="mdot"></span>Music Lovers<span class="mdot"></span>Handcrafted<span class="mdot"></span>NFC Enabled<span class="mdot"></span></div>
+      <div class="marquee-item">Custom Engraved<span class="mdot"></span>Spotify Code Keychains<span class="mdot"></span>3D Printed<span class="mdot"></span>Premium Finish<span class="mdot"></span>Ships Across India<span class="mdot"></span>Personalized Gift<span class="mdot"></span>Music Lovers<span class="mdot"></span>Handcrafted<span class="mdot"></span>NFC Enabled<span class="mdot"></span></div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="section-label">
+      <div>
+        <p class="s-eyebrow reveal">The Collection</p>
+        <h2 class="s-title reveal">Our Products</h2>
+      </div>
+      <span class="s-count reveal">02 / 03 Available</span>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Product 1 -->
+      <div class="pcard reveal">
+        <div class="pimg-wrap">
+          <span class="pbadge">Bestseller</span>
+          <span class="psku">SPT-001</span>
+          <img class="pimg" src="POSTER%201.png" alt="Spotify Code Tag product poster" />
+        </div>
+        <div class="pbody">
+          <div class="pbar"></div>
+          <h3 class="pname">Spotify<br/>Code Tag</h3>
+          <p class="pdesc">Scan and play. Your favorite track engraved in gold on matte black — with your name on the back. The ultimate gift for any music lover.</p>
+          <div class="pfooter">
+            <div class="pprice">₹699 <small>/ piece</small></div>
+            <a href="https://www.instagram.com/tune.tagz/" class="pbtn" target="_blank" rel="noopener">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="pcard reveal">
+        <div class="pimg-wrap">
+          <span class="pbadge">New</span>
+          <span class="psku">RKY-001</span>
+          <img class="pimg" src="POSTER%202.png" alt="Rocky Keychain product poster" />
+        </div>
+        <div class="pbody">
+          <div class="pbar"></div>
+          <h3 class="pname">Rocky<br/>Keychain</h3>
+          <p class="pdesc">A wearable sculpture for your keys. Intricate maze-pattern 3D printed figure in matte black — bold, tactile, and unlike anything else on the market.</p>
+          <div class="pfooter">
+            <div class="pprice">₹300 <small>/ piece</small></div>
+            <a href="https://www.instagram.com/tune.tagz/" class="pbtn" target="_blank" rel="noopener">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 — coming soon -->
+      <div class="pcard soon reveal">
+        <div class="pimg-wrap">
+          <div class="soon-inner">
+            <div class="soon-label">Coming<br/>Soon</div>
+            <div class="soon-tag">Drop 03 — 2026</div>
+          </div>
+        </div>
+        <div class="pbody">
+          <div class="pbar"></div>
+          <h3 class="pname" style="opacity:0.22">Drop 03</h3>
+          <p class="pdesc">Something new is dropping. Follow us on Instagram to be the first to know when our third collection goes live.</p>
+          <div class="pfooter">
+            <div class="pprice" style="opacity:0.28">TBA</div>
+            <a href="https://www.instagram.com/tune.tagz/" class="pbtn" target="_blank" rel="noopener" style="opacity:0.65">Notify Me</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="why-bg-glow"></div>
+    <div>
+      <p class="s-eyebrow reveal">Why TuneTagZ</p>
+      <h2 class="s-title reveal">Built for<br/>Music People</h2>
+    </div>
+    <div class="why-grid">
+      <div class="reveal">
+        <p class="why-headline">Sound you<br/>can <span>hold.</span></p>
+        <p class="why-body">We turn your most meaningful songs into physical objects. Every keychain is crafted to last — made for gifting, keeping, and carrying your story wherever you go.</p>
+      </div>
+      <div class="feats">
+        <div class="feat reveal">
+          <div class="feat-title">Scannable</div>
+          <div class="feat-desc">Every Spotify Code keychain scans directly from the Spotify app. No extra steps.</div>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-title">Premium Finish</div>
+          <div class="feat-desc">Matte black body with precision gold engraving. Built to last, built to impress.</div>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-title">Perfect Gift</div>
+          <div class="feat-desc">Birthdays, anniversaries, friendships — no better way to say "this song is ours."</div>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-title">Fast Delivery</div>
+          <div class="feat-desc">Order today, receive in 5–7 days. Tracked shipping across India.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SPOTLIGHT — ROCKY -->
+  <section id="spotlight">
+    <div class="spot-bg"></div>
+    <div>
+      <p class="s-eyebrow reveal">Featured Drop</p>
+      <h2 class="s-title reveal">Spotlight</h2>
+    </div>
+    <div class="spot-grid" style="margin-top:64px">
+      <div class="spot-img-wrap reveal">
+        <img src="PRODUCT%202.png" alt="Rocky Keychain" />
+      </div>
+      <div class="spot-right reveal">
+        <p class="spot-tag">RKY-001 — Limited Edition</p>
+        <h3 class="spot-title">Rocky<br/>Keychain</h3>
+        <p class="spot-desc">Designed by TuneTagZ. The Rocky is a 3D-printed figure keychain with an intricate topographic maze pattern across every surface — matte black, silver hardware, utterly unique.</p>
+        <div class="spot-features">
+          <div class="spot-feat">
+            <span class="spot-feat-icon">—</span>
+            <div class="spot-feat-text">Matte Black Finish <span>Premium 3D printed resin, scratch-resistant</span></div>
+          </div>
+          <div class="spot-feat">
+            <span class="spot-feat-icon">—</span>
+            <div class="spot-feat-text">Silver Steel Hardware <span>Durable chain and ring included</span></div>
+          </div>
+          <div class="spot-feat">
+            <span class="spot-feat-icon">—</span>
+            <div class="spot-feat-text">Ships All Over India <span>Tracked delivery in 5–7 working days</span></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px">
+          <span style="font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--cream)">₹300</span>
+          <a href="https://www.instagram.com/tune.tagz/" class="btn-primary" target="_blank" rel="noopener">Order Rocky</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-glow"></div>
+    <p class="cta-eyebrow reveal">Ready to Order?</p>
+    <h2 class="cta-title reveal">Your song.<br/><span>Your tag.</span></h2>
+    <p class="cta-sub reveal">DM us on Instagram or click below to place your custom order. Ships across India.</p>
+    <div class="reveal" style="display:flex;gap:14px;justify-content:center">
+      <a href="https://www.instagram.com/tune.tagz/" class="btn-primary" target="_blank" rel="noopener">Order on Instagram</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="TUNETAGZ%20LOGO.png" alt="TuneTagZ" />
+    <span class="footer-copy">© 2026 TuneTagZ. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/tune.tagz/" class="flink" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.instagram.com/tune.tagz/" class="flink" target="_blank" rel="noopener">Contact</a>
+      <a href="https://www.instagram.com/tune.tagz/" class="flink" target="_blank" rel="noopener">FAQ</a>
+    </div>
+  </footer>
+
+  <script>
+    /* ── SCROLL PROGRESS BAR ── */
+    const progressBar = document.getElementById('progressBar');
+    function updateProgress() {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (window.scrollY / total * 100) + '%';
+    }
+
+    /* ── NAV SCROLL ── */
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+      updateProgress();
+    }, { passive: true });
+
+    /* ── HAMBURGER / DRAWER ── */
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('mobileDrawer');
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('[data-drawer-close]').forEach(el => {
+      el.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ── HERO CAROUSEL ── */
+    const heroProducts = Array.from(document.querySelectorAll('.hero-product-img'));
+    const heroLabel = document.querySelector('.hero-tag-label');
+    const heroPrice = document.querySelector('.hero-tag-price');
+    let heroIndex = 0;
+
+    function setHeroProduct(nextIndex) {
+      heroIndex = (nextIndex + heroProducts.length) % heroProducts.length;
+      heroProducts.forEach((img, i) => {
+        img.classList.toggle('is-active', i === heroIndex);
+        img.classList.toggle('is-side', i !== heroIndex);
+      });
+      heroLabel.textContent = heroProducts[heroIndex].dataset.name;
+      heroPrice.textContent = heroProducts[heroIndex].dataset.price;
+    }
+
+    document.querySelector('[data-hero-next]').addEventListener('click', () => setHeroProduct(heroIndex + 1));
+    document.querySelector('[data-hero-prev]').addEventListener('click', () => setHeroProduct(heroIndex - 1));
+
+    /* ── TOUCH SWIPE ON HERO ── */
+    const heroStage = document.querySelector('.hero-product-stage');
+    let touchStartX = 0;
+    heroStage.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    heroStage.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) setHeroProduct(dx < 0 ? heroIndex + 1 : heroIndex - 1);
+    }, { passive: true });
+
+    /* ── CARD TILT (desktop only) ── */
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('.pcard').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `translateY(-8px) perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 6}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    /* ── PRICE COUNTER ANIMATION ── */
+    function animateCount(el) {
+      const text = el.textContent;
+      const match = text.match(/[\d,]+/);
+      if (!match) return;
+      const target = parseInt(match[0].replace(',', ''));
+      const prefix = text.slice(0, text.indexOf(match[0]));
+      const suffix = text.slice(text.indexOf(match[0]) + match[0].length);
+      let start = 0;
+      const duration = 900;
+      const step = timestamp => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = prefix + Math.round(ease * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const priceObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCount(e.target);
+          priceObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.pprice, .hero-tag-price').forEach(el => priceObserver.observe(el));
+
+    /* ── ACTIVE NAV LINK ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    sections.forEach(s => {
+      new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
+    });
+
+    /* ── SCROLL REVEAL ── */
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  </script>
+</body>
+</html>
