@@ -9,10 +9,10 @@
 
   // Product metadata helper
   const PRODUCT_META = {
-    'spt001': { name: 'Spotify Code Tag', price: 699, poster: 'POSTER 1.png', defaultFinish: 'Matte Black + Silk Gold PLA' },
-    'mtl001': { name: 'Spotify by TuneTagZ (Metal)', price: 799, poster: 'POSTER 3.jpg', defaultFinish: '316L Chrome Steel + Obsidian' },
-    'nfc001': { name: 'Vinyl Record NFC Tag', price: 699, poster: 'POSTER 4.jpg', defaultFinish: 'Grooved Vinyl PLA (Pure NFC)' },
-    'duo001': { name: 'Spotify Duo Set', price: 999, poster: 'POSTER 5.jpg', defaultFinish: 'Dual Matte Black + Silk Gold PLA' },
+    'spt001': { name: 'Spotify Code Tag (Pooled Selling)', price: 249, poster: 'POSTER 1.png', defaultFinish: 'Matte Black + Silk Gold PLA' },
+    'mtl001': { name: 'Spotify Metal Tag (Available Now)', price: 169, poster: 'POSTER 3.jpg', defaultFinish: '316L Chrome Steel + Obsidian' },
+    'nfc001': { name: 'Vinyl Record NFC Tag', price: 199, poster: 'POSTER 4.jpg', defaultFinish: 'Grooved Vinyl PLA (Pure NFC)' },
+    'duo001': { name: 'Spotify Duo Set', price: 349, poster: 'POSTER 5.jpg', defaultFinish: 'Dual Matte Black + Silk Gold PLA' },
     'rky001': { name: 'Rocky Keychain', price: 300, poster: 'POSTER 2.png', defaultFinish: 'Matte Black Maze' },
     'bundle': { name: 'Duet Bundle', price: 899, poster: 'POSTER 1.png', defaultFinish: 'Matte Black + Silk Gold PLA' }
   };
@@ -91,6 +91,15 @@
     },
 
     addItem(itemData) {
+      // Guard against Out of Stock & Coming Soon models
+      if (itemData.productKey === 'nfc001' || itemData.productKey === 'duo001' || itemData.productKey === 'rky001') {
+        const msg = itemData.productKey === 'rky001' ? 'Rocky Keychain is currently Out of Stock.' : 'This model is Coming Soon.';
+        if (typeof showToast === 'function') {
+          showToast(`⚠️ ${msg} Only Spotify Metal Tag is in stock, and Spotify Code Tag is open for Pooled Selling.`);
+        }
+        return false;
+      }
+
       const items = this.getCart();
       // Match existing item if product key, duo separate mode, songs, engravings, text sizes, finish, back customization, nfc and gift box are identical
       const existingIdx = items.findIndex(i =>
@@ -112,7 +121,7 @@
       if (existingIdx > -1) {
         items[existingIdx].quantity += (itemData.quantity || 1);
       } else {
-        const meta = PRODUCT_META[itemData.productKey] || { name: itemData.name || 'Custom Keychain', price: itemData.unitPrice || 699, poster: 'POSTER 1.png' };
+        const meta = PRODUCT_META[itemData.productKey] || { name: itemData.name || 'Custom Keychain', price: itemData.unitPrice || 249, poster: 'POSTER 1.png' };
         const newItem = {
           id: 'item_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
           productKey: itemData.productKey,
@@ -171,6 +180,7 @@
 
   // Expose CartStore globally
   window.TuneTagzCart = CartStore;
+  window.TuneTagZCart = CartStore;
 
   /* ── UI INJECTION: Cart Drawer, Styles, and Trigger Badges ── */
   function injectCartStyles() {
@@ -779,7 +789,11 @@
           <img src="${item.poster || 'POSTER 1.png'}" alt="${item.name}" class="tz-item-thumb" />
           <div class="tz-item-details">
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <div class="tz-item-name">${item.name}</div>
+              <div class="tz-item-name">
+                ${item.name}
+                ${item.productKey === 'mtl001' ? '<span style="display:inline-block; font-size:0.62rem; background:rgba(34,197,94,0.18); color:#22c55e; border:1px solid #22c55e; font-weight:700; padding:1px 5px; border-radius:2px; margin-left:4px;">AVAILABLE NOW</span>' : ''}
+                ${item.productKey === 'spt001' ? '<span style="display:inline-block; font-size:0.62rem; background:rgba(245,158,11,0.18); color:#f59e0b; border:1px solid #f59e0b; font-weight:700; padding:1px 5px; border-radius:2px; margin-left:4px;">POOLED BATCH #1</span>' : ''}
+              </div>
               <button type="button" class="tz-item-remove" data-action="remove" data-id="${item.id}" title="Remove item" aria-label="Remove ${item.name}">✕</button>
             </div>
             
