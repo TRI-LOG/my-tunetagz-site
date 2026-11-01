@@ -95,7 +95,7 @@
       if (itemData.productKey === 'nfc001' || itemData.productKey === 'duo001' || itemData.productKey === 'rky001') {
         const msg = itemData.productKey === 'rky001' ? 'Rocky Keychain is currently Out of Stock.' : 'This model is Coming Soon.';
         if (typeof showToast === 'function') {
-          showToast(`⚠️ ${msg} Only Spotify Metal Tag is in stock, and Spotify Code Tag is open for Pooled Selling.`);
+          showToast(`${msg} Only Spotify Metal Tag is in stock, and Spotify Code Tag is open for Pooled Selling.`);
         }
         return false;
       }
@@ -192,9 +192,9 @@
       .tz-cart-overlay {
         position: fixed;
         inset: 0;
-        background: rgba(3, 10, 6, 0.78);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         z-index: 99999;
         opacity: 0;
         visibility: hidden;
@@ -211,51 +211,52 @@
         bottom: 0;
         width: 100%;
         max-width: 440px;
-        background: #030c08;
-        border-left: 1px solid rgba(34, 197, 94, 0.22);
-        box-shadow: -15px 0 50px rgba(0, 0, 0, 0.85), 0 0 40px rgba(34, 197, 94, 0.12);
+        background: #0f1015;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: -15px 0 50px rgba(0, 0, 0, 0.85), 0 0 40px rgba(30, 215, 96, 0.1);
         z-index: 100000;
         display: flex;
         flex-direction: column;
         transform: translateX(100%);
         transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        color: #f1eada;
-        font-family: 'Space Grotesk', system-ui, sans-serif;
+        color: #f4f4f7;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
       }
       .tz-cart-overlay.open .tz-cart-drawer {
         transform: translateX(0);
       }
       .tz-cart-header {
         padding: 22px 24px;
-        border-bottom: 1px solid rgba(241, 234, 218, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #05140d;
+        background: #12131a;
       }
       .tz-cart-title {
-        font-family: 'Anton', sans-serif;
-        font-size: 1.4rem;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        color: #f1eada;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #f4f4f7;
         display: flex;
         align-items: center;
         gap: 10px;
       }
       .tz-cart-title .tz-badge {
-        font-family: 'DM Mono', monospace;
+        font-family: 'Roboto Mono', 'SF Mono', monospace;
         font-size: 0.72rem;
-        background: rgba(34, 197, 94, 0.18);
-        color: #22c55e;
-        border: 1px solid rgba(34, 197, 94, 0.4);
+        background: rgba(30, 215, 96, 0.12);
+        color: #1ed760;
+        border: 1px solid rgba(30, 215, 96, 0.3);
         padding: 2px 8px;
-        border-radius: 12px;
+        border-radius: 999px;
       }
       .tz-cart-close {
         background: transparent;
-        border: 1px solid rgba(241, 234, 218, 0.15);
-        color: #f1eada;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #f4f4f7;
         width: 34px;
         height: 34px;
         border-radius: 50%;
@@ -266,9 +267,9 @@
         transition: all 0.2s;
       }
       .tz-cart-close:hover {
-        background: rgba(241, 234, 218, 0.1);
-        border-color: #22c55e;
-        color: #22c55e;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: #1ed760;
+        color: #1ed760;
       }
       .tz-cart-body {
         flex: 1;
@@ -278,7 +279,7 @@
       .tz-cart-empty {
         text-align: center;
         padding: 60px 10px;
-        color: rgba(241, 234, 218, 0.55);
+        color: #8b8f9e;
       }
       .tz-cart-empty-icon {
         font-size: 3rem;
@@ -286,10 +287,11 @@
         opacity: 0.6;
       }
       .tz-cart-empty h4 {
-        font-family: 'Anton', sans-serif;
-        font-size: 1.3rem;
-        color: #f1eada;
-        text-transform: uppercase;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #f4f4f7;
         margin-bottom: 8px;
       }
       .tz-cart-empty p {
@@ -299,25 +301,26 @@
       }
       .tz-cart-empty .tz-btn-shop {
         display: inline-block;
-        background: #22c55e;
-        color: #04110b;
+        background: #1ed760;
+        color: #090a0f;
+        font-family: 'Inter', sans-serif;
         font-weight: 700;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.04em;
         padding: 12px 24px;
-        border-radius: 2px;
+        border-radius: 8px;
         text-decoration: none;
         transition: transform 0.2s, background 0.2s;
       }
       .tz-cart-empty .tz-btn-shop:hover {
-        background: #1db954;
+        background: #22e066;
         transform: translateY(-2px);
       }
       .tz-cart-item {
-        background: #081e14;
-        border: 1px solid rgba(241, 234, 218, 0.08);
-        border-radius: 4px;
+        background: #15161e;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
         padding: 16px;
         margin-bottom: 14px;
         display: flex;
@@ -326,14 +329,14 @@
         transition: border-color 0.2s;
       }
       .tz-cart-item:hover {
-        border-color: rgba(34, 197, 94, 0.28);
+        border-color: rgba(30, 215, 96, 0.3);
       }
       .tz-item-thumb {
         width: 68px;
         height: 68px;
-        border-radius: 3px;
-        background: #020906;
-        border: 1px solid rgba(241, 234, 218, 0.1);
+        border-radius: 6px;
+        background: #090a0f;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         object-fit: cover;
         flex-shrink: 0;
       }
@@ -342,23 +345,23 @@
         min-width: 0;
       }
       .tz-item-name {
-        font-family: 'Anton', sans-serif;
-        font-size: 1.05rem;
-        color: #f1eada;
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
-        line-height: 1.2;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.96rem;
+        font-weight: 700;
+        color: #f4f4f7;
+        letter-spacing: -0.01em;
+        line-height: 1.25;
         margin-bottom: 4px;
       }
       .tz-item-meta {
-        font-size: 0.72rem;
-        color: rgba(241, 234, 218, 0.65);
+        font-size: 0.74rem;
+        color: #8b8f9e;
         line-height: 1.45;
         margin-bottom: 8px;
         word-break: break-word;
       }
       .tz-item-meta strong {
-        color: #22c55e;
+        color: #1ed760;
         font-weight: 600;
       }
       .tz-item-price-row {
@@ -368,24 +371,24 @@
         margin-top: 6px;
       }
       .tz-item-price {
-        font-family: 'DM Mono', monospace;
+        font-family: 'Roboto Mono', 'SF Mono', monospace;
         font-size: 0.95rem;
-        font-weight: 500;
-        color: #2ecc71;
+        font-weight: 600;
+        color: #1ed760;
       }
       .tz-item-qty {
         display: flex;
         align-items: center;
         gap: 8px;
-        background: #030c08;
-        border: 1px solid rgba(241, 234, 218, 0.15);
-        border-radius: 2px;
-        padding: 2px 6px;
+        background: #0b0c10;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        padding: 3px 8px;
       }
       .tz-qty-btn {
         background: none;
         border: none;
-        color: #f1eada;
+        color: #f4f4f7;
         cursor: pointer;
         font-size: 0.85rem;
         padding: 2px 6px;
@@ -393,10 +396,10 @@
         transition: color 0.15s;
       }
       .tz-qty-btn:hover {
-        color: #22c55e;
+        color: #1ed760;
       }
       .tz-qty-num {
-        font-family: 'DM Mono', monospace;
+        font-family: 'Roboto Mono', 'SF Mono', monospace;
         font-size: 0.78rem;
         min-width: 16px;
         text-align: center;
@@ -404,7 +407,7 @@
       .tz-item-remove {
         background: none;
         border: none;
-        color: rgba(241, 234, 218, 0.35);
+        color: rgba(255, 255, 255, 0.35);
         cursor: pointer;
         padding: 4px;
         font-size: 0.9rem;
@@ -416,29 +419,30 @@
       }
       .tz-cart-footer {
         padding: 20px 24px 26px;
-        border-top: 1px solid rgba(241, 234, 218, 0.1);
-        background: #05140d;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #12131a;
       }
       .tz-footer-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 0.82rem;
-        color: rgba(241, 234, 218, 0.65);
+        color: #8b8f9e;
         margin-bottom: 8px;
       }
       .tz-footer-row.total {
         font-size: 1.15rem;
         font-weight: 700;
-        color: #f1eada;
+        color: #f4f4f7;
         margin-top: 12px;
         padding-top: 10px;
-        border-top: 1px dashed rgba(241, 234, 218, 0.12);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
       }
       .tz-footer-row.total .tz-grand-total {
-        font-family: 'DM Mono', monospace;
-        color: #22c55e;
+        font-family: 'Roboto Mono', 'SF Mono', monospace;
+        color: #1ed760;
         font-size: 1.35rem;
+        font-weight: 700;
       }
       .tz-cart-actions {
         display: flex;
@@ -447,76 +451,79 @@
         margin-top: 18px;
       }
       .tz-btn-checkout {
-        background: linear-gradient(135deg, #22c55e, #16a34a);
-        color: #04110b;
-        font-family: 'Space Grotesk', sans-serif;
+        background: #1ed760;
+        color: #090a0f;
+        font-family: 'Inter', sans-serif;
         font-weight: 700;
-        font-size: 0.85rem;
-        letter-spacing: 0.08em;
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
         border: none;
         padding: 15px;
-        border-radius: 3px;
+        border-radius: 8px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 4px 18px rgba(34, 197, 94, 0.25);
+        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        box-shadow: 0 4px 18px rgba(30, 215, 96, 0.25);
         text-decoration: none;
       }
       .tz-btn-checkout:hover {
+        background: #22e066;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+        box-shadow: 0 8px 24px rgba(30, 215, 96, 0.38);
       }
       .tz-btn-continue {
         background: transparent;
-        color: rgba(241, 234, 218, 0.7);
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        border: 1px solid rgba(241, 234, 218, 0.15);
-        padding: 10px;
-        border-radius: 2px;
+        color: #8b8f9e;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 11px;
+        border-radius: 8px;
         cursor: pointer;
         text-align: center;
         transition: all 0.2s;
       }
       .tz-btn-continue:hover {
-        border-color: rgba(34, 197, 94, 0.4);
-        color: #f1eada;
+        border-color: rgba(30, 215, 96, 0.4);
+        color: #f4f4f7;
       }
       /* Floating Cart Button */
       .tz-floating-cart-btn {
         position: fixed;
         bottom: 28px;
         right: 28px;
-        background: #0a2418;
-        border: 1px solid rgba(34, 197, 94, 0.4);
-        color: #f1eada;
+        background: #12131a;
+        border: 1px solid rgba(30, 215, 96, 0.35);
+        color: #f4f4f7;
         padding: 12px 18px;
         border-radius: 50px;
         display: flex;
         align-items: center;
         gap: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(34, 197, 94, 0.25);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(30, 215, 96, 0.2);
         cursor: pointer;
         z-index: 999;
-        font-family: 'DM Mono', monospace;
+        font-family: 'Inter', sans-serif;
         font-size: 0.82rem;
-        font-weight: 500;
-        letter-spacing: 0.04em;
+        font-weight: 600;
+        letter-spacing: 0.02em;
         transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s, border-color 0.2s;
       }
       .tz-floating-cart-btn:hover {
-        transform: translateY(-4px) scale(1.03);
-        border-color: #22c55e;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(34, 197, 94, 0.4);
+        transform: translateY(-3px) scale(1.02);
+        border-color: #1ed760;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(30, 215, 96, 0.35);
       }
       .tz-floating-badge {
-        background: #22c55e;
-        color: #04110b;
+        background: #1ed760;
+        color: #090a0f;
+        font-family: 'Roboto Mono', 'SF Mono', monospace;
         font-weight: 700;
         font-size: 0.72rem;
         width: 20px;
@@ -530,27 +537,28 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.35);
-        color: #f1eada;
+        background: rgba(30, 215, 96, 0.1);
+        border: 1px solid rgba(30, 215, 96, 0.3);
+        color: #f4f4f7;
         padding: 8px 16px;
-        border-radius: 2px;
-        font-family: 'DM Mono', monospace;
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
         cursor: pointer;
         transition: all 0.2s;
         text-decoration: none;
       }
       .nav-cart-btn:hover, .header-cart-btn:hover {
-        background: rgba(34, 197, 94, 0.22);
-        border-color: #22c55e;
-        color: #22c55e;
+        background: rgba(30, 215, 96, 0.2);
+        border-color: #1ed760;
+        color: #1ed760;
       }
       .cart-count-badge {
-        background: #22c55e;
-        color: #04110b;
+        background: #1ed760;
+        color: #090a0f;
+        font-family: 'Roboto Mono', 'SF Mono', monospace;
         font-weight: 700;
         font-size: 0.68rem;
         padding: 1px 6px;
@@ -562,14 +570,15 @@
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%) translateY(100px);
-        background: #081e14;
-        border: 1px solid #22c55e;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(34, 197, 94, 0.3);
-        color: #f1eada;
+        background: #15161e;
+        border: 1px solid #1ed760;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(30, 215, 96, 0.25);
+        color: #f4f4f7;
         padding: 12px 22px;
-        border-radius: 4px;
-        font-family: 'DM Mono', monospace;
-        font-size: 0.8rem;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 500;
         z-index: 100001;
         transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
         pointer-events: none;
@@ -791,8 +800,8 @@
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
               <div class="tz-item-name">
                 ${item.name}
-                ${item.productKey === 'mtl001' ? '<span style="display:inline-block; font-size:0.62rem; background:rgba(34,197,94,0.18); color:#22c55e; border:1px solid #22c55e; font-weight:700; padding:1px 5px; border-radius:2px; margin-left:4px;">AVAILABLE NOW</span>' : ''}
-                ${item.productKey === 'spt001' ? '<span style="display:inline-block; font-size:0.62rem; background:rgba(245,158,11,0.18); color:#f59e0b; border:1px solid #f59e0b; font-weight:700; padding:1px 5px; border-radius:2px; margin-left:4px;">POOLED BATCH #1</span>' : ''}
+                ${item.productKey === 'mtl001' ? '<span style="display:inline-flex; align-items:center; gap:4px; font-size:0.58rem; font-family:\'Roboto Mono\', \'SF Mono\', monospace; background:rgba(30,215,96,0.12); color:#1ed760; border:1px solid rgba(30,215,96,0.3); font-weight:700; padding:1px 6px; border-radius:999px; margin-left:6px;"><span style="width:4px; height:4px; border-radius:50%; background:#1ed760;"></span>IN STOCK</span>' : ''}
+                ${item.productKey === 'spt001' ? '<span style="display:inline-flex; align-items:center; gap:4px; font-size:0.58rem; font-family:\'Roboto Mono\', \'SF Mono\', monospace; background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); font-weight:700; padding:1px 6px; border-radius:999px; margin-left:6px;"><span style="width:4px; height:4px; border-radius:50%; background:#f59e0b;"></span>OPT-IN BATCH</span>' : ''}
               </div>
               <button type="button" class="tz-item-remove" data-action="remove" data-id="${item.id}" title="Remove item" aria-label="Remove ${item.name}">✕</button>
             </div>

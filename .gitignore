@@ -7,3 +7,4 @@ capture_metal_lighting.js
 clean_capture.js
 run_tests.js
 prepare_metal_back_plate.js
+*.bak_*
