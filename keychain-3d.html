@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TuneTagZ 3D Metal Studio — Chrome Spotify Keychain</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --crimson: #dc143c;
+      --crimson-glow: rgba(220, 20, 60, 0.45);
+      --dark-bg: #070405;
+      --panel-bg: rgba(18, 12, 14, 0.88);
+      --gold: #f5d061;
+      --silver: #e2e8f0;
+    }
+    body {
+      background: radial-gradient(circle at 50% 30%, #1c0e12 0%, #0c0608 60%, #030102 100%);
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+    #viewer {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      cursor: grab;
+    }
+    #viewer:active { cursor: grabbing; }
+
+    /* Top Left Header */
+    .hud-header {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .hud-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(220, 20, 60, 0.18);
+      border: 1px solid rgba(220, 20, 60, 0.45);
+      color: #ff5270;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    .hud-title {
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.85);
+    }
+    .hud-subtitle {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-top: 3px;
+    }
+
+    /* Top Right Actions */
+    .hud-top-right {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .action-btn {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #fff;
+      transform: translateY(-1px);
+    }
+    .action-btn.primary {
+      background: var(--crimson);
+      border-color: var(--crimson);
+      color: #fff;
+      box-shadow: 0 4px 16px var(--crimson-glow);
+    }
+    .action-btn.primary:hover {
+      background: #ff1a48;
+      box-shadow: 0 6px 22px var(--crimson-glow);
+    }
+
+    /* Bottom Control Bar */
+    .hud-bottom {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 18px;
+      border-radius: 999px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.7);
+      max-width: 94vw;
+    }
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f1f5f9;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .ctrl-btn:hover {
+      background: rgba(220, 20, 60, 0.2);
+      border-color: var(--crimson);
+      color: #fff;
+    }
+
+    /* Color Swatch Picker */
+    .color-picker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 10px;
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .color-swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .color-swatch.active {
+      transform: scale(1.22);
+      border-color: #fff;
+      box-shadow: 0 0 12px rgba(255,255,255,0.5);
+    }
+    .swatch-silver { background: linear-gradient(135deg, #ffffff, #cbd5e1, #64748b); }
+    .swatch-gold { background: linear-gradient(135deg, #fef08a, #eab308, #854d0e); }
+    .swatch-black { background: linear-gradient(135deg, #475569, #1e293b, #020617); }
+    .swatch-rosegold { background: linear-gradient(135deg, #fecdd3, #f43f5e, #9f1239); }
+
+    /* Floating Hint */
+    .drag-hint {
+      position: absolute;
+      bottom: 84px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      animation: pulse 2.5s infinite;
+      white-space: nowrap;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 0.85; }
+    }
+
+    /* Live Song Name Badge */
+    .spec-badge {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      z-index: 10;
+      background: rgba(18, 12, 14, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      pointer-events: none;
+    }
+    .spec-row { display: flex; gap: 8px; margin-bottom: 2px; }
+    .spec-label { color: #64748b; font-weight: 500; }
+    .spec-val { color: #e2e8f0; font-weight: 600; }
+
+    @media (max-width: 680px) {
+      .hud-header { top: 14px; left: 16px; }
+      .hud-top-right { top: 14px; right: 16px; }
+      .spec-badge { display: none; }
+      .hud-bottom { bottom: 16px; padding: 6px 12px; gap: 8px; }
+      .ctrl-btn { font-size: 0.72rem; padding: 6px 10px; }
+      .drag-hint { bottom: 70px; }
+    }
+  </style>
+  <script src="three.min.js"></script>
+  <script src="OrbitControls.js"></script>
+</head>
+<body>
+
+  <!-- Top HUD -->
+  <div class="hud-header">
+    <div class="hud-badge">✨ 3D Metal Studio</div>
+    <div class="hud-title">Chrome Metal Spotify Tag</div>
+    <div class="hud-subtitle">Polished 316L Stainless Steel • High-Gloss Obsidian Inlay</div>
+  </div>
+
+  <div class="hud-top-right">
+    <a href="index.html" class="action-btn">
+      <span>←</span> Back to Shop
+    </a>
+    <a href="order.html?product=mtl001" class="action-btn primary">
+      <span>🛒</span> Order This Tag (₹799)
+    </a>
+  </div>
+
+  <div class="drag-hint">🖱️ Drag to rotate 360° • Scroll / Pinch to zoom</div>
+
+  <!-- Specs Card -->
+  <div class="spec-badge">
+    <div class="spec-row"><span class="spec-label">Material:</span><span class="spec-val" id="specMaterial">316L Chrome Steel</span></div>
+    <div class="spec-row"><span class="spec-label">Finish:</span><span class="spec-val" id="specFinish">Mirror Gloss + High-Resin Inlay</span></div>
+    <div class="spec-row"><span class="spec-label">Code:</span><span class="spec-val">Scannable Spotify URI</span></div>
+  </div>
+
+  <div id="viewer"></div>
+
+  <!-- Bottom Interactive Bar -->
+  <div class="hud-bottom">
+    <button class="ctrl-btn" id="btnFlip" title="Flip to see back engraving">
+      <span>🔄</span> Flip Side
+    </button>
+    <button class="ctrl-btn" id="btnAutoRotate" title="Toggle automatic spin">
+      <span>⏸️</span> Pause Spin
+    </button>
+    <button class="ctrl-btn" id="btnGloss" title="Toggle intense studio light highlight">
+      <span>✨</span> Highlight Gloss
+    </button>
+
+    <div class="color-picker" title="Select Metal Finish">
+      <div class="color-swatch swatch-silver active" data-metal="silver" title="Mirror Chrome Silver"></div>
+      <div class="color-swatch swatch-gold" data-metal="gold" title="24K Luxury Gold"></div>
+      <div class="color-swatch swatch-black" data-metal="black" title="Obsidian Gunmetal"></div>
+      <div class="color-swatch swatch-rosegold" data-metal="rosegold" title="Rose Gold"></div>
+    </div>
+  </div>
+
+  <script>
+    // ----------------------------------------------------
+    // THREE.JS SCENE SETUP
+    // ----------------------------------------------------
+    const container = document.getElementById('viewer');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0, 8.8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.35;
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    container.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 3.5;
+    controls.maxDistance = 14;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 2.0;
+
+    // ----------------------------------------------------
+    // HIGH-GLOSS STUDIO ENVIRONMENT MAP (PMREM)
+    // ----------------------------------------------------
+    function createStudioEnvironment() {
+      const pmremGenerator = new THREE.PMREMGenerator(renderer);
+      pmremGenerator.compileEquirectangularShader();
+
+      const envScene = new THREE.Scene();
+      envScene.background = new THREE.Color(0x0a0a0f);
+
+      // Overhead broad softbox for glossy surface reflections
+      const softbox1 = new THREE.Mesh(
+        new THREE.PlaneGeometry(16, 16),
+        new THREE.MeshBasicMaterial({ color: 0xffffff })
+      );
+      softbox1.position.set(0, 9, 3);
+      softbox1.rotation.x = Math.PI / 2;
+      envScene.add(softbox1);
+
+      // Key light softbox on right side
+      const softbox2 = new THREE.Mesh(
+        new THREE.PlaneGeometry(10, 18),
+        new THREE.MeshBasicMaterial({ color: 0xecf4ff })
+      );
+      softbox2.position.set(9, 1, 5);
+      softbox2.rotation.y = -Math.PI / 3;
+      envScene.add(softbox2);
+
+      // Rim light softbox on left (creates the crisp beveled chrome edge highlight)
+      const softbox3 = new THREE.Mesh(
+        new THREE.PlaneGeometry(8, 16),
+        new THREE.MeshBasicMaterial({ color: 0xffedd5 })
+      );
+      softbox3.position.set(-9, 2, -4);
+      softbox3.rotation.y = Math.PI / 2.5;
+      envScene.add(softbox3);
+
+      // Subtle bottom bounce light
+      const bounce = new THREE.Mesh(
+        new THREE.PlaneGeometry(14, 14),
+        new THREE.MeshBasicMaterial({ color: 0x334155 })
+      );
+      bounce.position.set(0, -8, 2);
+      bounce.rotation.x = -Math.PI / 2;
+      envScene.add(bounce);
+
+      const renderTarget = pmremGenerator.fromScene(envScene);
+      scene.environment = renderTarget.texture;
+    }
+    createStudioEnvironment();
+
+    // Direct analytical lights for dramatic specular sheen
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
+    keyLight.position.set(4, 5, 6);
+    scene.add(keyLight);
+
+    const rimLight = new THREE.DirectionalLight(0xa5c4f2, 2.0);
+    rimLight.position.set(-5, 4, -4);
+    scene.add(rimLight);
+
+    // Dynamic rotating gloss point light (creates that moving specular glint across the gloss surface)
+    const glintLight = new THREE.PointLight(0xffffff, 3.0, 15);
+    glintLight.position.set(0, 3, 5);
+    scene.add(glintLight);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+    scene.add(ambientLight);
+
+    // ----------------------------------------------------
+    // HIGH-RES PROCEDURAL TEXTURES
+    // ----------------------------------------------------
+    function createSpotifyCodeTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 2048;
+      canvas.height = 768;
+      const ctx = canvas.getContext('2d');
+
+      // Deep glossy obsidian background
+      ctx.fillStyle = '#060608';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Subtle metallic micro-lines
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.012)';
+      for (let i = 0; i < canvas.width; i += 2) {
+        ctx.fillRect(i, 0, 1, canvas.height);
+      }
+
+      // Silver chrome gradient for the icon and code bars
+      const silverGrad = ctx.createLinearGradient(0, 180, 0, 580);
+      silverGrad.addColorStop(0, '#ffffff');
+      silverGrad.addColorStop(0.35, '#e2e8f0');
+      silverGrad.addColorStop(0.7, '#cbd5e1');
+      silverGrad.addColorStop(1, '#94a3b8');
+
+      ctx.fillStyle = silverGrad;
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.35)';
+      ctx.shadowBlur = 6;
+
+      // 1. SPOTIFY CIRCLE LOGO
+      const iconX = 330;
+      const iconY = 384;
+      const iconR = 145;
+
+      ctx.beginPath();
+      ctx.arc(iconX, iconY, iconR, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cut out the 3 curved soundwaves from the circle
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 26;
+      ctx.lineCap = 'round';
+
+      // Wave 1 (Top)
+      ctx.beginPath();
+      ctx.arc(iconX - 25, iconY + 58, 140, -Math.PI * 0.40, -Math.PI * 0.08);
+      ctx.stroke();
+
+      // Wave 2 (Middle)
+      ctx.beginPath();
+      ctx.arc(iconX - 22, iconY + 45, 104, -Math.PI * 0.40, -Math.PI * 0.08);
+      ctx.stroke();
+
+      // Wave 3 (Bottom)
+      ctx.beginPath();
+      ctx.arc(iconX - 20, iconY + 34, 70, -Math.PI * 0.40, -Math.PI * 0.08);
+      ctx.stroke();
+
+      ctx.globalCompositeOperation = 'source-over';
+
+      // 2. SPOTIFY SOUNDWAVE VERTICAL BARS (23 Bars exactly like photo)
+      const barHeights = [
+        0.35, 0.85, 0.45, 0.95, 0.60, 0.78, 0.38, 0.92,
+        0.50, 0.72, 0.98, 0.42, 0.88, 0.64, 0.38, 0.82,
+        0.55, 0.90, 0.48, 0.76, 0.38, 0.68, 0.40
+      ];
+
+      const startX = 590;
+      const endX = 1880;
+      const spacing = (endX - startX) / (barHeights.length - 1);
+      const maxHeight = 280;
+
+      ctx.lineWidth = 22;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = silverGrad;
+
+      barHeights.forEach((hFraction, i) => {
+        const bx = startX + i * spacing;
+        const barH = maxHeight * hFraction;
+        ctx.beginPath();
+        ctx.moveTo(bx, iconY - barH / 2);
+        ctx.lineTo(bx, iconY + barH / 2);
+        ctx.stroke();
+      });
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.generateMipmaps = true;
+      texture.minFilter = THREE.LinearMipmapLinearFilter;
+      return texture;
+    }
+
+    function createBackEngravingTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 2048;
+      canvas.height = 768;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#060608';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const silverGrad = ctx.createLinearGradient(0, 180, 0, 580);
+      silverGrad.addColorStop(0, '#ffffff');
+      silverGrad.addColorStop(0.5, '#e2e8f0');
+      silverGrad.addColorStop(1, '#94a3b8');
+
+      ctx.fillStyle = silverGrad;
+      ctx.textAlign = 'center';
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
+      ctx.shadowBlur = 4;
+
+      // Personalized laser engraving
+      ctx.font = 'bold 80px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+      ctx.fillText('STARBOY • THE WEEKND', canvas.width / 2, 320);
+
+      ctx.font = '600 50px monospace';
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText('ALEX & SARAH  •  24.08.2023', canvas.width / 2, 420);
+
+      ctx.font = '500 36px -apple-system, sans-serif';
+      ctx.fillStyle = '#64748b';
+      ctx.fillText('TUNETAGZ  •  STAINLESS STEEL 316L', canvas.width / 2, 520);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.generateMipmaps = true;
+      texture.minFilter = THREE.LinearMipmapLinearFilter;
+      return texture;
+    }
+
+    // ----------------------------------------------------
+    // FINISHES CONFIGURATION
+    // ----------------------------------------------------
+    const metalColors = {
+      silver: {
+        color: 0xf1f5f9,
+        metalness: 0.98,
+        roughness: 0.08,
+        specName: '316L Chrome Steel',
+        specFinish: 'Mirror Gloss + High-Resin Inlay'
+      },
+      gold: {
+        color: 0xfcd34d,
+        metalness: 0.95,
+        roughness: 0.12,
+        specName: '24K Gold Plated Steel',
+        specFinish: 'Polished Brass + Black Gloss Inlay'
+      },
+      black: {
+        color: 0x1a1e24,
+        metalness: 0.92,
+        roughness: 0.14,
+        specName: 'Onyx Gunmetal PVD',
+        specFinish: 'Deep Matte-Chrome + Obsidian Glass'
+      },
+      rosegold: {
+        color: 0xfba5a5,
+        metalness: 0.95,
+        roughness: 0.10,
+        specName: 'Rose Gold PVD Finish',
+        specFinish: 'Luxury Warm Sheen + Gloss Inlay'
+      }
+    };
+
+    // Frame metal material
+    const metalMaterial = new THREE.MeshStandardMaterial({
+      color: metalColors.silver.color,
+      metalness: metalColors.silver.metalness,
+      roughness: metalColors.silver.roughness
+    });
+
+    // High-Gloss Obsidian Front Plate (MeshPhysicalMaterial with clearcoat for liquid glass gloss)
+    const frontFaceMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x07080a,
+      map: createSpotifyCodeTexture(),
+      roughness: 0.03,
+      metalness: 0.12,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.02,
+      reflectivity: 1.0,
+      specularIntensity: 1.0
+    });
+
+    // High-Gloss Back Plate
+    const backFaceMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x07080a,
+      map: createBackEngravingTexture(),
+      roughness: 0.04,
+      metalness: 0.15,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.03,
+      reflectivity: 0.95
+    });
+
+    // ----------------------------------------------------
+    // 3D GEOMETRY BUILDER (Exact match to uploaded photo)
+    // ----------------------------------------------------
+    const keychainGroup = new THREE.Group();
+
+    function createRoundedRectShape(w, h, r) {
+      const shape = new THREE.Shape();
+      const x = -w / 2;
+      const y = -h / 2;
+      shape.moveTo(x + r, y);
+      shape.lineTo(x + w - r, y);
+      shape.quadraticCurveTo(x + w, y, x + w, y + r);
+      shape.lineTo(x + w, y + h - r);
+      shape.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      shape.lineTo(x + r, y + h);
+      shape.quadraticCurveTo(x, y + h, x, y + h - r);
+      shape.lineTo(x, y + r);
+      shape.quadraticCurveTo(x, y, x + r, y);
+      return shape;
+    }
+
+    // 1. BEVELED OUTER METAL BODY FRAME
+    const bodyWidth = 5.2;
+    const bodyHeight = 2.1;
+    const bodyRadius = 0.22;
+    const bodyDepth = 0.32;
+
+    const frameShape = createRoundedRectShape(bodyWidth, bodyHeight, bodyRadius);
+    const extrudeSettings = {
+      depth: bodyDepth,
+      bevelEnabled: true,
+      bevelSegments: 4,
+      steps: 1,
+      bevelSize: 0.06,
+      bevelThickness: 0.06
+    };
+    const frameGeometry = new THREE.ExtrudeGeometry(frameShape, extrudeSettings);
+    frameGeometry.center();
+    const frameMesh = new THREE.Mesh(frameGeometry, metalMaterial);
+    keychainGroup.add(frameMesh);
+
+    // 2. INSET GLOSSY FRONT FACE (Spotify Code Plate)
+    const insetWidth = bodyWidth - 0.22;
+    const insetHeight = bodyHeight - 0.22;
+    const insetRadius = bodyRadius * 0.7;
+    const insetShape = createRoundedRectShape(insetWidth, insetHeight, insetRadius);
+
+    const insetFrontGeometry = new THREE.ShapeGeometry(insetShape);
+    const pos = insetFrontGeometry.attributes.position;
+    const uvs = [];
+    for (let i = 0; i < pos.count; i++) {
+      const u = (pos.getX(i) + insetWidth / 2) / insetWidth;
+      const v = (pos.getY(i) + insetHeight / 2) / insetHeight;
+      uvs.push(u, v);
+    }
+    insetFrontGeometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+
+    const insetFrontMesh = new THREE.Mesh(insetFrontGeometry, frontFaceMaterial);
+    insetFrontMesh.position.z = bodyDepth / 2 + 0.062;
+    keychainGroup.add(insetFrontMesh);
+
+    // 3. INSET GLOSSY BACK FACE (Laser Engraved Inlay)
+    const insetBackGeometry = insetFrontGeometry.clone();
+    const insetBackMesh = new THREE.Mesh(insetBackGeometry, backFaceMaterial);
+    insetBackMesh.position.z = -bodyDepth / 2 - 0.062;
+    insetBackMesh.rotation.y = Math.PI;
+    keychainGroup.add(insetBackMesh);
+
+    // 4. RECTANGULAR CONNECTOR HINGE LOOP (As seen in user photo)
+    const hingeOuterW = 0.78;
+    const hingeOuterH = 1.05;
+    const hingeInnerW = 0.44;
+    const hingeInnerH = 0.68;
+    const hingeR = 0.12;
+
+    const hingeShape = createRoundedRectShape(hingeOuterW, hingeOuterH, hingeR);
+    const holePath = createRoundedRectShape(hingeInnerW, hingeInnerH, hingeR * 0.7);
+    hingeShape.holes.push(holePath);
+
+    const hingeGeometry = new THREE.ExtrudeGeometry(hingeShape, {
+      depth: 0.18,
+      bevelEnabled: true,
+      bevelSegments: 2,
+      bevelSize: 0.03,
+      bevelThickness: 0.03
+    });
+    hingeGeometry.center();
+
+    const hingeGroup = new THREE.Group();
+    const hingeMesh = new THREE.Mesh(hingeGeometry, metalMaterial);
+    hingeGroup.add(hingeMesh);
+
+    // Pivot cylinder attaching hinge to body
+    const pivotGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.36, 16);
+    const pivotMesh = new THREE.Mesh(pivotGeo, metalMaterial);
+    pivotMesh.rotation.z = Math.PI / 2;
+    pivotMesh.position.x = -hingeOuterW / 2 + 0.04;
+    hingeGroup.add(pivotMesh);
+
+    hingeGroup.position.set(bodyWidth / 2 + hingeOuterW / 2 + 0.06, 0, 0);
+    keychainGroup.add(hingeGroup);
+
+    // 5. POLISHED STEEL SPLIT KEY RING
+    const ringRadius = 1.25;
+    const ringTube = 0.105;
+    const ringGeometry = new THREE.TorusGeometry(ringRadius, ringTube, 20, 64);
+    const ringMesh = new THREE.Mesh(ringGeometry, metalMaterial);
+
+    const ringGroup = new THREE.Group();
+    ringGroup.position.set(bodyWidth / 2 + hingeOuterW + ringRadius * 0.75, 0, 0);
+    ringMesh.rotation.y = Math.PI / 7;
+    ringMesh.rotation.x = Math.PI / 12;
+    ringGroup.add(ringMesh);
+    keychainGroup.add(ringGroup);
+
+    // Center entire assembly
+    keychainGroup.position.x = -0.7;
+    keychainGroup.rotation.y = -0.25;
+    keychainGroup.rotation.x = 0.12;
+    scene.add(keychainGroup);
+
+    // ----------------------------------------------------
+    // INTERACTION & ANIMATION LOGIC
+    // ----------------------------------------------------
+    let isFlipped = false;
+    let flipTargetY = keychainGroup.rotation.y;
+
+    document.getElementById('btnFlip').addEventListener('click', () => {
+      isFlipped = !isFlipped;
+      flipTargetY = isFlipped ? Math.PI - 0.25 : -0.25;
+      controls.autoRotate = false;
+      document.getElementById('btnAutoRotate').innerHTML = '<span>▶️</span> Resume Spin';
+    });
+
+    let autoRotateActive = true;
+    document.getElementById('btnAutoRotate').addEventListener('click', () => {
+      autoRotateActive = !autoRotateActive;
+      controls.autoRotate = autoRotateActive;
+      document.getElementById('btnAutoRotate').innerHTML = autoRotateActive ?
+        '<span>⏸️</span> Pause Spin' : '<span>▶️</span> Resume Spin';
+    });
+
+    // Intense Gloss Highlight Toggle
+    let glossBoost = false;
+    document.getElementById('btnGloss').addEventListener('click', () => {
+      glossBoost = !glossBoost;
+      document.getElementById('btnGloss').style.background = glossBoost ?
+        'rgba(220, 20, 60, 0.4)' : '';
+      keyLight.intensity = glossBoost ? 3.8 : 2.4;
+      glintLight.intensity = glossBoost ? 5.5 : 3.0;
+      frontFaceMaterial.clearcoatRoughness = glossBoost ? 0.005 : 0.02;
+    });
+
+    // Color Swatch Switcher
+    document.querySelectorAll('.color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', () => {
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        swatch.classList.add('active');
+
+        const metalKey = swatch.dataset.metal;
+        const conf = metalColors[metalKey];
+
+        metalMaterial.color.setHex(conf.color);
+        metalMaterial.metalness = conf.metalness;
+        metalMaterial.roughness = conf.roughness;
+        metalMaterial.needsUpdate = true;
+
+        document.getElementById('specMaterial').textContent = conf.specName;
+        document.getElementById('specFinish').textContent = conf.specFinish;
+      });
+    });
+
+    // Resize Handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Animation Loop
+    let clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+      const elapsedTime = clock.getElapsedTime();
+
+      // Smooth flip transition
+      if (Math.abs(keychainGroup.rotation.y - flipTargetY) > 0.008) {
+        keychainGroup.rotation.y += (flipTargetY - keychainGroup.rotation.y) * 0.09;
+      }
+
+      // Gentle realistic float & tilt
+      keychainGroup.position.y = Math.sin(elapsedTime * 1.6) * 0.12;
+
+      // Orbit the glint point light slightly to cause dynamic light reflections across the glossy front
+      glintLight.position.x = Math.sin(elapsedTime * 1.2) * 5;
+      glintLight.position.y = Math.cos(elapsedTime * 1.2) * 3 + 2;
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
