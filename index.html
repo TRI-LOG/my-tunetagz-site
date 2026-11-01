@@ -31,9 +31,9 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta property="og:site_name" content="TuneTagZ" />
   <meta property="og:locale" content="en_IN" />
-  <meta name="theme-color" content="#090a0f" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090a0f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='18' fill='%231ed760'%3ETZ%3C/text%3E%3C/svg%3E" />
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23090a0f'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='90' fill='%231ed760'%3ETZ%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#04110b" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304110b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='18' fill='%2322c55e'%3ETZ%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%2304110b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='90' fill='%231db954'%3ETZ%3C/text%3E%3C/svg%3E" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -57,7 +57,7 @@
   <meta property="product:price:amount" content="169" />
   <meta property="product:price:currency" content="INR" />
   <meta name="rating" content="general" />
-  <meta name="msapplication-TileColor" content="#090a0f" />
+  <meta name="msapplication-TileColor" content="#04110b" />
   <link rel="me" href="https://www.instagram.com/tune.tagz/" />
   <link rel="preconnect" href="https://www.instagram.com" />
   <link rel="dns-prefetch" href="//www.instagram.com" />
@@ -65,26 +65,26 @@
   <link rel="dns-prefetch" href="//fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <style>
     :root {
-      --bg: #090a0f;
-      --bg2: #0f1015;
-      --bg3: #15161e;
-      --surface: #12131a;
-      --surface-border: rgba(255, 255, 255, 0.08);
-      --cream: #f4f4f7;
-      --cream-dim: #9ca3af;
-      --cream-faint: rgba(255, 255, 255, 0.04);
+      --bg: #04110b;
+      --bg2: #020906;
+      --bg3: #081e14;
+      --surface: #0a2418;
+      --surface-border: rgba(241,234,218,0.09);
+      --cream: #f1eada;
+      --cream-dim: rgba(241,234,218,0.72);
+      --cream-faint: rgba(241,234,218,0.06);
       --crimson: #1db954;
-      --crimson-bright: #1ed760;
-      --crimson-glow: rgba(30, 215, 96, 0.28);
-      --crimson-dim: rgba(30, 215, 96, 0.10);
-      --crimson-mid: #0e291a;
-      --scarlet: #1ed760;
-      --scarlet-glow: rgba(30, 215, 96, 0.28);
-      --text: #f4f4f7;
-      --muted: #8b8f9e;
+      --crimson-bright: #22c55e;
+      --crimson-glow: rgba(34,197,94,0.30);
+      --crimson-dim: rgba(34,197,94,0.12);
+      --crimson-mid: #0d3824;
+      --scarlet: #2ecc71;
+      --scarlet-glow: rgba(46,204,113,0.30);
+      --text: #f1eada;
+      --muted: rgba(241,234,218,0.58);
       color-scheme: dark;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -98,9 +98,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-family: 'Space Grotesk', sans-serif;
       overflow-x: hidden;
       overscroll-behavior-x: none;
     }
@@ -115,17 +113,16 @@
     }
     #nav.scrolled {
       padding: 14px 52px;
-      background: rgba(9, 10, 15, 0.90);
+      background: rgba(12,7,8,0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(244,245,248,0.08);
     }
     .nav-logo img { height: 38px; width: auto; }
     .nav-links { display: flex; gap: 38px; align-items: center; }
     .nav-link {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--muted); text-decoration: none; position: relative;
       transition: color 0.2s;
     }
@@ -137,15 +134,14 @@
     .nav-link:hover, .nav-link.active { color: var(--crimson-bright); }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
     .nav-cta {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.04em; text-transform: uppercase;
-      color: #090a0f; background: #1ed760;
-      border: none; padding: 10px 22px; border-radius: 8px;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      border: none; padding: 10px 24px; border-radius: 2px;
       text-decoration: none;
       transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, background 0.2s;
     }
-    .nav-cta:hover { transform: translateY(-2px); background: #22e066; box-shadow: 0 8px 24px rgba(30,215,96,0.35); }
+    .nav-cta:hover { transform: translateY(-2px); background: #ffffff; box-shadow: 0 8px 28px rgba(29,185,84,0.35); }
     .nav-cta:active { transform: scale(0.97); }
 
     /* ── HERO ── */
@@ -163,10 +159,10 @@
     .hero-spotlight {
       position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(circle 540px at 75% 45%, rgba(30,215,96,0.12) 0%, rgba(15,16,21,0.5) 45%, transparent 75%),
-        radial-gradient(ellipse 65% 75% at 72% 30%, rgba(30,215,96,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 55% at 20% 60%, rgba(30,215,96,0.05) 0%, transparent 50%),
-        radial-gradient(ellipse 90% 40% at 50% 0%, rgba(30,215,96,0.06) 0%, transparent 60%);
+        radial-gradient(circle 540px at 75% 45%, rgba(34,197,94,0.22) 0%, rgba(13,56,36,0.14) 40%, transparent 70%),
+        radial-gradient(ellipse 65% 75% at 72% 30%, rgba(29,185,84,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 20% 60%, rgba(49,121,83,0.14) 0%, transparent 50%),
+        radial-gradient(ellipse 90% 40% at 50% 0%, rgba(29,185,84,0.08) 0%, transparent 60%);
     }
     .hero-grain {
       position: absolute; inset: 0; pointer-events: none;
@@ -176,24 +172,24 @@
     }
     .hero-left { position: relative; z-index: 2; }
     .hero-eyebrow {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--crimson-bright); margin-bottom: 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--crimson-bright); margin-bottom: 28px;
       animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both;
     }
     .hero-title {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(48px, 7.5vw, 104px);
-      font-weight: 800; line-height: 1.02;
-      letter-spacing: -0.04em; text-transform: uppercase;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(64px, 9vw, 140px);
+      font-weight: 400; line-height: 0.88;
+      letter-spacing: -0.02em; text-transform: uppercase;
       color: var(--cream);
       animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.18s both;
     }
     .hero-title .accent { color: var(--scarlet); }
     .hero-sub {
-      font-size: 1rem; line-height: 1.7;
+      font-size: 1rem; line-height: 1.75;
       color: var(--muted); max-width: 400px;
-      margin-top: 24px; margin-bottom: 36px;
+      margin-top: 28px; margin-bottom: 40px;
       animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both;
     }
     .hero-cta-row {
@@ -201,28 +197,26 @@
       animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.42s both;
     }
     .btn-primary {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem; font-weight: 600;
-      letter-spacing: 0.04em; text-transform: uppercase;
-      color: #090a0f; background: #1ed760;
-      padding: 14px 32px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      padding: 14px 34px; border-radius: 2px;
       text-decoration: none; border: none;
       cursor: pointer;
       transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, background 0.2s;
     }
-    .btn-primary:hover { transform: translateY(-3px); background: #22e066; box-shadow: 0 14px 36px rgba(30,215,96,0.35); }
+    .btn-primary:hover { transform: translateY(-3px); background: #ffffff; box-shadow: 0 14px 36px rgba(29,185,84,0.35); }
     .btn-primary:active { transform: scale(0.97); }
     .btn-ghost {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.04em; text-transform: uppercase;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--cream); background: transparent;
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 13px 26px; border-radius: 8px;
+      border: 1px solid rgba(244,245,248,0.22);
+      padding: 13px 28px; border-radius: 2px;
       text-decoration: none;
       transition: border-color 0.2s, background 0.2s, transform 0.18s;
     }
-    .btn-ghost:hover { border-color: var(--crimson-bright); background: rgba(30,215,96,0.08); color: var(--crimson-bright); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: var(--crimson-bright); background: rgba(29,185,84,0.08); color: var(--crimson-bright); transform: translateY(-2px); }
 
     /* Hero right — product carousel */
     .hero-right {
@@ -308,11 +302,11 @@
     }
     .hero-product-tag {
       position: absolute; bottom: -20px; left: 24px;
-      background: rgba(18, 19, 26, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(14px);
+      background: rgba(12,7,8,0.92);
+      border: 1px solid rgba(29,185,84,0.22);
+      backdrop-filter: blur(12px);
       padding: 14px 20px;
-      border-radius: 10px;
+      border-radius: 3px;
       display: flex; align-items: center; gap: 12px;
       text-decoration: none;
       cursor: pointer;
@@ -321,13 +315,13 @@
     }
     .hero-product-tag:hover {
       transform: translateY(-3px);
-      border-color: rgba(30,215,96,0.6);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.7), 0 0 24px rgba(30,215,96,0.25);
+      border-color: rgba(34,197,94,0.6);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.7), 0 0 24px rgba(34,197,94,0.28);
     }
     .hero-tag-dot { width: 8px; height: 8px; background: var(--crimson-bright); box-shadow: 0 0 8px var(--crimson-bright); border-radius: 50%; animation: pulse-dot 2s infinite; }
     @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-    .hero-tag-label { font-family: 'Inter', sans-serif; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--cream); }
-    .hero-tag-price { font-family: 'Roboto Mono', 'SF Mono', monospace; font-size: 0.92rem; font-weight: 600; color: var(--scarlet); }
+    .hero-tag-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); }
+    .hero-tag-price { font-family: 'DM Mono', monospace; font-size: 0.9rem; font-weight: 500; color: var(--scarlet); }
     .hero-tag-arrow { font-size: 0.82rem; color: var(--crimson-bright); margin-left: 2px; transition: transform 0.22s ease; }
     .hero-product-tag:hover .hero-tag-arrow { transform: translateX(4px); }
     .hero-controls {
@@ -343,23 +337,23 @@
     .hero-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.2);
+      background: rgba(244,245,248,0.22);
       border: none; padding: 0;
       position: relative;
       transition: background 0.3s cubic-bezier(0.16,1,0.3,1), width 0.3s cubic-bezier(0.16,1,0.3,1);
     }
     .hero-dot::after { content: ''; position: absolute; inset: -10px; }
-    .hero-dot.active { background: var(--crimson-bright); box-shadow: 0 0 8px var(--crimson-bright); width: 18px; border-radius: 4px; }
+    .hero-dot.active { background: var(--crimson-bright); box-shadow: 0 0 8px var(--crimson-bright); width: 18px; border-radius: 3px; }
     .hero-arrows { display: flex; gap: 10px; }
     .hero-arrow {
       width: 44px;
       height: 44px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
+      border: 1px solid rgba(244,245,248,0.18);
+      border-radius: 2px;
       color: var(--cream);
-      background: rgba(18, 19, 26, 0.85);
+      background: rgba(12,7,8,0.85);
       backdrop-filter: blur(12px);
       font-size: 1.1rem;
       line-height: 1;
@@ -368,18 +362,18 @@
     .hero-arrow:hover {
       transform: translateY(-2px);
       border-color: var(--crimson-bright);
-      background: rgba(30,215,96,0.12);
+      background: rgba(29,185,84,0.12);
       color: var(--crimson-bright);
     }
     .hero-arrow:active { transform: scale(0.96); }
-    .hero-pause[aria-pressed="true"] { background: rgba(30,215,96,0.15); border-color: var(--crimson-bright); color: var(--crimson-bright); }
+    .hero-pause[aria-pressed="true"] { background: rgba(29,185,84,0.15); border-color: var(--crimson-bright); color: var(--crimson-bright); }
     @media (prefers-reduced-motion: reduce) { .hero-pause { display: none; } }
 
     /* ── MARQUEE ── */
     .marquee-wrap {
       overflow: hidden;
-      border-top: 1px solid var(--surface-border);
-      border-bottom: 1px solid var(--surface-border);
+      border-top: 1px solid rgba(244,245,248,0.07);
+      border-bottom: 1px solid rgba(244,245,248,0.07);
       padding: 16px 0;
       background: var(--bg2);
     }
@@ -389,12 +383,12 @@
       will-change: transform;
     }
     .marquee-item {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--muted); padding: 0 40px;
       display: flex; align-items: center; gap: 36px; white-space: nowrap;
     }
-    .mdot { width: 4px; height: 4px; background: var(--crimson-bright); box-shadow: 0 0 6px var(--crimson-bright); border-radius: 50%; flex-shrink: 0; }
+    .mdot { width: 3px; height: 3px; background: var(--crimson-bright); box-shadow: 0 0 6px var(--crimson-bright); border-radius: 50%; flex-shrink: 0; }
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
     @media (hover: hover) {
       .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
@@ -407,21 +401,21 @@
       margin-bottom: 64px;
     }
     .s-eyebrow {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase;
       color: var(--crimson-bright); margin-bottom: 14px;
     }
     .s-title {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(34px, 5vw, 64px);
-      font-weight: 800; line-height: 1.05;
-      letter-spacing: -0.035em; text-transform: uppercase;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(40px, 6vw, 86px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.01em; text-transform: uppercase;
       color: var(--cream);
     }
     .s-count {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.72rem; color: var(--muted);
-      letter-spacing: 0.08em; padding-bottom: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; color: var(--muted);
+      letter-spacing: 0.1em; padding-bottom: 6px;
     }
 
     .products-grid {
@@ -442,9 +436,9 @@
 
     /* Product Card */
     .pcard {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: 12px;
+      background: var(--bg2);
+      border: 1px solid rgba(244,245,248,0.07);
+      border-radius: 3px;
       overflow: hidden;
       display: flex; flex-direction: column;
       contain: layout style;
@@ -476,96 +470,32 @@
     }
     .pbadge {
       position: absolute; top: 14px; left: 14px;
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.04em; text-transform: uppercase;
-      font-weight: 700;
-      padding: 3px 9px; border-radius: 999px;
-      display: inline-flex; align-items: center; gap: 5px;
-      line-height: 1.2;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 3;
-    }
-    .pbadge .pbadge-dot {
-      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-    }
-    .pbadge-instock {
-      background: rgba(30, 215, 96, 0.14);
-      color: #1ed760;
-      border: 1px solid rgba(30, 215, 96, 0.35);
-      box-shadow: 0 0 12px rgba(30, 215, 96, 0.2);
-    }
-    .pbadge-instock .pbadge-dot {
-      background: #1ed760;
-      box-shadow: 0 0 6px #1ed760;
-    }
-    .pbadge-optin {
-      background: rgba(245, 158, 11, 0.14);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.35);
-    }
-    .pbadge-optin .pbadge-dot {
-      background: #f59e0b;
-      box-shadow: 0 0 6px #f59e0b;
-    }
-    .pbadge-coming {
-      background: rgba(148, 163, 184, 0.14);
-      color: #cbd5e1;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-    }
-    .pbadge-coming .pbadge-dot {
-      background: #94a3b8;
-    }
-    .pbadge-oos {
-      background: rgba(239, 68, 68, 0.14);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3);
-    }
-    .pbadge-oos .pbadge-dot {
-      background: #ef4444;
-    }
-    /* Rocky / Out of order strike styles */
-    .pcard-oos {
-      opacity: 0.72;
-    }
-    .pcard-oos .pimg-wrap {
-      position: relative;
-      overflow: hidden;
-    }
-    .pcard-oos .pimg-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top right, transparent calc(50% - 0.75px), rgba(239, 68, 68, 0.35) 50%, transparent calc(50% + 0.75px));
-      pointer-events: none;
-      z-index: 2;
-    }
-    .pname .title-strike {
-      text-decoration: line-through;
-      text-decoration-color: rgba(239, 68, 68, 0.7);
-      text-decoration-thickness: 2px;
-      opacity: 0.85;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #050608; background: var(--scarlet);
+      font-weight: 600;
+      padding: 4px 10px; border-radius: 1px;
     }
     .psku {
       position: absolute; bottom: 14px; right: 14px;
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--cream); opacity: 0.45;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 3px 8px; border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--cream); opacity: 0.4;
+      border: 1px solid rgba(244,245,248,0.2);
+      padding: 3px 8px; border-radius: 1px;
     }
 
     .pbody { padding: 26px 26px 30px; flex: 1; display: flex; flex-direction: column; }
     .pbar {
-      height: 2px; background: linear-gradient(90deg, var(--scarlet), var(--crimson-bright));
+      height: 1px; background: linear-gradient(90deg, var(--scarlet), var(--crimson-bright));
       width: 0; transition: width 0.45s cubic-bezier(0.16,1,0.3,1);
       margin-bottom: 20px;
     }
     .pname {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 1.25rem; font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--cream); line-height: 1.25; margin-bottom: 10px;
+      font-family: 'Anton', sans-serif;
+      font-size: 1.7rem; font-weight: 400;
+      text-transform: uppercase; letter-spacing: 0.01em;
+      color: var(--cream); line-height: 1; margin-bottom: 10px;
     }
     .pname a {
       color: inherit;
@@ -580,66 +510,65 @@
       outline-offset: 4px;
     }
     .pdesc {
-      font-size: 0.84rem; line-height: 1.65;
+      font-size: 0.82rem; line-height: 1.68;
       color: var(--muted); flex: 1; margin-bottom: 22px;
     }
     .pfooter { display: flex; align-items: center; justify-content: space-between; }
     .pprice {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 1.05rem; color: var(--cream); font-weight: 600;
+      font-family: 'DM Mono', monospace;
+      font-size: 1.1rem; color: var(--cream); font-weight: 500;
     }
     .pprice small { font-size: 0.65rem; color: var(--muted); margin-left: 4px; }
     .pbtn {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.74rem; font-weight: 600;
-      letter-spacing: 0.04em; text-transform: uppercase;
-      color: #090a0f; background: var(--cream);
-      border: none; padding: 10px 20px; border-radius: 8px;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      border: none; padding: 10px 20px; border-radius: 1px;
       text-decoration: none;
       transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, box-shadow 0.2s;
     }
-    .pbtn:hover { transform: translateY(-2px) scale(1.02); background: #ffffff; box-shadow: 0 4px 16px rgba(30,215,96,0.3); }
+    .pbtn:hover { transform: translateY(-2px) scale(1.04); background: #fff; box-shadow: 0 4px 16px rgba(29,185,84,0.35); }
     .pbtn:active { transform: scale(0.97); }
 
     /* Coming soon */
     .pcard.soon .pimg-wrap {
       display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(30,215,96,0.08) 0%, transparent 70%), #0d0e13;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(29,185,84,0.10) 0%, transparent 70%), #050608;
     }
     .soon-inner { text-align: center; padding: 40px 20px; }
     .soon-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.35rem; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 0.04em; color: var(--cream); opacity: 0.22;
+      font-family: 'Anton', sans-serif;
+      font-size: 1.5rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--cream); opacity: 0.18;
     }
     .soon-tag {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.64rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--scarlet); margin-top: 10px; opacity: 0.8;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--scarlet); margin-top: 10px; opacity: 0.7;
     }
 
     /* ── WHY SECTION ── */
     #why {
       padding: 130px 52px;
       background: var(--bg2);
-      border-top: 1px solid var(--surface-border);
-      border-bottom: 1px solid var(--surface-border);
+      border-top: 1px solid rgba(244,245,248,0.06);
+      border-bottom: 1px solid rgba(244,245,248,0.06);
       position: relative; overflow: hidden;
       content-visibility: auto; contain-intrinsic-block-size: auto 700px;
     }
     .why-bg-glow {
       position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(30,215,96,0.08) 0%, transparent 60%);
+      background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(29,185,84,0.10) 0%, transparent 60%);
     }
     .why-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: center; margin-top: 64px;
     }
     .why-headline {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(38px, 5vw, 76px);
-      font-weight: 800; text-transform: uppercase;
-      line-height: 1.02; letter-spacing: -0.035em;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(42px, 5.5vw, 88px);
+      font-weight: 400; text-transform: uppercase;
+      line-height: 0.95; letter-spacing: -0.01em;
       color: var(--cream); margin-bottom: 28px;
     }
     .why-headline span { color: var(--scarlet); }
@@ -648,11 +577,7 @@
     .feat {
       position: relative;
       padding: 24px 22px;
-      border: 1px solid var(--surface-border);
-      border-radius: 10px;
-      background: var(--surface);
-      transition: border-color 0.3s, background 0.3s;
-    }
+      border: 1px solid rgba(244,245,248,0.07);
       border-radius: 2px;
       transition: border-color 0.3s, background 0.3s;
     }
@@ -678,7 +603,7 @@
     }
     .spot-bg {
       position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 55% 80% at 50% 0%, rgba(30,215,96,0.12) 0%, transparent 55%);
+      background: radial-gradient(ellipse 55% 80% at 50% 0%, rgba(29,185,84,0.15) 0%, transparent 55%);
     }
     .spot-grid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -686,30 +611,29 @@
     }
     .spot-img-wrap {
       position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(30,215,96,0.15);
+      border-radius: 4px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(29,185,84,0.15);
     }
-    .spot-img-wrap img { width: 100%; display: block; border-radius: 12px; object-fit: contain; }
+    .spot-img-wrap img { width: 100%; display: block; border-radius: 4px; object-fit: contain; }
     .spot-tag {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--crimson-bright); margin-bottom: 20px;
     }
     .spot-title {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(38px, 5.5vw, 76px);
-      font-weight: 800; text-transform: uppercase;
-      line-height: 1.02; letter-spacing: -0.035em; color: var(--cream); margin-bottom: 24px;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 400; text-transform: uppercase;
+      line-height: 0.9; color: var(--cream); margin-bottom: 24px;
     }
     .spot-desc { font-size: 0.95rem; line-height: 1.75; color: var(--muted); margin-bottom: 36px; }
     .spot-features { margin-bottom: 40px; }
     .spot-feat {
       display: flex; align-items: center; gap: 14px;
       padding: 14px 0;
-      border-bottom: 1px solid var(--surface-border);
+      border-bottom: 1px solid rgba(244,245,248,0.07);
     }
-    .spot-feat:first-child { border-top: 1px solid var(--surface-border); }
+    .spot-feat:first-child { border-top: 1px solid rgba(244,245,248,0.07); }
     .spot-feat-icon {
       width: 6px; height: 6px;
       background: var(--crimson-bright);
@@ -718,9 +642,9 @@
       flex-shrink: 0;
       font-size: 0;
     }
-    .spot-feat-text { font-size: 0.86rem; color: var(--cream); font-weight: 500; }
+    .spot-feat-text { font-size: 0.84rem; color: var(--cream); }
     .spot-feat-text span { color: var(--muted); font-size: 0.78rem; display: block; margin-top: 2px; }
-    .spot-price { font-family: 'Roboto Mono', 'SF Mono', monospace; font-size: 1.6rem; font-weight: 700; color: var(--scarlet); }
+    .spot-price { font-family: 'DM Mono', monospace; font-size: 1.6rem; color: var(--scarlet); }
     .spot-cta-row { display: flex; align-items: center; gap: 20px; }
 
     /* ── CTA BANNER ── */
@@ -733,18 +657,18 @@
     }
     .cta-glow {
       position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(30,215,96,0.14) 0%, rgba(30,215,96,0.04) 40%, transparent 65%);
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(29,185,84,0.18) 0%, rgba(49,121,83,0.10) 40%, transparent 65%);
     }
     .cta-eyebrow {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
       color: var(--crimson-bright); margin-bottom: 24px;
     }
     .cta-title {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(48px, 9vw, 110px);
-      font-weight: 800; text-transform: uppercase;
-      line-height: 1.02; letter-spacing: -0.04em;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(52px, 10vw, 150px);
+      font-weight: 400; text-transform: uppercase;
+      line-height: 0.88; letter-spacing: -0.02em;
       color: var(--cream); margin-bottom: 48px;
     }
     .cta-title span { color: var(--scarlet); }
@@ -756,7 +680,7 @@
     /* ── FOOTER ── */
     footer {
       padding: 44px 52px 36px;
-      border-top: 1px solid var(--surface-border);
+      border-top: 1px solid rgba(244,245,248,0.07);
       display: flex; align-items: center; justify-content: space-between;
       background: var(--bg2);
     }
@@ -764,14 +688,14 @@
     .footer-logo img { height: 28px; width: auto; opacity: 0.6; transition: opacity 0.2s; }
     .footer-logo:hover img { opacity: 1; }
     .footer-copy {
-      font-family: 'Roboto Mono', 'SF Mono', monospace;
-      font-size: 0.7rem; color: var(--muted);
-      letter-spacing: 0.08em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
     }
     .footer-links { display: flex; gap: 28px; }
     .flink {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--muted); text-decoration: none;
       transition: color 0.2s;
     }
@@ -793,7 +717,7 @@
       position: fixed; top: 0; left: 0; z-index: 9999;
       height: 2px; width: 0%;
       background: linear-gradient(90deg, var(--scarlet), var(--crimson-bright));
-      box-shadow: 0 0 10px rgba(30,215,96,0.55);
+      box-shadow: 0 0 10px rgba(29,185,84,0.55);
       transition: width 0.1s linear;
       pointer-events: none;
     }
@@ -820,7 +744,7 @@
     .mobile-drawer {
       display: none;
       position: fixed; inset: 0; z-index: 1050;
-      background: rgba(15, 16, 21, 0.98);
+      background: rgba(12,7,8,0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       flex-direction: column; align-items: center; justify-content: center;
@@ -831,21 +755,19 @@
     }
     .mobile-drawer.open { transform: translateY(0); }
     .mobile-drawer .d-link {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: clamp(1.8rem, 8vw, 2.8rem);
-      font-weight: 800;
-      text-transform: uppercase; letter-spacing: -0.02em;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2rem, 9vw, 3.2rem);
+      text-transform: uppercase; letter-spacing: 0.04em;
       color: var(--cream); text-decoration: none;
       transition: color 0.2s;
     }
     .mobile-drawer .d-link:hover { color: var(--crimson-bright); }
     .mobile-drawer .d-cta {
       margin-top: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem; font-weight: 600;
-      letter-spacing: 0.04em; text-transform: uppercase;
-      color: #090a0f; background: #1ed760;
-      padding: 14px 40px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bg2); background: var(--cream);
+      padding: 14px 40px; border-radius: 2px;
       text-decoration: none;
     }
 
@@ -856,10 +778,10 @@
       z-index: 900;
       padding: 12px 20px;
       padding-bottom: calc(12px + env(safe-area-inset-bottom));
-      background: rgba(15, 16, 21, 0.96);
+      background: rgba(12,7,8,0.96);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(29,185,84,0.22);
     }
     .mobile-order-bar a {
       display: block; width: 100%; text-align: center;
@@ -988,7 +910,7 @@
     :focus-visible { outline: 2px solid var(--crimson-bright); outline-offset: 3px; border-radius: 2px; }
     main:focus { outline: none; }
   </style>
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" /><style>.reveal{opacity:1!important;transform:none!important}.progress-bar,.hero-controls{display:none!important}.hero-product-img.is-side{display:none!important}@media(hover:hover){*{cursor:auto!important}}</style></noscript>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" /><style>.reveal{opacity:1!important;transform:none!important}.progress-bar,.hero-controls{display:none!important}.hero-product-img.is-side{display:none!important}@media(hover:hover){*{cursor:auto!important}}</style></noscript>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1358,8 +1280,8 @@
       <h1 id="hero-heading" class="hero-title">Wear<br/>Your<br/><span class="accent">Sound</span></h1>
       <p class="hero-sub">Custom-engraved keychains for music lovers. Scan your Spotify code, carry your favorite song — everywhere you go.</p>
       <div class="hero-cta-row">
-        <a href="order.html?product=mtl001" class="btn-primary" style="background:#1ed760; color:#090a0f; font-weight:700; box-shadow:0 0 20px rgba(30,215,96,0.35);">Order Metal Tag (₹169)</a>
-        <a href="order.html?product=spt001" class="btn-ghost" style="border-color:#f59e0b; color:#f59e0b;">Opt-In Pooled Tag (₹249)</a>
+        <a href="order.html" class="btn-primary">Customize & Order</a>
+        <a href="#why" class="btn-ghost">Our Story</a>
       </div>
     </div>
     <div class="hero-right">
@@ -1371,11 +1293,10 @@
           <img class="hero-product-img is-side" src="PRODUCT%205.png?v=20261028_0200" alt="Spotify Duo Set" data-name="Spotify Duo Set" data-price="₹349" data-status="Coming Soon" data-href="order.html?product=duo001" role="button" tabindex="-1" title="Spotify Duo Set (Coming Soon)" loading="eager" decoding="async" aria-hidden="true" width="630" height="1019" />
           <img class="hero-product-img is-side" src="PRODUCT%202.png?v=20261027_1550" alt="Rocky Keychain" data-name="Rocky Keychain" data-price="₹300" data-status="Out of Stock" data-href="order.html?product=rky001" role="button" tabindex="-1" title="Rocky Keychain (Out of Stock)" loading="eager" decoding="async" aria-hidden="true" width="1024" height="1536" />
         </div>
-        <a href="order.html?product=mtl001" class="hero-product-tag" id="heroProductTag" aria-label="Order Spotify Metal Tag for ₹169 Launch Offer" title="Order this keychain">
-          <div class="hero-tag-dot" style="background:#1ed760; box-shadow:0 0 8px #1ed760;" aria-hidden="true"></div>
+        <a href="order.html?product=mtl001" class="hero-product-tag" id="heroProductTag" aria-label="Customize and order Spotify Metal Tag for ₹169 Launch Offer" title="Customize and order this keychain">
+          <div class="hero-tag-dot" aria-hidden="true"></div>
           <span class="hero-tag-label">Spotify Metal Tag</span>
           <span class="hero-tag-price">₹169 Launch Offer</span>
-          <span class="hero-tag-status" style="background:#1ed760; color:#090a0f; font-size:0.68rem; font-weight:700; padding:2px 7px; border-radius:999px; letter-spacing:0.04em;">Available Now</span>
           <span class="hero-tag-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <div class="hero-controls">
@@ -1411,118 +1332,101 @@
         <p class="s-eyebrow reveal">The Collection</p>
         <h2 id="products-heading" class="s-title reveal">Our Products</h2>
       </div>
-      <span class="s-count reveal" aria-label="1 in stock, 1 opt-in pool, 3 coming soon">01 In Stock • 01 Opt-In Pool • 03 Coming Soon</span>
+      <span class="s-count reveal" aria-label="5 of 5 products available">05 / 05 Available</span>
     </div>
 
     <div class="products-grid">
 
-      <!-- Product 1: Spotify Code Tag (Opt-In Pooled Selling) -->
+      <!-- Product 1 -->
       <article class="pcard reveal" aria-labelledby="pname-spt001">
-        <a href="order.html?product=spt001" class="pimg-wrap" aria-label="Opt-In & Join Batch Pool for Spotify Code Tag" title="Opt-In & Join Batch Pool for Spotify Code Tag">
-          <span class="pbadge pbadge-optin"><span class="pbadge-dot"></span>Opt-In Pool</span>
+        <a href="order.html?product=spt001" class="pimg-wrap" aria-label="Customize and Order Spotify Code Tag" title="Customize and Order Spotify Code Tag">
+          <span class="pbadge">Bestseller</span>
           <span class="psku">SPT-001</span>
           <img class="pimg" src="POSTER%201.png?v=20261027" alt="Spotify Code Tag product poster" loading="lazy" decoding="async" width="1024" height="1024" />
         </a>
         <div class="pbody">
-          <div class="pbar" style="background:linear-gradient(90deg, #f59e0b, #1ed760);"></div>
+          <div class="pbar"></div>
           <h3 id="pname-spt001" class="pname"><a href="order.html?product=spt001">Spotify<br/>Code Tag</a></h3>
-          <p class="pdesc">Your music. Your identity. Scan, connect, share. Precision-crafted in Matte Black & Silk Gold PLA with your personalized name on the back. Available via Opt-In Batch Pooling.</p>
-          <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); border-radius:4px; padding:6px 10px; margin: 10px 0; font-size:0.74rem; font-family:'Roboto Mono', 'SF Mono', monospace;">
-            <span style="color:#fbbf24; font-weight:600;">Batch #1: 18/25 Opt-Ins</span>
-            <span style="color:var(--muted);">Pool Open (72%)</span>
-          </div>
+          <p class="pdesc">Your music. Your identity. Scan, connect, share. Precision-crafted in Matte Black & Silk Gold PLA with your personalized name embossed on the back. The ultimate 3D printed music gift.</p>
           <div class="pfooter">
-            <div class="pprice">₹249 <small>/ pooled piece</small></div>
-            <a href="order.html?product=spt001" class="pbtn" style="background:#f59e0b; color:#090a0f; font-weight:700;" aria-label="Opt-In & Join Batch Pool for Spotify Code Tag">Opt-In & Join Pool</a>
+            <div class="pprice">₹249 <small>/ piece</small></div>
+            <a href="order.html?product=spt001" class="pbtn" aria-label="Customize and Order Spotify Code Tag">Customize & Order</a>
           </div>
         </div>
       </article>
 
-      <!-- Product 2: Rocky Keychain (Out of Stock / Out of Order) -->
-      <article class="pcard pcard-oos reveal" aria-labelledby="pname-rky001">
-        <a href="order.html?product=rky001" class="pimg-wrap" aria-label="Rocky Keychain - Out of Stock" title="Rocky Keychain - Out of Stock">
-          <span class="pbadge pbadge-oos"><span class="pbadge-dot"></span>Out of Stock</span>
+      <!-- Product 2 -->
+      <article class="pcard reveal" aria-labelledby="pname-rky001">
+        <a href="order.html?product=rky001" class="pimg-wrap" aria-label="Order Rocky Keychain" title="Order Rocky Keychain">
+          <span class="pbadge">New</span>
           <span class="psku">RKY-001</span>
           <img class="pimg" src="POSTER%202.png?v=20261027" alt="Rocky Keychain product poster" loading="lazy" decoding="async" width="1254" height="1254" />
         </a>
         <div class="pbody">
           <div class="pbar"></div>
-          <h3 id="pname-rky001" class="pname"><a href="order.html?product=rky001"><span class="title-strike">Rocky<br/>Keychain</span></a></h3>
-          <p class="pdesc">A wearable sculpture for your keys. Intricate maze-pattern 3D printed figure in matte black — bold, tactile, and sculptural.</p>
-          <div style="display:flex; align-items:center; gap:8px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.22); border-radius:4px; padding:6px 10px; margin: 10px 0; font-size:0.74rem; color:#f87171; font-family:'Roboto Mono', 'SF Mono', monospace;">
-            <span>Temporarily Out of Stock • Restock In Progress</span>
-          </div>
+          <h3 id="pname-rky001" class="pname"><a href="order.html?product=rky001">Rocky<br/>Keychain</a></h3>
+          <p class="pdesc">A wearable sculpture for your keys. Intricate maze-pattern 3D printed figure in matte black — bold, tactile, and unlike anything else on the market.</p>
           <div class="pfooter">
-            <div class="pprice" style="opacity:0.6;"><span style="text-decoration: line-through; text-decoration-color: rgba(239, 68, 68, 0.5);">₹300</span> <small>/ piece</small></div>
-            <a href="https://wa.me/?text=Hi%20TuneTagZ,%20please%20notify%20me%20when%20Rocky%20Keychain%20is%20back%20in%20stock!" target="_blank" rel="noopener" class="pbtn" style="background:rgba(255,255,255,0.08); color:var(--muted); border:1px solid rgba(255,255,255,0.15);" aria-label="Notify when Rocky Keychain restocks">Notify on Restock</a>
+            <div class="pprice">₹300 <small>/ piece</small></div>
+            <a href="order.html?product=rky001" class="pbtn" aria-label="Order Rocky Keychain">Order Now</a>
           </div>
         </div>
       </article>
 
-      <!-- Product 3: Spotify by TuneTagZ Metallic Edition (AVAILABLE NOW / IN STOCK) -->
-      <article class="pcard reveal" style="border: 1px solid rgba(30,215,96,0.45); box-shadow: 0 0 24px rgba(30,215,96,0.12);" aria-labelledby="pname-mtl001">
-        <a href="order.html?product=mtl001" class="pimg-wrap" aria-label="Order Spotify Metal Tag - In Stock" title="Order Spotify Metal Tag - In Stock">
-          <span class="pbadge pbadge-instock"><span class="pbadge-dot"></span>In Stock • Launch Offer</span>
+      <!-- Product 3: Spotify by TuneTagZ Metallic Edition -->
+      <article class="pcard reveal" aria-labelledby="pname-mtl001">
+        <a href="order.html?product=mtl001" class="pimg-wrap" aria-label="Customize and Order Spotify by TuneTagZ" title="Customize and Order Spotify by TuneTagZ">
+          <span class="pbadge" style="background:linear-gradient(135deg, #22c55e, #0d3824); color:#ffffff; font-weight:700;">Launch Offer</span>
           <span class="psku">MTL-001</span>
           <img class="pimg" src="POSTER%203.jpg?v=20261027" alt="Spotify by TuneTagZ Chrome Metal Keychain product poster" loading="lazy" decoding="async" width="1254" height="1254" />
         </a>
         <div class="pbody">
-          <div class="pbar" style="background:linear-gradient(90deg, #1ed760, #16a34a);"></div>
+          <div class="pbar" style="background:linear-gradient(90deg, #22c55e, #1db954);"></div>
           <h3 id="pname-mtl001" class="pname"><a href="order.html?product=mtl001">Spotify by<br/>TuneTagZ</a></h3>
-          <p class="pdesc">Official TuneTagZ metallic edition. Custom laser-engraved Spotify soundwave code on deep glossy obsidian inlay with a mirror chrome beveled frame. In stock with 24-48h dispatch.</p>
-          <div style="display:flex; align-items:center; gap:8px; background:rgba(30,215,96,0.08); border:1px solid rgba(30,215,96,0.25); border-radius:4px; padding:6px 10px; margin: 10px 0; font-size:0.74rem; color:#1ed760; font-family:'Roboto Mono', 'SF Mono', monospace; font-weight:600;">
-            <span>In Stock • Ready to ship in 24–48 hours</span>
-          </div>
+          <p class="pdesc">Official TuneTagZ metallic edition. Custom laser-engraved Spotify soundwave code on deep glossy obsidian inlay with a mirror chrome beveled frame. Premium quality, metallic finish, iconic design.</p>
           <div class="pfooter">
-            <div class="pprice">₹169 <span class="opt-strike" style="text-decoration: line-through; font-size: 0.72em; opacity: 0.6; margin-left: 4px;">₹279</span> <small style="display:inline-block; font-size: 0.68em; color: #1ed760; font-weight:700; margin-left: 4px; letter-spacing: 0.05em;">LAUNCH OFFER</small></div>
-            <a href="order.html?product=mtl001" class="pbtn" style="background:#1ed760; color:#090a0f; font-weight:700; box-shadow:0 0 16px rgba(30,215,96,0.35);" aria-label="Order Spotify Metal Tag Now">Order Now (₹169) →</a>
+            <div class="pprice">₹169 <span class="opt-strike" style="text-decoration: line-through; font-size: 0.72em; opacity: 0.6; margin-left: 4px;">₹279</span> <small style="display:inline-block; font-size: 0.68em; color: #22c55e; font-weight:700; margin-left: 4px; letter-spacing: 0.05em;">LAUNCH OFFER</small></div>
+            <a href="order.html?product=mtl001" class="pbtn" aria-label="Customize and Order Spotify by TuneTagZ">Customize & Order</a>
           </div>
         </div>
       </article>
 
-      <!-- Product 4: Pure NFC Vinyl Record Keychain (Coming Soon) -->
-      <article class="pcard reveal" style="opacity:0.8;" aria-labelledby="pname-nfc001">
-        <a href="order.html?product=nfc001" class="pimg-wrap" aria-label="Vinyl Record NFC Tag - Coming Soon" title="Vinyl Record NFC Tag - Coming Soon">
-          <span class="pbadge pbadge-coming"><span class="pbadge-dot"></span>Coming Soon</span>
+      <!-- Product 4: Pure NFC Vinyl Record Keychain -->
+      <article class="pcard reveal" aria-labelledby="pname-nfc001">
+        <a href="order.html?product=nfc001" class="pimg-wrap" aria-label="Customize and Order Vinyl Record NFC Tag" title="Customize and Order Vinyl Record NFC Tag">
+          <span class="pbadge" style="background:linear-gradient(135deg, #f5d061, #854d0e); color:#000000; font-weight:700;">Pure NFC • Tap to Play</span>
           <span class="psku">NFC-001</span>
           <img class="pimg" src="POSTER%204.jpg?v=20261027" alt="Spotify by TuneTagZ Pure NFC Vinyl Record Keychain product poster" loading="lazy" decoding="async" width="1254" height="1254" />
         </a>
         <div class="pbody">
-          <div class="pbar" style="background:linear-gradient(90deg, #f5d061, #1ed760);"></div>
+          <div class="pbar" style="background:linear-gradient(90deg, #f5d061, #22c55e);"></div>
           <h3 id="pname-nfc001" class="pname"><a href="order.html?product=nfc001">Vinyl Record<br/>NFC Tag</a></h3>
-          <p class="pdesc">Pure NFC technology. Grooved vinyl record design in ultra-durable PLA with embedded high-speed NFC microchip. Tap your phone to play instantly — zero scanning required.</p>
-          <div style="display:flex; align-items:center; gap:8px; background:rgba(148,163,184,0.08); border:1px solid rgba(148,163,184,0.2); border-radius:4px; padding:6px 10px; margin: 10px 0; font-size:0.74rem; color:#94a3b8; font-family:'Roboto Mono', 'SF Mono', monospace;">
-            <span>Coming Soon • Dropping in Next Batch</span>
-          </div>
+          <p class="pdesc">Pure NFC technology. Grooved vinyl record design crafted in ultra-durable PLA with an embedded high-speed NFC chip and metallic Silk Gold Spotify emblem. Tap your phone to play your song instantly — zero scanning required. Lightweight, durable, iconic.</p>
           <div class="pfooter">
-            <div class="pprice" style="opacity:0.6;">₹199 <small>/ piece</small></div>
-            <a href="https://wa.me/?text=Hi%20TuneTagZ,%20please%20notify%20me%20when%20Vinyl%20Record%20NFC%20Tag%20is%20available!" target="_blank" rel="noopener" class="pbtn" style="background:rgba(255,255,255,0.08); color:var(--muted); border:1px solid rgba(255,255,255,0.15);" aria-label="Notify when Vinyl Record NFC Tag drops">Coming Soon • Notify Me</a>
+            <div class="pprice">₹199 <small>/ piece</small></div>
+            <a href="order.html?product=nfc001" class="pbtn" aria-label="Customize and Order Vinyl Record NFC Tag">Customize & Order</a>
           </div>
         </div>
       </article>
 
-      <!-- Product 5: Spotify Duo Set (Coming Soon) -->
-      <article class="pcard reveal" style="opacity:0.8;" aria-labelledby="pname-duo001">
-        <a href="order.html?product=duo001" class="pimg-wrap" aria-label="Spotify Duo Set - Coming Soon" title="Spotify Duo Set - Coming Soon">
-          <span class="pbadge pbadge-coming"><span class="pbadge-dot"></span>Coming Soon</span>
+      <!-- Product 5: Spotify Duo Set (With Love) -->
+      <article class="pcard reveal" aria-labelledby="pname-duo001">
+        <a href="order.html?product=duo001" class="pimg-wrap" aria-label="Customize and Order Spotify Duo Keychain Set" title="Customize and Order Spotify Duo Keychain Set">
+          <span class="pbadge" style="background:linear-gradient(135deg, #f43f5e, #be123c); color:#ffffff; font-weight:700;">Duo Edition • With Love</span>
           <span class="psku">DUO-001</span>
           <img class="pimg" src="POSTER%205.jpg?v=20261028_0215" alt="Spotify Duo Keychains With Love product poster" loading="lazy" decoding="async" width="1024" height="1024" />
         </a>
         <div class="pbody">
-          <div class="pbar" style="background:linear-gradient(90deg, #f43f5e, #1ed760);"></div>
+          <div class="pbar" style="background:linear-gradient(90deg, #f43f5e, #22c55e);"></div>
           <h3 id="pname-duo001" class="pname"><a href="order.html?product=duo001">Spotify Duo<br/>Set</a></h3>
-          <p class="pdesc">Made for couples and best friends. Interlocking dual keychains crafted in premium Matte Black PLA with vibrant Silk Gold Spotify codes that connect together to form a heart.</p>
-          <div style="display:flex; align-items:center; gap:8px; background:rgba(148,163,184,0.08); border:1px solid rgba(148,163,184,0.2); border-radius:4px; padding:6px 10px; margin: 10px 0; font-size:0.74rem; color:#94a3b8; font-family:'Roboto Mono', 'SF Mono', monospace;">
-            <span>Coming Soon • Next Couple Edition Drop</span>
-          </div>
+          <p class="pdesc">Made for couples and best friends. Interlocking dual keychains crafted in premium Matte Black PLA with vibrant Silk Gold Spotify codes that connect together to form a heart. Customize with your shared song. The ultimate gift of love.</p>
           <div class="pfooter">
-            <div class="pprice" style="opacity:0.6;">₹349 <small>/ set of 2</small></div>
-            <a href="https://wa.me/?text=Hi%20TuneTagZ,%20please%20notify%20me%20when%20Spotify%20Duo%20Set%20is%20available!" target="_blank" rel="noopener" class="pbtn" style="background:rgba(255,255,255,0.08); color:var(--muted); border:1px solid rgba(255,255,255,0.15);" aria-label="Notify when Spotify Duo Set drops">Coming Soon • Notify Me</a>
+            <div class="pprice">₹349 <small>/ set of 2</small></div>
+            <a href="order.html?product=duo001" class="pbtn" aria-label="Customize and Order Spotify Duo Keychain Set">Customize & Order</a>
           </div>
         </div>
       </article>
-
-    </div>
+        </div>
   </section>
 
   <!-- WHY US -->
@@ -1766,35 +1670,12 @@
       const current = heroProducts[heroIndex];
       const name = current.dataset.name;
       const price = current.dataset.price;
-      const status = current.dataset.status || '';
       const href = current.dataset.href || 'order.html';
       heroLabel.textContent = name;
       heroPrice.textContent = price;
-      const heroDot = document.querySelector('.hero-tag-dot');
-      const statusEl = document.querySelector('.hero-tag-status');
-      if (statusEl) {
-        statusEl.textContent = status;
-        if (status.includes('Available')) {
-          statusEl.style.background = '#1ed760';
-          statusEl.style.color = '#090a0f';
-          if (heroDot) { heroDot.style.background = '#1ed760'; heroDot.style.boxShadow = '0 0 8px #1ed760'; }
-        } else if (status.includes('Pool')) {
-          statusEl.style.background = '#f59e0b';
-          statusEl.style.color = '#090a0f';
-          if (heroDot) { heroDot.style.background = '#f59e0b'; heroDot.style.boxShadow = '0 0 8px #f59e0b'; }
-        } else if (status.includes('Out of Stock')) {
-          statusEl.style.background = '#ef4444';
-          statusEl.style.color = '#ffffff';
-          if (heroDot) { heroDot.style.background = '#ef4444'; heroDot.style.boxShadow = '0 0 8px #ef4444'; }
-        } else {
-          statusEl.style.background = '#64748b';
-          statusEl.style.color = '#ffffff';
-          if (heroDot) { heroDot.style.background = '#64748b'; heroDot.style.boxShadow = '0 0 8px #64748b'; }
-        }
-      }
       if (heroTag) {
         heroTag.href = href;
-        heroTag.setAttribute('aria-label', `Order ${name} for ${price} - ${status}`);
+        heroTag.setAttribute('aria-label', `Customize and order ${name} for ${price}`);
       }
       if (announce) heroAnnounce.textContent = `${name}, item ${heroIndex + 1} of ${heroProducts.length}, ${price}`;
       const prevIdx = (heroIndex - 1 + heroProducts.length) % heroProducts.length;

@@ -192,9 +192,9 @@
       .tz-cart-overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: rgba(3, 10, 6, 0.78);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         z-index: 99999;
         opacity: 0;
         visibility: hidden;
@@ -211,52 +211,51 @@
         bottom: 0;
         width: 100%;
         max-width: 440px;
-        background: #0f1015;
-        border-left: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: -15px 0 50px rgba(0, 0, 0, 0.85), 0 0 40px rgba(30, 215, 96, 0.1);
+        background: #030c08;
+        border-left: 1px solid rgba(34, 197, 94, 0.22);
+        box-shadow: -15px 0 50px rgba(0, 0, 0, 0.85), 0 0 40px rgba(34, 197, 94, 0.12);
         z-index: 100000;
         display: flex;
         flex-direction: column;
         transform: translateX(100%);
         transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        color: #f4f4f7;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        -webkit-font-smoothing: antialiased;
+        color: #f1eada;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
       }
       .tz-cart-overlay.open .tz-cart-drawer {
         transform: translateX(0);
       }
       .tz-cart-header {
         padding: 22px 24px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(241, 234, 218, 0.08);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #12131a;
+        background: #05140d;
       }
       .tz-cart-title {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.25rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: #f4f4f7;
+        font-family: 'Anton', sans-serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: #f1eada;
         display: flex;
         align-items: center;
         gap: 10px;
       }
       .tz-cart-title .tz-badge {
-        font-family: 'Roboto Mono', 'SF Mono', monospace;
+        font-family: 'DM Mono', monospace;
         font-size: 0.72rem;
-        background: rgba(30, 215, 96, 0.12);
-        color: #1ed760;
-        border: 1px solid rgba(30, 215, 96, 0.3);
+        background: rgba(34, 197, 94, 0.18);
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, 0.4);
         padding: 2px 8px;
-        border-radius: 999px;
+        border-radius: 12px;
       }
       .tz-cart-close {
         background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        color: #f4f4f7;
+        border: 1px solid rgba(241, 234, 218, 0.15);
+        color: #f1eada;
         width: 34px;
         height: 34px;
         border-radius: 50%;
@@ -267,9 +266,9 @@
         transition: all 0.2s;
       }
       .tz-cart-close:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: #1ed760;
-        color: #1ed760;
+        background: rgba(241, 234, 218, 0.1);
+        border-color: #22c55e;
+        color: #22c55e;
       }
       .tz-cart-body {
         flex: 1;
@@ -279,7 +278,7 @@
       .tz-cart-empty {
         text-align: center;
         padding: 60px 10px;
-        color: #8b8f9e;
+        color: rgba(241, 234, 218, 0.55);
       }
       .tz-cart-empty-icon {
         font-size: 3rem;
@@ -287,11 +286,10 @@
         opacity: 0.6;
       }
       .tz-cart-empty h4 {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.25rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: #f4f4f7;
+        font-family: 'Anton', sans-serif;
+        font-size: 1.3rem;
+        color: #f1eada;
+        text-transform: uppercase;
         margin-bottom: 8px;
       }
       .tz-cart-empty p {
@@ -301,26 +299,25 @@
       }
       .tz-cart-empty .tz-btn-shop {
         display: inline-block;
-        background: #1ed760;
-        color: #090a0f;
-        font-family: 'Inter', sans-serif;
+        background: #22c55e;
+        color: #04110b;
         font-weight: 700;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.08em;
         padding: 12px 24px;
-        border-radius: 8px;
+        border-radius: 2px;
         text-decoration: none;
         transition: transform 0.2s, background 0.2s;
       }
       .tz-cart-empty .tz-btn-shop:hover {
-        background: #22e066;
+        background: #1db954;
         transform: translateY(-2px);
       }
       .tz-cart-item {
-        background: #15161e;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
+        background: #081e14;
+        border: 1px solid rgba(241, 234, 218, 0.08);
+        border-radius: 4px;
         padding: 16px;
         margin-bottom: 14px;
         display: flex;
@@ -329,14 +326,14 @@
         transition: border-color 0.2s;
       }
       .tz-cart-item:hover {
-        border-color: rgba(30, 215, 96, 0.3);
+        border-color: rgba(34, 197, 94, 0.28);
       }
       .tz-item-thumb {
         width: 68px;
         height: 68px;
-        border-radius: 6px;
-        background: #090a0f;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 3px;
+        background: #020906;
+        border: 1px solid rgba(241, 234, 218, 0.1);
         object-fit: cover;
         flex-shrink: 0;
       }
@@ -345,23 +342,23 @@
         min-width: 0;
       }
       .tz-item-name {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.96rem;
-        font-weight: 700;
-        color: #f4f4f7;
-        letter-spacing: -0.01em;
-        line-height: 1.25;
+        font-family: 'Anton', sans-serif;
+        font-size: 1.05rem;
+        color: #f1eada;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        line-height: 1.2;
         margin-bottom: 4px;
       }
       .tz-item-meta {
-        font-size: 0.74rem;
-        color: #8b8f9e;
+        font-size: 0.72rem;
+        color: rgba(241, 234, 218, 0.65);
         line-height: 1.45;
         margin-bottom: 8px;
         word-break: break-word;
       }
       .tz-item-meta strong {
-        color: #1ed760;
+        color: #22c55e;
         font-weight: 600;
       }
       .tz-item-price-row {
@@ -371,24 +368,24 @@
         margin-top: 6px;
       }
       .tz-item-price {
-        font-family: 'Roboto Mono', 'SF Mono', monospace;
+        font-family: 'DM Mono', monospace;
         font-size: 0.95rem;
-        font-weight: 600;
-        color: #1ed760;
+        font-weight: 500;
+        color: #2ecc71;
       }
       .tz-item-qty {
         display: flex;
         align-items: center;
         gap: 8px;
-        background: #0b0c10;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 6px;
-        padding: 3px 8px;
+        background: #030c08;
+        border: 1px solid rgba(241, 234, 218, 0.15);
+        border-radius: 2px;
+        padding: 2px 6px;
       }
       .tz-qty-btn {
         background: none;
         border: none;
-        color: #f4f4f7;
+        color: #f1eada;
         cursor: pointer;
         font-size: 0.85rem;
         padding: 2px 6px;
@@ -396,10 +393,10 @@
         transition: color 0.15s;
       }
       .tz-qty-btn:hover {
-        color: #1ed760;
+        color: #22c55e;
       }
       .tz-qty-num {
-        font-family: 'Roboto Mono', 'SF Mono', monospace;
+        font-family: 'DM Mono', monospace;
         font-size: 0.78rem;
         min-width: 16px;
         text-align: center;
@@ -407,7 +404,7 @@
       .tz-item-remove {
         background: none;
         border: none;
-        color: rgba(255, 255, 255, 0.35);
+        color: rgba(241, 234, 218, 0.35);
         cursor: pointer;
         padding: 4px;
         font-size: 0.9rem;
@@ -419,30 +416,29 @@
       }
       .tz-cart-footer {
         padding: 20px 24px 26px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        background: #12131a;
+        border-top: 1px solid rgba(241, 234, 218, 0.1);
+        background: #05140d;
       }
       .tz-footer-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 0.82rem;
-        color: #8b8f9e;
+        color: rgba(241, 234, 218, 0.65);
         margin-bottom: 8px;
       }
       .tz-footer-row.total {
         font-size: 1.15rem;
         font-weight: 700;
-        color: #f4f4f7;
+        color: #f1eada;
         margin-top: 12px;
         padding-top: 10px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px dashed rgba(241, 234, 218, 0.12);
       }
       .tz-footer-row.total .tz-grand-total {
-        font-family: 'Roboto Mono', 'SF Mono', monospace;
-        color: #1ed760;
+        font-family: 'DM Mono', monospace;
+        color: #22c55e;
         font-size: 1.35rem;
-        font-weight: 700;
       }
       .tz-cart-actions {
         display: flex;
@@ -451,79 +447,76 @@
         margin-top: 18px;
       }
       .tz-btn-checkout {
-        background: #1ed760;
-        color: #090a0f;
-        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #04110b;
+        font-family: 'Space Grotesk', sans-serif;
         font-weight: 700;
-        font-size: 0.88rem;
-        letter-spacing: 0.04em;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         border: none;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 3px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-        box-shadow: 0 4px 18px rgba(30, 215, 96, 0.25);
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 18px rgba(34, 197, 94, 0.25);
         text-decoration: none;
       }
       .tz-btn-checkout:hover {
-        background: #22e066;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(30, 215, 96, 0.38);
+        box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
       }
       .tz-btn-continue {
         background: transparent;
-        color: #8b8f9e;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.78rem;
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 11px;
-        border-radius: 8px;
+        color: rgba(241, 234, 218, 0.7);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border: 1px solid rgba(241, 234, 218, 0.15);
+        padding: 10px;
+        border-radius: 2px;
         cursor: pointer;
         text-align: center;
         transition: all 0.2s;
       }
       .tz-btn-continue:hover {
-        border-color: rgba(30, 215, 96, 0.4);
-        color: #f4f4f7;
+        border-color: rgba(34, 197, 94, 0.4);
+        color: #f1eada;
       }
       /* Floating Cart Button */
       .tz-floating-cart-btn {
         position: fixed;
         bottom: 28px;
         right: 28px;
-        background: #12131a;
-        border: 1px solid rgba(30, 215, 96, 0.35);
-        color: #f4f4f7;
+        background: #0a2418;
+        border: 1px solid rgba(34, 197, 94, 0.4);
+        color: #f1eada;
         padding: 12px 18px;
         border-radius: 50px;
         display: flex;
         align-items: center;
         gap: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(30, 215, 96, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(34, 197, 94, 0.25);
         cursor: pointer;
         z-index: 999;
-        font-family: 'Inter', sans-serif;
+        font-family: 'DM Mono', monospace;
         font-size: 0.82rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
+        font-weight: 500;
+        letter-spacing: 0.04em;
         transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s, border-color 0.2s;
       }
       .tz-floating-cart-btn:hover {
-        transform: translateY(-3px) scale(1.02);
-        border-color: #1ed760;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(30, 215, 96, 0.35);
+        transform: translateY(-4px) scale(1.03);
+        border-color: #22c55e;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(34, 197, 94, 0.4);
       }
       .tz-floating-badge {
-        background: #1ed760;
-        color: #090a0f;
-        font-family: 'Roboto Mono', 'SF Mono', monospace;
+        background: #22c55e;
+        color: #04110b;
         font-weight: 700;
         font-size: 0.72rem;
         width: 20px;
@@ -537,28 +530,27 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(30, 215, 96, 0.1);
-        border: 1px solid rgba(30, 215, 96, 0.3);
-        color: #f4f4f7;
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.35);
+        color: #f1eada;
         padding: 8px 16px;
-        border-radius: 8px;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
+        border-radius: 2px;
+        font-family: 'DM Mono', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         cursor: pointer;
         transition: all 0.2s;
         text-decoration: none;
       }
       .nav-cart-btn:hover, .header-cart-btn:hover {
-        background: rgba(30, 215, 96, 0.2);
-        border-color: #1ed760;
-        color: #1ed760;
+        background: rgba(34, 197, 94, 0.22);
+        border-color: #22c55e;
+        color: #22c55e;
       }
       .cart-count-badge {
-        background: #1ed760;
-        color: #090a0f;
-        font-family: 'Roboto Mono', 'SF Mono', monospace;
+        background: #22c55e;
+        color: #04110b;
         font-weight: 700;
         font-size: 0.68rem;
         padding: 1px 6px;
@@ -570,15 +562,14 @@
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%) translateY(100px);
-        background: #15161e;
-        border: 1px solid #1ed760;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(30, 215, 96, 0.25);
-        color: #f4f4f7;
+        background: #081e14;
+        border: 1px solid #22c55e;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(34, 197, 94, 0.3);
+        color: #f1eada;
         padding: 12px 22px;
-        border-radius: 8px;
-        font-family: 'Inter', sans-serif;
-        font-size: 0.82rem;
-        font-weight: 500;
+        border-radius: 4px;
+        font-family: 'DM Mono', monospace;
+        font-size: 0.8rem;
         z-index: 100001;
         transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
         pointer-events: none;
@@ -800,8 +791,8 @@
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
               <div class="tz-item-name">
                 ${item.name}
-                ${item.productKey === 'mtl001' ? '<span style="display:inline-flex; align-items:center; gap:4px; font-size:0.58rem; font-family:\'Roboto Mono\', \'SF Mono\', monospace; background:rgba(30,215,96,0.12); color:#1ed760; border:1px solid rgba(30,215,96,0.3); font-weight:700; padding:1px 6px; border-radius:999px; margin-left:6px;"><span style="width:4px; height:4px; border-radius:50%; background:#1ed760;"></span>IN STOCK</span>' : ''}
-                ${item.productKey === 'spt001' ? '<span style="display:inline-flex; align-items:center; gap:4px; font-size:0.58rem; font-family:\'Roboto Mono\', \'SF Mono\', monospace; background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); font-weight:700; padding:1px 6px; border-radius:999px; margin-left:6px;"><span style="width:4px; height:4px; border-radius:50%; background:#f59e0b;"></span>OPT-IN BATCH</span>' : ''}
+                ${item.productKey === 'mtl001' ? '<span style="display:inline-flex; align-items:center; gap:4px; font-size:0.58rem; font-family:\'DM Mono\', monospace; background:rgba(34,197,94,0.14); color:#4ade80; border:1px solid rgba(34,197,94,0.35); font-weight:700; padding:1px 6px; border-radius:999px; margin-left:6px;"><span style="width:4px; height:4px; border-radius:50%; background:#22c55e;"></span>IN STOCK</span>' : ''}
+                ${item.productKey === 'spt001' ? '<span style="display:inline-flex; align-items:center; gap:4px; font-size:0.58rem; font-family:\'DM Mono\', monospace; background:rgba(245,158,11,0.14); color:#fbbf24; border:1px solid rgba(245,158,11,0.35); font-weight:700; padding:1px 6px; border-radius:999px; margin-left:6px;"><span style="width:4px; height:4px; border-radius:50%; background:#f59e0b;"></span>OPT-IN BATCH</span>' : ''}
               </div>
               <button type="button" class="tz-item-remove" data-action="remove" data-id="${item.id}" title="Remove item" aria-label="Remove ${item.name}">✕</button>
             </div>
