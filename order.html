@@ -6791,8 +6791,7 @@
     }
 
     // ── GOOGLE SHEETS & INSTANT EMAIL SYNC WEBHOOK ──
-    // Paste your deployed Google Apps Script Web App URL below:
-    const GOOGLE_SHEET_WEBHOOK_URL = window.TUNETAGZ_GOOGLE_SHEET_URL || "";
+    const GOOGLE_SHEET_WEBHOOK_URL = window.TUNETAGZ_GOOGLE_SHEET_URL || "https://script.google.com/macros/s/AKfycbxJP3sjMcebZMvm6homRv9GZahTwJkMnHSEjWqehyEjcjhpEvzgAUhXl5EHS3UE1Tg7/exec";
 
     function formatOrderPayloadForSync(o, orderId, channel) {
       const itemsFormatted = o.items.map((item, idx) => {
