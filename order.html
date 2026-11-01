@@ -196,63 +196,160 @@
     .prod-option {
       background: var(--bg2);
       border: 1px solid var(--surface-border);
-      border-radius: 3px;
-      padding: 16px 8px;
+      border-radius: 6px;
+      padding: 12px 8px 10px;
       cursor: pointer;
       text-align: center;
-      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s, box-shadow 0.2s;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 114px;
+      box-sizing: border-box;
     }
     .prod-option:hover {
-      border-color: rgba(29,185,84,0.4);
+      border-color: rgba(34, 197, 94, 0.4);
       transform: translateY(-2px);
     }
     .prod-option.active {
-      border-color: var(--crimson-bright);
-      background: rgba(29,185,84,0.08);
-      box-shadow: 0 0 20px rgba(29,185,84,0.18);
+      border-color: #22c55e;
+      background: rgba(34, 197, 94, 0.08);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.18);
     }
     .prod-option.opt-coming-soon {
-      opacity: 0.75;
-      border-style: dashed;
+      opacity: 0.72;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .prod-option.opt-coming-soon:hover {
-      opacity: 0.95;
-      border-color: rgba(148,163,184,0.4);
+      opacity: 0.92;
+      border-color: rgba(148, 163, 184, 0.35);
     }
     .prod-option.opt-out-of-stock {
-      opacity: 0.65;
-      border-style: dashed;
+      opacity: 0.62;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: not-allowed;
+      overflow: hidden;
     }
     .prod-option.opt-out-of-stock:hover {
-      opacity: 0.9;
-      border-color: rgba(239,68,68,0.4);
+      opacity: 0.85;
+      border-color: rgba(239, 68, 68, 0.35);
+    }
+    /* Subtle diagonal strike slash across out-of-stock / out-of-order option */
+    .prod-option.opt-out-of-stock::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top right, transparent calc(50% - 0.75px), rgba(239, 68, 68, 0.4) 50%, transparent calc(50% + 0.75px));
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Slight strikethrough on out-of-stock product title */
+    .prod-option.opt-out-of-stock .opt-name {
+      text-decoration: line-through;
+      text-decoration-color: rgba(248, 113, 113, 0.75);
+      text-decoration-thickness: 1.5px;
+      color: var(--muted);
+    }
+    /* Standard status pills inside option cards */
+    .prod-option .opt-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 999px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      max-width: 100%;
+      z-index: 2;
+    }
+    .prod-option .opt-status-pill .pill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .prod-option .pill-instock {
+      background: rgba(34, 197, 94, 0.14);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+    .prod-option .pill-instock .pill-dot {
+      background: #22c55e;
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
+    }
+    .prod-option .pill-optin {
+      background: rgba(245, 158, 11, 0.14);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+    .prod-option .pill-optin .pill-dot {
+      background: #f59e0b;
+      box-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
+    }
+    .prod-option .pill-coming {
+      background: rgba(148, 163, 184, 0.12);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .prod-option .pill-coming .pill-dot {
+      background: #94a3b8;
+    }
+    .prod-option .pill-oos {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .prod-option .pill-oos .pill-dot {
+      background: #ef4444;
     }
     .prod-option .opt-badge {
-      position: absolute;
-      top: -8px;
-      right: 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.55rem;
-      background: var(--crimson);
-      color: #fff;
-      padding: 2px 6px;
-      border-radius: 2px;
-      text-transform: uppercase;
-      font-weight: 600;
+      display: none !important;
     }
     .prod-option .opt-name {
       font-weight: 600;
-      font-size: 0.85rem;
-      margin-bottom: 6px;
+      font-size: 0.82rem;
+      margin-bottom: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: var(--cream);
+      z-index: 2;
     }
     .prod-option .opt-price {
       font-family: 'DM Mono', monospace;
-      font-size: 1rem;
+      font-size: 0.96rem;
       color: var(--scarlet);
+      font-weight: 600;
+      z-index: 2;
+    }
+    .prod-option .opt-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
       font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-top: 3px;
+      color: var(--muted);
+      z-index: 2;
+    }
+    .prod-option.active .opt-sub {
+      color: #4ade80;
+      font-weight: 600;
+    }
+    .prod-option .opt-sub.sub-optin {
+      color: #fbbf24;
+    }
+    .prod-option .opt-sub.sub-oos {
+      color: #f87171;
     }
 
     /* ── LIVE 3D PRINTED TAG VISUALIZER (DUAL-SIDED: FRONT & BACK ON SAME LINE) ── */
@@ -2816,20 +2913,28 @@
         gap: 6px;
       }
       .prod-option {
-        padding: 10px 6px;
+        padding: 10px 5px 8px;
+        min-height: 102px;
+      }
+      .prod-option .opt-status-pill {
+        font-size: 0.52rem;
+        padding: 1px 5px;
+        gap: 3px;
+        margin-bottom: 4px;
+      }
+      .prod-option .opt-status-pill .pill-dot {
+        width: 4px;
+        height: 4px;
       }
       .prod-option .opt-name {
-        font-size: 0.74rem;
-        margin-bottom: 3px;
+        font-size: 0.72rem;
+        margin-bottom: 2px;
       }
       .prod-option .opt-price {
-        font-size: 0.92rem;
+        font-size: 0.88rem;
       }
-      .prod-option .opt-badge {
-        font-size: 0.5rem;
-        top: -7px;
-        right: 4px;
-        padding: 1px 5px;
+      .prod-option .opt-sub {
+        font-size: 0.56rem;
       }
       .finish-btn {
         padding: 8px 3px;
@@ -2888,38 +2993,38 @@
           <div class="prod-options" role="radiogroup" aria-label="Select keychain model">
             
             <div class="prod-option active" data-product="mtl001" data-price="169" data-status="available" role="radio" aria-checked="true" tabindex="0">
-              <span class="opt-badge" style="background:linear-gradient(135deg, #22c55e, #0d3824); color:#ffffff; font-weight:700;">Available Now</span>
+              <span class="opt-status-pill pill-instock"><span class="pill-dot"></span>In Stock</span>
               <div class="opt-name">Spotify Metal Tag</div>
               <div class="opt-price">₹169 <span class="opt-strike" style="text-decoration: line-through; font-size: 0.72rem; color: var(--muted); margin-left: 4px;">₹279</span></div>
-              <div style="font-size:0.68rem; color:#22c55e; font-weight:600; margin-top:3px;">⚡ In Stock (Launch Offer)</div>
+              <div class="opt-sub">Ships in 24–48h</div>
             </div>
 
             <div class="prod-option" data-product="spt001" data-price="249" data-status="pooled" role="radio" aria-checked="false" tabindex="0">
-              <span class="opt-badge" style="background:linear-gradient(135deg, #f59e0b, #78350f); color:#ffffff; font-weight:700;">Opt-In Pooled Selling</span>
+              <span class="opt-status-pill pill-optin"><span class="pill-dot"></span>Opt-In Pool</span>
               <div class="opt-name">Spotify Code Tag</div>
               <div class="opt-price">₹249</div>
-              <div style="font-size:0.68rem; color:#f59e0b; font-weight:600; margin-top:3px;">🏭 Batch #1 (18/25 Opt-Ins)</div>
+              <div class="opt-sub sub-optin">Batch #1 • 72% Filled</div>
             </div>
 
             <div class="prod-option opt-coming-soon" data-product="nfc001" data-price="199" data-status="coming_soon" role="radio" aria-checked="false" tabindex="0">
-              <span class="opt-badge" style="background:linear-gradient(135deg, #64748b, #334155); color:#ffffff; font-weight:700;">Coming Soon</span>
+              <span class="opt-status-pill pill-coming"><span class="pill-dot"></span>Coming Soon</span>
               <div class="opt-name">Vinyl Record NFC Tag</div>
               <div class="opt-price">₹199</div>
-              <div style="font-size:0.68rem; color:#94a3b8; font-weight:600; margin-top:3px;">⏳ Dropping Next Batch</div>
+              <div class="opt-sub">Next Batch Drop</div>
             </div>
 
             <div class="prod-option opt-coming-soon" data-product="duo001" data-price="349" data-status="coming_soon" role="radio" aria-checked="false" tabindex="0">
-              <span class="opt-badge" style="background:linear-gradient(135deg, #64748b, #334155); color:#ffffff; font-weight:700;">Coming Soon</span>
+              <span class="opt-status-pill pill-coming"><span class="pill-dot"></span>Coming Soon</span>
               <div class="opt-name">Spotify Duo Set</div>
               <div class="opt-price">₹349</div>
-              <div style="font-size:0.68rem; color:#94a3b8; font-weight:600; margin-top:3px;">⏳ Next Couple Drop</div>
+              <div class="opt-sub">Next Couple Drop</div>
             </div>
 
             <div class="prod-option opt-out-of-stock" data-product="rky001" data-price="300" data-status="out_of_stock" role="radio" aria-checked="false" tabindex="0">
-              <span class="opt-badge" style="background:linear-gradient(135deg, #ef4444, #7f1d1d); color:#ffffff; font-weight:700;">Out of Stock</span>
+              <span class="opt-status-pill pill-oos"><span class="pill-dot"></span>Out of Stock</span>
               <div class="opt-name">Rocky Keychain</div>
               <div class="opt-price">₹300</div>
-              <div style="font-size:0.68rem; color:#f87171; font-weight:600; margin-top:3px;">🚫 Restocking Soon</div>
+              <div class="opt-sub sub-oos">Restock Soon</div>
             </div>
 
           </div>
@@ -2927,43 +3032,43 @@
           <!-- Product Availability & Pooled Selling Explainer Banner -->
           <div class="model-status-banners" style="margin-top: 14px;">
             <!-- 1. Available Now Box (Default for Metal Tag) -->
-            <div class="in-stock-box" id="inStockBox" style="background:linear-gradient(135deg, rgba(34,197,94,0.12), rgba(8,30,20,0.65)); border:1px solid rgba(34,197,94,0.35); border-radius:6px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <span style="background:#22c55e; color:#04110b; font-family:'DM Mono', monospace; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:3px; letter-spacing:0.04em;">⚡ AVAILABLE NOW</span>
-                <span style="font-family:'Space Grotesk', sans-serif; font-size:0.85rem; font-weight:700; color:var(--cream);">Instant Order • Ships in 24-48 Hours</span>
+            <div class="in-stock-box" id="inStockBox" style="background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.3); border-radius:6px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span class="opt-status-pill pill-instock" style="margin-bottom:0;"><span class="pill-dot"></span>IN STOCK</span>
+                <span style="font-family:'Space Grotesk', sans-serif; font-size:0.85rem; font-weight:600; color:var(--cream);">Available for Immediate Order • Ships in 24–48 Hours</span>
               </div>
-              <span style="font-family:'DM Mono', monospace; font-size:0.75rem; color:#22c55e; font-weight:600;">Launch Offer: ₹169 (Save ₹110)</span>
+              <span style="font-family:'DM Mono', monospace; font-size:0.75rem; color:#22c55e; font-weight:600;">Launch Offer: ₹169 <span style="text-decoration:line-through; color:var(--muted); font-size:0.7rem; margin-left:3px;">₹279</span></span>
             </div>
 
             <!-- 2. Opt-In Pooled Selling Box (For Spotify Code Tag) -->
-            <div class="pooled-selling-box" id="pooledSellingBox" style="display:none; background:linear-gradient(135deg, rgba(245,158,11,0.12), rgba(8,30,20,0.65)); border:1px solid rgba(245,158,11,0.35); border-radius:6px; padding:14px 16px;">
+            <div class="pooled-selling-box" id="pooledSellingBox" style="display:none; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.3); border-radius:6px; padding:14px 16px;">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#f59e0b; color:#04110b; font-family:'DM Mono', monospace; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:3px; letter-spacing:0.04em;">🏭 OPT-IN POOLED SELLING</span>
-                  <span style="font-family:'Space Grotesk', sans-serif; font-size:0.85rem; font-weight:700; color:var(--cream);">Batch Production Pool #1</span>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="opt-status-pill pill-optin" style="margin-bottom:0;"><span class="pill-dot"></span>OPT-IN BATCH</span>
+                  <span style="font-family:'Space Grotesk', sans-serif; font-size:0.85rem; font-weight:600; color:var(--cream);">Pooled Manufacturing Run #1</span>
                 </div>
-                <span style="font-family:'DM Mono', monospace; font-size:0.78rem; color:#f59e0b; font-weight:700;">18 / 25 Pooled (72% Filled)</span>
+                <span style="font-family:'DM Mono', monospace; font-size:0.78rem; color:#f59e0b; font-weight:600;">18 / 25 Opt-Ins (72% Filled)</span>
               </div>
               <p style="font-size:0.78rem; color:var(--muted); margin:8px 0 10px 0; line-height:1.45;">
-                Join the pooled production batch to lock in your custom 3D-printed Spotify Code Tag at ₹249. Tags are manufactured together on a unified print plate once the 25-spot pool fills.
+                Reserve your custom 3D-printed Spotify Code Tag at ₹249. Orders are manufactured together in batches once 25 reservations are reached.
               </p>
-              <div style="width:100%; height:7px; background:rgba(255,255,255,0.08); border-radius:4px; overflow:hidden;">
-                <div style="width:72%; height:100%; background:linear-gradient(90deg, #f59e0b, #22c55e); border-radius:4px;"></div>
+              <div style="width:100%; height:6px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden;">
+                <div style="width:72%; height:100%; background:linear-gradient(90deg, #f59e0b, #22c55e); border-radius:999px;"></div>
               </div>
               <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--muted); font-family:'DM Mono', monospace; margin-top:6px;">
-                <span>Pool Closes in 4 days</span>
+                <span>Batch #1 Target: 25 units</span>
                 <span style="color:#f59e0b; font-weight:600;">7 spots remaining</span>
               </div>
             </div>
 
             <!-- 3. Coming Soon / Out of Stock Box (For NFC, Duo, Rocky) -->
-            <div class="waitlist-box" id="waitlistBox" style="display:none; background:linear-gradient(135deg, rgba(148,163,184,0.1), rgba(8,30,20,0.65)); border:1px solid rgba(148,163,184,0.3); border-radius:6px; padding:12px 16px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <span id="waitlistBadge" style="background:#64748b; color:#ffffff; font-family:'DM Mono', monospace; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:3px; letter-spacing:0.04em;">COMING SOON</span>
-                <span id="waitlistTitle" style="font-family:'Space Grotesk', sans-serif; font-size:0.85rem; font-weight:700; color:var(--cream);">Dropping in Next Batch</span>
+            <div class="waitlist-box" id="waitlistBox" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.12); border-radius:6px; padding:12px 16px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span id="waitlistBadge" class="opt-status-pill pill-coming" style="margin-bottom:0;"><span class="pill-dot"></span>COMING SOON</span>
+                <span id="waitlistTitle" style="font-family:'Space Grotesk', sans-serif; font-size:0.85rem; font-weight:600; color:var(--cream);">Dropping in Next Batch</span>
               </div>
               <p id="waitlistDesc" style="font-size:0.78rem; color:var(--muted); margin:6px 0 0 0; line-height:1.45;">
-                Only the Spotify Metal Tag is available for instant dispatch. You can test your preview and tap below to join the priority waitlist on WhatsApp.
+                Only the Spotify Metal Tag is currently in stock for immediate dispatch. Join the waitlist on WhatsApp to be notified first when this model drops.
               </p>
             </div>
           </div>
@@ -4873,11 +4978,11 @@
         if (waitlistBox) waitlistBox.style.display = 'none';
         if (btnWa) btnWa.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.928l-1.564 5.714 5.861-1.537c1.7 1.006 3.684 1.572 5.803 1.572 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22.083c-1.895 0-3.662-.518-5.183-1.422l-.372-.222-3.851 1.01 1.028-3.753-.243-.387c-1.007-1.603-1.543-3.468-1.543-5.309 0-5.56 4.523-10.083 10.083-10.083 5.56 0 10.083 4.523 10.083 10.083 0 5.56-4.523 10.083-10.083 10.083z"/></svg> Order Metal Tag via WhatsApp';
         if (btnAddCart) {
-          btnAddCart.innerHTML = '<span>🛒</span> Add Metal Tag to Cart';
+          btnAddCart.innerHTML = 'Add Metal Tag to Cart';
           btnAddCart.style.opacity = '1';
           btnAddCart.style.pointerEvents = 'auto';
         }
-        if (btnStickyOrder) btnStickyOrder.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.928l-1.564 5.714 5.861-1.537c1.7 1.006 3.684 1.572 5.803 1.572 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22.083c-1.895 0-3.662-.518-5.183-1.422l-.372-.222-3.851 1.01 1.028-3.753-.243-.387c-1.007-1.603-1.543-3.468-1.543-5.309 0-5.56 4.523-10.083 10.083-10.083 5.56 0 10.083 4.523 10.083 10.083 0 5.56-4.523 10.083-10.083 10.083z"/></svg> <span>Order Metal ⚡</span>';
+        if (btnStickyOrder) btnStickyOrder.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.928l-1.564 5.714 5.861-1.537c1.7 1.006 3.684 1.572 5.803 1.572 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22.083c-1.895 0-3.662-.518-5.183-1.422l-.372-.222-3.851 1.01 1.028-3.753-.243-.387c-1.007-1.603-1.543-3.468-1.543-5.309 0-5.56 4.523-10.083 10.083-10.083 5.56 0 10.083 4.523 10.083 10.083 0 5.56-4.523 10.083-10.083 10.083z"/></svg> <span>Order Metal (₹169)</span>';
         if (btnStickyCart) btnStickyCart.style.display = 'inline-flex';
       } else if (key === 'spt001') {
         if (inStockBox) inStockBox.style.display = 'none';
@@ -4885,11 +4990,11 @@
         if (waitlistBox) waitlistBox.style.display = 'none';
         if (btnWa) btnWa.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.928l-1.564 5.714 5.861-1.537c1.7 1.006 3.684 1.572 5.803 1.572 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22.083c-1.895 0-3.662-.518-5.183-1.422l-.372-.222-3.851 1.01 1.028-3.753-.243-.387c-1.007-1.603-1.543-3.468-1.543-5.309 0-5.56 4.523-10.083 10.083-10.083 5.56 0 10.083 4.523 10.083 10.083 0 5.56-4.523 10.083-10.083 10.083z"/></svg> Opt-In & Join Batch Pool (₹249)';
         if (btnAddCart) {
-          btnAddCart.innerHTML = '<span>🏭</span> Opt-In to Cart (Batch Pool)';
+          btnAddCart.innerHTML = 'Opt-In to Cart (Batch Pool)';
           btnAddCart.style.opacity = '1';
           btnAddCart.style.pointerEvents = 'auto';
         }
-        if (btnStickyOrder) btnStickyOrder.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.928l-1.564 5.714 5.861-1.537c1.7 1.006 3.684 1.572 5.803 1.572 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22.083c-1.895 0-3.662-.518-5.183-1.422l-.372-.222-3.851 1.01 1.028-3.753-.243-.387c-1.007-1.603-1.543-3.468-1.543-5.309 0-5.56 4.523-10.083 10.083-10.083 5.56 0 10.083 4.523 10.083 10.083 0 5.56-4.523 10.083-10.083 10.083z"/></svg> <span>Join Pool 🏭</span>';
+        if (btnStickyOrder) btnStickyOrder.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.928l-1.564 5.714 5.861-1.537c1.7 1.006 3.684 1.572 5.803 1.572 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22.083c-1.895 0-3.662-.518-5.183-1.422l-.372-.222-3.851 1.01 1.028-3.753-.243-.387c-1.007-1.603-1.543-3.468-1.543-5.309 0-5.56 4.523-10.083 10.083-10.083 5.56 0 10.083 4.523 10.083 10.083 0 5.56-4.523 10.083-10.083 10.083z"/></svg> <span>Join Pool (₹249)</span>';
         if (btnStickyCart) btnStickyCart.style.display = 'inline-flex';
       } else {
         if (inStockBox) inStockBox.style.display = 'none';
@@ -4897,23 +5002,29 @@
         if (waitlistBox) {
           waitlistBox.style.display = 'block';
           if (key === 'rky001') {
-            if (waitlistBadge) { waitlistBadge.textContent = 'OUT OF STOCK'; waitlistBadge.style.background = '#ef4444'; }
-            if (waitlistTitle) waitlistTitle.textContent = 'Temporarily Out of Stock';
-            if (waitlistDesc) waitlistDesc.textContent = 'We are restocking the Rocky Figure line. Join the restock notification list on WhatsApp.';
+            if (waitlistBadge) {
+              waitlistBadge.className = 'opt-status-pill pill-oos';
+              waitlistBadge.innerHTML = '<span class="pill-dot"></span>OUT OF STOCK';
+            }
+            if (waitlistTitle) waitlistTitle.innerHTML = '<span style="text-decoration: line-through; text-decoration-color: rgba(239, 68, 68, 0.7); text-decoration-thickness: 1.5px; opacity: 0.85;">Rocky Keychain</span> — Temporarily Out of Stock';
+            if (waitlistDesc) waitlistDesc.textContent = 'We are currently restocking the Rocky 3D figure line. Join the restock notification list on WhatsApp.';
             if (btnWa) btnWa.innerHTML = 'Notify on Restock via WhatsApp';
             if (btnAddCart) {
-              btnAddCart.innerHTML = '<span>🚫</span> Out of Stock';
+              btnAddCart.innerHTML = 'Out of Stock';
               btnAddCart.style.opacity = '0.5';
               btnAddCart.style.pointerEvents = 'none';
             }
             if (btnStickyOrder) btnStickyOrder.innerHTML = '<span>Restock List</span>';
           } else {
-            if (waitlistBadge) { waitlistBadge.textContent = 'COMING SOON'; waitlistBadge.style.background = '#64748b'; }
-            if (waitlistTitle) waitlistTitle.textContent = 'Dropping in Next Batch';
-            if (waitlistDesc) waitlistDesc.textContent = 'Only Spotify Metal Tag is currently in stock, and Spotify Code Tag is open for Pooled Selling. Tap below to join the priority drop waitlist.';
+            if (waitlistBadge) {
+              waitlistBadge.className = 'opt-status-pill pill-coming';
+              waitlistBadge.innerHTML = '<span class="pill-dot"></span>COMING SOON';
+            }
+            if (waitlistTitle) waitlistTitle.textContent = (key === 'duo001' ? 'Spotify Duo Set — Next Couple Drop' : 'Vinyl Record NFC Tag — Next Batch Drop');
+            if (waitlistDesc) waitlistDesc.textContent = 'Only Spotify Metal Tag is currently in stock, and Spotify Code Tag is open for Pooled Selling. Tap below to join our priority drop waitlist.';
             if (btnWa) btnWa.innerHTML = 'Join Waitlist via WhatsApp';
             if (btnAddCart) {
-              btnAddCart.innerHTML = '<span>⏳</span> Coming Soon (Waitlist Only)';
+              btnAddCart.innerHTML = 'Coming Soon (Waitlist Only)';
               btnAddCart.style.opacity = '0.5';
               btnAddCart.style.pointerEvents = 'none';
             }
@@ -6820,7 +6931,23 @@
         itemsCount: o.items.length,
         itemsSummary: itemsFormatted,
         channel: channel || 'Online Order',
-        createdAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+        createdAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+        items: o.items.map(it => ({
+          name: it.name || 'Spotify Keychain',
+          quantity: it.quantity || 1,
+          song: (it.song && it.song !== 'N/A') ? it.song : '',
+          spotifyUrl: (it.spotifyUrl && it.spotifyUrl !== 'N/A') ? it.spotifyUrl : '',
+          engrave: (it.engrave && it.engrave !== 'N/A') ? it.engrave : '',
+          textSize: it.textSize || 'Normal',
+          isDuoSeparate: !!it.isDuoSeparate,
+          song2: (it.song2 && it.song2 !== 'N/A') ? it.song2 : '',
+          spotifyUrl2: (it.spotifyUrl2 && it.spotifyUrl2 !== 'N/A') ? it.spotifyUrl2 : '',
+          engrave2: (it.engrave2 && it.engrave2 !== 'N/A') ? it.engrave2 : '',
+          textSize2: it.textSize2 || 'Normal',
+          finish: it.finish || 'Matte Black',
+          hasNfc: !!it.hasNfc,
+          hasGiftBox: !!it.hasGiftBox
+        }))
       };
     }
 
