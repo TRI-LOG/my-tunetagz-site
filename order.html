@@ -43,7 +43,12 @@
       color-scheme: dark;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent !important;
+    }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
@@ -53,6 +58,48 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    /* Prevent mobile blue selection/tap overlays on preview cards & controls */
+    .tag-stage-single,
+    .tag-card-3d,
+    .duo-preview-wrap,
+    .duo-card-3d,
+    .metal-card-3d,
+    .visualizer-wrapper,
+    .tag-face,
+    .duo-face,
+    .metal-face,
+    .duo-plate,
+    .tag-mockup,
+    .prod-option,
+    .finish-btn,
+    .tag-view-btn,
+    .tag-view-toggle,
+    .vinyl-record-disc,
+    .vinyl-player-card,
+    .in-stock-box,
+    .pooled-selling-box,
+    .model-status-banners {
+      -webkit-tap-highlight-color: transparent !important;
+      -webkit-touch-callout: none !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      outline: none !important;
+    }
+
+    .tag-card-3d:focus,
+    .duo-card-3d:focus,
+    .metal-card-3d:focus,
+    .tag-card-3d:active,
+    .duo-card-3d:active,
+    .metal-card-3d:active,
+    .tag-stage-single:focus,
+    .tag-stage-single:active {
+      outline: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
     }
 
     /* ── HEADER ── */
@@ -182,16 +229,6 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 10px;
       margin-bottom: 28px;
-    }
-    @media (max-width: 900px) {
-      .prod-options {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (max-width: 580px) {
-      .prod-options {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
     .prod-option {
       background: var(--bg2);
@@ -2652,25 +2689,72 @@
       .order-container { padding: 20px 14px 105px; }
       .form-row { grid-template-columns: 1fr; }
       .summary-card { position: static; }
+      .order-card { padding: 16px 14px !important; }
 
-      /* Mobile 2-Column Product Grid instead of tall single-column stack */
+      /* 100% Uniform 1-Column Keychain Model Selector for Mobile Viewports */
       .prod-options {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: 1fr !important;
         gap: 8px !important;
-        margin-bottom: 22px !important;
+        margin-bottom: 20px !important;
       }
+      .prod-option,
       .prod-option:last-child {
-        grid-column: span 2;
+        grid-column: span 1 !important;
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        grid-template-rows: auto auto auto !important;
+        column-gap: 12px !important;
+        row-gap: 3px !important;
+        align-items: center !important;
+        padding: 10px 14px !important;
+        min-height: 58px !important;
+        text-align: left !important;
+        box-sizing: border-box !important;
       }
-      .prod-option {
-        padding: 12px 8px;
+      .prod-option .opt-status-pill {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        justify-self: start;
+        margin-bottom: 2px !important;
+        font-size: 0.58rem !important;
+        padding: 2px 7px !important;
       }
       .prod-option .opt-name {
-        font-size: 0.8rem;
-        margin-bottom: 4px;
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        font-size: 0.86rem !important;
+        font-weight: 700 !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        margin-bottom: 0 !important;
+        line-height: 1.25;
+        text-align: left !important;
+      }
+      .prod-option .opt-sub {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        font-size: 0.68rem !important;
+        margin-top: 2px !important;
+        text-align: left !important;
       }
       .prod-option .opt-price {
-        font-size: 0.96rem;
+        grid-column: 2 / 3;
+        grid-row: 1 / -1;
+        justify-self: end;
+        align-self: center;
+        text-align: right !important;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        gap: 2px !important;
+      }
+      .prod-option .opt-strike {
+        font-size: 0.72rem !important;
+        margin-left: 0 !important;
       }
 
       /* Compact 3-Column Filament Swatch Selector */
@@ -2886,6 +2970,9 @@
       .order-container {
         padding: 16px 10px 105px;
       }
+      .order-card {
+        padding: 14px 10px !important;
+      }
       .tag-visualizer-wrap {
         padding: 12px 8px 14px;
       }
@@ -2910,31 +2997,32 @@
         aspect-ratio: 290 / 101;
       }
       .prod-options {
-        gap: 6px;
+        gap: 8px !important;
       }
       .prod-option {
-        padding: 10px 5px 8px;
-        min-height: 102px;
+        padding: 9px 12px !important;
+        min-height: 56px !important;
       }
       .prod-option .opt-status-pill {
-        font-size: 0.52rem;
-        padding: 1px 5px;
-        gap: 3px;
-        margin-bottom: 4px;
+        font-size: 0.54rem !important;
+        padding: 2px 6px !important;
+        gap: 3px !important;
+        margin-bottom: 2px !important;
       }
       .prod-option .opt-status-pill .pill-dot {
         width: 4px;
         height: 4px;
       }
       .prod-option .opt-name {
-        font-size: 0.72rem;
-        margin-bottom: 2px;
+        font-size: 0.82rem !important;
+        margin-bottom: 0 !important;
       }
       .prod-option .opt-price {
-        font-size: 0.88rem;
+        font-size: 1.0rem !important;
       }
       .prod-option .opt-sub {
-        font-size: 0.56rem;
+        font-size: 0.64rem !important;
+        margin-top: 2px !important;
       }
       .finish-btn {
         padding: 8px 3px;

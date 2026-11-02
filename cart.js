@@ -192,6 +192,7 @@
       .tz-cart-overlay {
         position: fixed;
         inset: 0;
+        overflow: hidden;
         background: rgba(3, 10, 6, 0.78);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);

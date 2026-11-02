@@ -87,7 +87,7 @@
       --muted: rgba(241,234,218,0.58);
       color-scheme: dark;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent !important; }
     a, button { touch-action: manipulation; }
 
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
@@ -599,7 +599,6 @@
     #spotlight {
       padding: 130px 52px;
       position: relative; overflow: hidden;
-      content-visibility: auto; contain-intrinsic-block-size: auto 700px;
     }
     .spot-bg {
       position: absolute; inset: 0; pointer-events: none;
@@ -614,7 +613,7 @@
       border-radius: 4px;
       box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 50px rgba(29,185,84,0.15);
     }
-    .spot-img-wrap img { width: 100%; display: block; border-radius: 4px; object-fit: contain; }
+    .spot-img-wrap img { width: 100%; height: auto; display: block; border-radius: 4px; object-fit: contain; max-height: 480px; }
     .spot-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
@@ -804,27 +803,59 @@
       .mobile-drawer { display: flex; }
       .mobile-order-bar { display: block; }
 
-      #hero { grid-template-columns: 1fr; padding: 80px 20px 100px; gap: 20px; }
-      .hero-right { order: -1; }
-      .hero-product-wrap { min-height: 300px; }
-      .hero-product-stage { min-height: 260px; }
-      .hero-product-img { width: min(300px, 78vw); max-height: 280px; }
-      .hero-product-tag { left: 0; bottom: -10px; padding: 10px 12px; }
-      .hero-controls { right: 0; bottom: -8px; }
-      .hero-title { font-size: clamp(52px, 15vw, 80px); }
+      #hero { grid-template-columns: 1fr; padding: calc(70px + env(safe-area-inset-top, 0px)) 20px 60px; gap: 16px; }
+      .hero-right { order: -1; width: 100%; }
+      .hero-product-wrap {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        padding-bottom: 8px;
+      }
+      .hero-product-stage {
+        min-height: 210px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-product-img { width: min(280px, 76vw); max-height: 240px; }
+      .hero-product-tag {
+        position: static;
+        margin: 12px auto 8px;
+        padding: 8px 14px;
+        max-width: 92%;
+        justify-content: center;
+        transform: none !important;
+      }
+      .hero-controls {
+        position: static;
+        margin: 2px auto 0;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+      }
+      .hero-title { font-size: clamp(48px, 13vw, 72px); }
 
-      #products, #why, #spotlight, #cta, footer { padding-left: 20px; padding-right: 20px; }
-      #products, #why, #spotlight { padding-top: 70px; padding-bottom: 70px; }
-      #cta { padding-top: 80px; padding-bottom: 100px; }
+      #products, #why, #cta, footer { padding-left: 20px; padding-right: 20px; }
+      #products, #why { padding-top: 60px; padding-bottom: 60px; }
+      #spotlight { padding: 48px 20px 50px; }
+      #cta { padding-top: 60px; padding-bottom: 90px; }
       footer { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
 
       .products-grid { grid-template-columns: 1fr; }
-      .why-grid, .spot-grid { grid-template-columns: 1fr; gap: 36px; }
+      .why-grid { grid-template-columns: 1fr; gap: 32px; }
+      .spot-grid { grid-template-columns: 1fr; gap: 24px; margin-top: 24px; }
+      .spot-img-wrap { max-width: 280px; margin: 0 auto; }
+      .spot-img-wrap img { width: 100%; height: auto; max-height: 320px; object-fit: contain; margin: 0 auto; display: block; }
+      .spot-title { font-size: clamp(38px, 10vw, 56px); margin-bottom: 14px; }
+      .spot-desc { font-size: 0.88rem; margin-bottom: 24px; }
+      .spot-features { margin-bottom: 24px; }
+      .spot-feat { padding: 10px 0; }
       .feats { grid-template-columns: 1fr 1fr; gap: 12px; }
       .feat { padding: 18px 16px; }
       .section-label { flex-direction: column; align-items: flex-start; gap: 10px; }
-
-      .spot-img-wrap img { object-fit: contain; max-height: none; }
 
       footer { flex-direction: column; gap: 20px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
