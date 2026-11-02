@@ -7066,7 +7066,7 @@
       const payload = formatOrderPayloadForSync(order, orderId, 'WhatsApp Checkout');
       syncOrderToGoogleSheet(payload);
       const waText = formatWhatsAppText(order);
-      window.open(`https://wa.me/?text=${waText}`, '_blank');
+      window.open(`https://wa.me/919447776106?text=${waText}`, '_blank');
     });
 
     // 2. Instagram Order Handler
@@ -7138,7 +7138,7 @@
 
       document.getElementById('modalWaBtn').onclick = () => {
         const waText = formatWhatsAppText(o);
-        window.open(`https://wa.me/?text=${waText}`, '_blank');
+        window.open(`https://wa.me/919447776106?text=${waText}`, '_blank');
       };
 
       modal.classList.add('open');
