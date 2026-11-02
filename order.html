@@ -3166,7 +3166,7 @@
             <img id="orderPosterImg" src="POSTER%203.jpg?v=20261028_0215" alt="Product Poster" style="width: 72px; height: 72px; object-fit: cover; border-radius: 3px; border: 1px solid rgba(244,245,248,0.12);" />
             <div>
               <div id="orderPosterTitle" style="font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--cream);">Spotify Metal Tag</div>
-              <div id="orderPosterSubtitle" style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Metallic Edition • 316L Chrome Steel Frame • Launch Offer ₹169</div>
+              <div id="orderPosterSubtitle" style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Premium Metallic Edition • Launch Offer ₹169</div>
             </div>
           </div>
 
@@ -3175,7 +3175,7 @@
             <div class="visualizer-topbar">
               <div class="visualizer-title-group">
                 <span class="visualizer-title-simple">Live Keychain Preview</span>
-                <span class="sample-ref-badge" id="sampleRefBadge">Sample Code (For Reference Only)</span>
+                <span class="sample-ref-badge" id="sampleRefBadge">Sample Preview</span>
               </div>
               <div class="visualizer-inlay-badge" id="visualizerInlayBadge">
                 <span class="inlay-dot"></span>
@@ -3429,7 +3429,7 @@
                 </div>
 
                 <!-- SPOTIFY METAL TAG EXACT KEYCHAIN PREVIEW (316L Chrome Steel Model) -->
-                <div class="metal-preview-wrap" id="metalPreviewWrap" style="display: none;" aria-label="Spotify Metal Tag 316L Chrome Steel Model Preview">
+                <div class="metal-preview-wrap" id="metalPreviewWrap" style="display: none;" aria-label="Spotify Metal Tag Preview">
                   
                   <!-- Flippable 3D Metal Keychain Card -->
                   <div class="metal-card-3d" id="metalCard3d" role="region" tabindex="0" title="Click metal keychain to flip Front / Back" aria-label="Spotify Metal Tag: Click to flip front and back">
@@ -3437,7 +3437,7 @@
                     <!-- FRONT SIDE: 316L Chrome Steel Frame with High-Gloss Obsidian Inlay & Spotify Code -->
                     <div class="metal-face metal-face-front">
                       <div class="metal-model-container">
-                        <img id="metalFrontImg" src="metal_front_clean.png?v=20261031_1555" alt="Spotify Metal Tag Authentic 316L Chrome Steel Model" class="metal-model-img" />
+                        <img id="metalFrontImg" src="metal_front_clean.png?v=20261031_1555" alt="Spotify Metal Tag Model" class="metal-model-img" />
                         
                         <!-- Live Spotify Code Overlay Plate (Active when custom link is entered or code is uploaded) -->
                         <div class="metal-code-overlay" id="metalCodeOverlay" style="display: flex;">
@@ -3615,7 +3615,7 @@
                       <span class="back-option-name">None (Plain / Clean Back)</span>
                       <span class="back-option-price free-pill">FREE</span>
                     </div>
-                    <p class="back-option-desc">Sleek blank 316L chrome & glossy obsidian plate with no back engraving (₹0 extra).</p>
+                    <p class="back-option-desc">Clean gloss back with no custom engraving (₹0 extra).</p>
                   </div>
                 </div>
 
@@ -3806,7 +3806,7 @@
             <div class="form-group">
               <label class="form-label">Rocky Figure Hardware Color</label>
               <div class="finish-options" style="grid-template-columns: 1fr 1fr;">
-                <div class="finish-btn active" data-rocky="Silver Steel Ring">Silver Steel Hardware</div>
+                <div class="finish-btn active" data-rocky="Silver Keyring">Silver Hardware</div>
                 <div class="finish-btn" data-rocky="Matte Black Ring">Gunmetal Black Hardware</div>
               </div>
               <p class="form-hint">Precision 3D printed resin figure with maze topographic patterns.</p>
@@ -4016,7 +4016,7 @@
               Laser Engraving Crop Studio
             </div>
             <div style="font-size:0.72rem; color:var(--muted); font-family:'DM Mono', monospace;">
-              Obsidian Engraving Ratio: 3.14 : 1 • Drag to move & scale photo
+              Drag to move & scale photo
             </div>
           </div>
         </div>
@@ -4029,7 +4029,7 @@
           <img id="cropTargetImg" src="" alt="Cropping image" draggable="false" />
           <div class="crop-guide-box">
             <div class="crop-guide-grid"></div>
-            <span class="crop-badge-ratio">3.06 : 1 Obsidian Frame</span>
+            <span class="crop-badge-ratio">Engraving Frame</span>
           </div>
         </div>
         <div class="crop-drag-hint">👆 Drag image to reposition • Scroll or use slider to zoom</div>
@@ -4099,7 +4099,7 @@
       product: 'mtl001', // Only model in stock for instant purchase
       basePrice: 169,
       productName: 'Spotify Metal Tag',
-      finish: '316L Chrome Steel + High-Gloss Obsidian',
+      finish: 'Obsidian Chrome Metal',
       song: '',
       artist: '',
       spotifyUrl: '',
@@ -5031,8 +5031,8 @@
           posterSub.textContent = 'Dual Keychain Set • Interlocking Heart • Silk Gold PLA';
         } else if (key === 'mtl001') {
           posterImg.src = 'POSTER%203.jpg?v=20261028_0215';
-          posterTitle.textContent = 'Spotify by TuneTagZ';
-          posterSub.textContent = 'Metallic Edition • 316L Chrome Steel Frame';
+          posterTitle.textContent = 'Spotify Metal Tag';
+          posterSub.textContent = 'Premium Metallic Edition • Launch Offer ₹169';
         } else if (key === 'nfc001') {
           posterImg.src = 'POSTER%204.jpg?v=20261028_0215';
           posterTitle.textContent = 'Vinyl Record NFC Tag';
@@ -5238,13 +5238,13 @@
         if (vinylWrap) vinylWrap.style.display = 'flex';
         if (keychainNfcIndicator) keychainNfcIndicator.style.display = 'none';
         if (sampleRefBadge) {
-          sampleRefBadge.textContent = 'Vinyl NFC Model (For Reference Only)';
+          sampleRefBadge.textContent = 'Vinyl NFC Model';
         }
         if (visualizerInlayText) {
           visualizerInlayText.textContent = 'Pure NFC • Grooved Vinyl PLA';
         }
       } else if (key === 'mtl001') {
-        state.finish = '316L Chrome Steel + High-Gloss Obsidian';
+        state.finish = 'Obsidian Chrome Metal';
         customFieldsSpotify.style.display = 'block';
         customFieldsRocky.style.display = 'none';
         document.getElementById('visualizerWrap').style.display = 'flex';
@@ -5289,15 +5289,15 @@
           m.style.boxShadow = '0 12px 36px rgba(226,232,240,0.18), inset 0 0 16px rgba(255,255,255,0.08)';
         });
         if (sampleRefBadge) {
-          sampleRefBadge.textContent = hasMetalCode ? '316L Metal Spotify Code ✓' : '316L Chrome Steel Model (For Reference)';
+          sampleRefBadge.textContent = hasMetalCode ? 'Live Spotify Code ✓' : 'Sample Preview';
           sampleRefBadge.classList.toggle('is-live', hasMetalCode);
         }
         if (visualizerInlayText) {
-          visualizerInlayText.textContent = '316L Chrome Steel Frame';
+          visualizerInlayText.textContent = 'Obsidian Chrome';
         }
         updateNfcKeychainIndicator(state.hasNfc);
       } else if (key === 'rky001') {
-        state.finish = 'Silver Steel Hardware';
+        state.finish = 'Silver Hardware';
         customFieldsSpotify.style.display = 'none';
         customFieldsRocky.style.display = 'block';
         document.getElementById('visualizerWrap').style.display = 'none';
@@ -5321,7 +5321,7 @@
           m.style.boxShadow = 'none';
         });
         if (sampleRefBadge) {
-          sampleRefBadge.textContent = 'Sample Code (For Reference Only)';
+          sampleRefBadge.textContent = 'Sample Preview';
         }
         if (visualizerInlayText) {
           visualizerInlayText.textContent = 'Silk Gold PLA Inlay';
@@ -5771,7 +5771,7 @@
       if (state.product === 'mtl001') {
         textColor = '#f1f5f9';
         glowColor = 'rgba(255,255,255,0.5)';
-        inlayLabel = '316L Chrome Steel';
+        inlayLabel = 'Obsidian Chrome';
       } else if (state.product === 'nfc001') {
         textColor = '#e5b84c';
         glowColor = 'rgba(229,184,76,0.6)';
@@ -5910,7 +5910,7 @@
           updateCodeFilterColor(state.finish);
         }
         if (sampleRefBadge && !state.uploadedCodeImg) {
-          sampleRefBadge.textContent = (state.product === 'mtl001') ? '316L Chrome Steel Model (For Reference)' : 'Sample Code (For Reference Only)';
+          sampleRefBadge.textContent = 'Sample Preview';
           sampleRefBadge.classList.remove('is-live');
         }
         return;
@@ -5990,7 +5990,7 @@
         switchDuoPreviewTag(1);
       } else {
         if (sampleRefBadge) {
-          sampleRefBadge.textContent = (state.product === 'mtl001') ? '316L Metal Spotify Code ✓' : 'Custom Spotify Code ✓';
+          sampleRefBadge.textContent = 'Custom Spotify Code ✓';
           sampleRefBadge.classList.add('is-live');
         }
         setKeychainView('front');
@@ -6091,7 +6091,7 @@
             updateCodeFilterColor(state.finish);
           }
           if (sampleRefBadge) {
-            sampleRefBadge.textContent = 'Tag 2 Sample Code (For Reference Only)';
+            sampleRefBadge.textContent = 'Tag 2 Sample Code';
             sampleRefBadge.classList.remove('is-live');
           }
         }
@@ -6324,7 +6324,7 @@
 
           // 4. Update preview badge
           if (sampleRefBadge) {
-            sampleRefBadge.textContent = (state.product === 'mtl001') ? '316L Metal Spotify Code ✓' : 'Uploaded Spotify Code ✓';
+            sampleRefBadge.textContent = 'Uploaded Spotify Code ✓';
             sampleRefBadge.classList.add('is-live');
           }
 
@@ -6356,7 +6356,7 @@
             updateCodeFilterColor(state.finish);
           }
           if (sampleRefBadge) {
-            sampleRefBadge.textContent = (state.product === 'mtl001') ? '316L Chrome Steel Model (For Reference)' : 'Sample Code (For Reference Only)';
+            sampleRefBadge.textContent = 'Sample Preview';
             sampleRefBadge.classList.remove('is-live');
           }
           if (duoCodeOverlay1) duoCodeOverlay1.style.display = 'none';
@@ -6553,7 +6553,7 @@
             updateCodeFilterColor(state.finish);
           }
           if (sampleRefBadge) {
-            sampleRefBadge.textContent = 'Sample Code (For Reference Only)';
+            sampleRefBadge.textContent = 'Sample Preview';
             sampleRefBadge.classList.remove('is-live');
           }
           setKeychainView('front');
