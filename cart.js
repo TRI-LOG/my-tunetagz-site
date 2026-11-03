@@ -10,7 +10,7 @@
   // Product metadata helper
   const PRODUCT_META = {
     'spt001': { name: 'Spotify Code Tag (Pooled Selling)', price: 249, poster: 'POSTER 1.png', defaultFinish: 'Matte Black + Silk Gold PLA' },
-    'mtl001': { name: 'Spotify Metal Tag (Available Now)', price: 169, poster: 'POSTER 3.jpg', defaultFinish: 'Obsidian Chrome Metal' },
+    'mtl001': { name: 'Spotify Metal Tag (Available Now)', price: 169, poster: 'POSTER 3.jpg', defaultFinish: 'Metallic Edition' },
     'nfc001': { name: 'Vinyl Record NFC Tag', price: 199, poster: 'POSTER 4.jpg', defaultFinish: 'Grooved Vinyl PLA (Pure NFC)' },
     'duo001': { name: 'Spotify Duo Set', price: 349, poster: 'POSTER 5.jpg', defaultFinish: 'Dual Matte Black + Silk Gold PLA' },
     'rky001': { name: 'Rocky Keychain', price: 300, poster: 'POSTER 2.png', defaultFinish: 'Matte Black Maze' },
@@ -91,21 +91,15 @@
     },
 
     addItem(itemData) {
-      // Guard against Out of Stock & Coming Soon models
-      if (itemData.productKey === 'nfc001' || itemData.productKey === 'duo001' || itemData.productKey === 'rky001') {
-        const msg = itemData.productKey === 'rky001' ? 'Rocky Keychain is currently Out of Stock.' : 'This model is Coming Soon.';
-        if (typeof showToast === 'function') {
-          showToast(`${msg} Only Spotify Metal Tag is in stock, and Spotify Code Tag is open for Pooled Selling.`);
-        }
-        return false;
-      }
-
       const items = this.getCart();
-      // Match existing item if product key, duo separate mode, songs, engravings, text sizes, finish, back customization, nfc and gift box are identical
+      // Match existing item if product key, duo separate mode, songs, engravings, text sizes, finish, back customization, code image, nfc and gift box are identical
       const existingIdx = items.findIndex(i =>
         i.productKey === itemData.productKey &&
         Boolean(i.isDuoSeparate) === Boolean(itemData.isDuoSeparate) &&
         (i.song || '') === (itemData.song || '') &&
+        (i.spotifyUrl || '') === (itemData.spotifyUrl || '') &&
+        (i.uploadedCodeName || '') === (itemData.uploadedCodeName || '') &&
+        (i.uploadedCodeImg || '') === (itemData.uploadedCodeImg || '') &&
         (i.engrave || '') === (itemData.engrave || '') &&
         (i.textSize || '18px') === (itemData.textSize || '18px') &&
         (i.song2 || '') === (itemData.song2 || '') &&
@@ -133,6 +127,8 @@
           song: itemData.song || '',
           artist: itemData.artist || '',
           spotifyUrl: itemData.spotifyUrl || '',
+          uploadedCodeImg: itemData.uploadedCodeImg || null,
+          uploadedCodeName: itemData.uploadedCodeName || '',
           engrave: itemData.engrave || '',
           textSize: itemData.textSize || '18px',
           song2: itemData.song2 || '',
@@ -814,7 +810,8 @@
               ` : `
                 ${item.song ? `🎵 <strong>${item.song}</strong> ${item.artist ? '— ' + item.artist : ''}<br/>` : ''}
                 ${item.spotifyUrl ? `🔗 <a href="${item.spotifyUrl}" target="_blank" rel="noopener noreferrer" style="color:#22c55e; text-decoration:none;">Spotify Code Link ↗</a><br/>` : ''}
-                ${isMetal ? (item.backCustomization === 'image' ? `🖼️ Back: Custom Image Uploaded (+₹99)${item.uploadedBackImgName ? ` [${item.uploadedBackImgName}]` : ''}<br/>` : (item.backCustomization === 'text' ? `✍️ Back: <em>"${item.engrave}"</em> (+₹50)${item.textSize ? ` (${item.textSize})` : ''}<br/>` : `✨ Back: Standard Art (Free)<br/>`)) : (item.engrave ? `✍️ Engraving: <em>"${item.engrave}"</em><br/>` : '')}
+                ${item.uploadedCodeName ? `📁 Uploaded Code Image: <em>${item.uploadedCodeName}</em><br/>` : ''}
+                ${isMetal ? (item.backCustomization === 'image' ? `🖼️ Back: Custom Image Uploaded (+₹99)${item.uploadedBackImgName ? ` [${item.uploadedBackImgName}]` : ''}<br/>` : (item.backCustomization === 'text' ? `✍️ Back: <em>"${item.engrave}"</em> (+₹50)${item.textSize ? ` (${item.textSize})` : ''}<br/>` : '')) : (item.engrave ? `✍️ Engraving: <em>"${item.engrave}"</em><br/>` : '')}
               `}
               ${item.finish ? `✨ Finish: ${item.finish}<br/>` : ''}
               ${item.hasNfc ? `📶 Smart NFC Feature (+₹80)<br/>` : ''}

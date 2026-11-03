@@ -275,15 +275,6 @@
       opacity: 0.85;
       border-color: rgba(239, 68, 68, 0.35);
     }
-    /* Subtle diagonal strike slash across out-of-stock / out-of-order option */
-    .prod-option.opt-out-of-stock::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top right, transparent calc(50% - 0.75px), rgba(239, 68, 68, 0.4) 50%, transparent calc(50% + 0.75px));
-      pointer-events: none;
-      z-index: 1;
-    }
     /* Slight strikethrough on out-of-stock product title */
     .prod-option.opt-out-of-stock .opt-name {
       text-decoration: line-through;
@@ -967,19 +958,7 @@
 
     /* Flip Hint */
     .tag-flip-hint {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.2s;
-    }
-    .tag-flip-hint:hover {
-      color: #22c55e;
+      display: none !important;
     }
 
     /* ── VINYL RECORD NFC PREVIEW STAGE ── */
@@ -1813,6 +1792,9 @@
     }
 
     /* ── SPOTIFY LIVE PREVIEW & EXAMPLES ── */
+    .spotify-example-pills {
+      display: none !important;
+    }
     .spotify-example-btn {
       background: rgba(34, 197, 94, 0.08);
       border: 1px solid rgba(34, 197, 94, 0.25);
@@ -1881,6 +1863,14 @@
       font-size: 0.65rem;
       color: var(--muted);
       text-transform: none;
+    }
+    .req-star {
+      color: #f43f5e;
+      font-weight: 700;
+      margin-left: 2px;
+      font-size: 0.95em;
+      line-height: 1;
+      display: inline-block;
     }
     .form-input, .form-select, .form-textarea {
       width: 100%;
@@ -3166,7 +3156,7 @@
             <img id="orderPosterImg" src="POSTER%203.jpg?v=20261028_0215" alt="Product Poster" style="width: 72px; height: 72px; object-fit: cover; border-radius: 3px; border: 1px solid rgba(244,245,248,0.12);" />
             <div>
               <div id="orderPosterTitle" style="font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--cream);">Spotify Metal Tag</div>
-              <div id="orderPosterSubtitle" style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Premium Metallic Edition • Launch Offer ₹169</div>
+              <div id="orderPosterSubtitle" style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">Metallic Edition • Launch Offer ₹169</div>
             </div>
           </div>
 
@@ -3175,7 +3165,7 @@
             <div class="visualizer-topbar">
               <div class="visualizer-title-group">
                 <span class="visualizer-title-simple">Live Keychain Preview</span>
-                <span class="sample-ref-badge" id="sampleRefBadge">Sample Preview</span>
+                <span class="sample-ref-badge" id="sampleRefBadge">Sample Code (For Reference Only)</span>
               </div>
               <div class="visualizer-inlay-badge" id="visualizerInlayBadge">
                 <span class="inlay-dot"></span>
@@ -3428,16 +3418,16 @@
 
                 </div>
 
-                <!-- SPOTIFY METAL TAG EXACT KEYCHAIN PREVIEW (316L Chrome Steel Model) -->
-                <div class="metal-preview-wrap" id="metalPreviewWrap" style="display: none;" aria-label="Spotify Metal Tag Preview">
+                <!-- SPOTIFY METAL TAG EXACT KEYCHAIN PREVIEW (Metal Model) -->
+                <div class="metal-preview-wrap" id="metalPreviewWrap" style="display: none;" aria-label="Spotify Metal Tag Model Preview">
                   
                   <!-- Flippable 3D Metal Keychain Card -->
                   <div class="metal-card-3d" id="metalCard3d" role="region" tabindex="0" title="Click metal keychain to flip Front / Back" aria-label="Spotify Metal Tag: Click to flip front and back">
                     
-                    <!-- FRONT SIDE: 316L Chrome Steel Frame with High-Gloss Obsidian Inlay & Spotify Code -->
+                    <!-- FRONT SIDE: Metallic Frame with High-Gloss Obsidian Inlay & Spotify Code -->
                     <div class="metal-face metal-face-front">
                       <div class="metal-model-container">
-                        <img id="metalFrontImg" src="metal_front_clean.png?v=20261031_1555" alt="Spotify Metal Tag Model" class="metal-model-img" />
+                        <img id="metalFrontImg" src="metal_front_clean.png?v=20261031_1555" alt="Spotify Metal Tag Authentic Model" class="metal-model-img" />
                         
                         <!-- Live Spotify Code Overlay Plate (Active when custom link is entered or code is uploaded) -->
                         <div class="metal-code-overlay" id="metalCodeOverlay" style="display: flex;">
@@ -3473,11 +3463,6 @@
 
                 </div>
 
-              </div>
-
-              <!-- Flip Hint -->
-              <div class="tag-flip-hint" id="tagFlipHint">
-                <span>↻ Click keychain or toggle buttons above to flip Front / Back</span>
               </div>
 
             </div>
@@ -3516,15 +3501,15 @@
             <div class="form-group" style="position:relative;">
               <div class="form-label" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <label for="spotifyUrl" style="margin-bottom:0; cursor:pointer;">
-                  <span id="spotifyUrlLabelText">Spotify Link or Code <small style="color:var(--crimson-bright); font-weight:700;">Required • Live Scannable Code</small></span>
+                  <span id="spotifyUrlLabelText">Spotify Link or Code <span class="req-star">*</span></span>
                 </label>
                 <label class="spotify-upload-badge-btn" for="spotifyCodeUploadInput" title="Upload Spotify Code Screenshot or Image">
-                  📁 Upload Code Image
+                  📁 Upload
                   <input type="file" id="spotifyCodeUploadInput" accept="image/*" style="display:none;" />
                 </label>
               </div>
               <div style="position:relative;">
-                <input type="url" id="spotifyUrl" class="form-input" style="padding-right: 90px;" placeholder="Paste song, playlist, album, or user link..." required />
+                <input type="url" id="spotifyUrl" class="form-input" style="padding-right: 90px;" placeholder="" required />
                 <button type="button" class="spotify-paste-btn" id="btnPasteClipboard" title="Paste from clipboard">
                   📋 Paste
                 </button>
@@ -3538,12 +3523,6 @@
                 <button type="button" id="btnRemoveUploadedCode" style="background:none; border:none; color:var(--crimson-bright); cursor:pointer; font-family:'DM Mono', monospace; font-size:0.72rem; font-weight:700; padding:2px 6px;" title="Remove uploaded code image">✕ Remove</button>
               </div>
               <div class="field-error-msg" id="spotifyUrlError" style="display:none;"></div>
-              <div class="spotify-example-pills" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; align-items:center;">
-                <span style="font-size:0.68rem; color:var(--muted); font-family:'DM Mono', monospace;">Try Samples:</span>
-                <button type="button" class="spotify-example-btn" data-url="https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT">🎵 Track</button>
-                <button type="button" class="spotify-example-btn" data-url="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M">📑 Playlist</button>
-                <button type="button" class="spotify-example-btn" data-url="https://open.spotify.com/user/spotify">👤 Profile</button>
-              </div>
 
               <!-- Live Spotify Preview Section -->
               <div class="spotify-live-preview" id="spotifyLivePreview" style="display:none;">
@@ -3572,10 +3551,10 @@
             </div>
 
             <!-- STANDARD BACK ENGRAVING GROUP (Shown for Standard Acrylic spt001 & Duo Set Keychain 1) -->
-            <div class="form-group" id="standardEngravingGroup" style="display: block;">
+            <div class="form-group" id="standardEngravingGroup" style="display: none;">
               <div class="form-label" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <label for="engravingText" id="stdEngraveLabel" style="margin-bottom:0; cursor:pointer;">
-                  Custom Text on Back <small style="color:var(--muted); font-weight:400;">(Optional • Free laser engraving)</small>
+                  Custom Text on Back
                 </label>
                 <div class="text-size-stepper" aria-label="Adjust engraved text size" title="Adjust text size (10px - 72px)">
                   <span class="size-stepper-label">Text Size:</span>
@@ -3584,24 +3563,16 @@
                   <button type="button" class="size-step-btn" id="btnStdTextSizePlus" title="Increase text size (max 72px)" aria-label="Increase text size">+</button>
                 </div>
               </div>
-              <input type="text" id="engravingText" class="form-input" maxlength="40" placeholder="Any text • e.g. Kavya & Arjun • 24.11.2024 / राहुल & पूजा / SAM & ALEX" value="" />
+              <input type="text" id="engravingText" class="form-input" maxlength="40" placeholder="" value="" />
               <div class="field-error-msg" id="engravingError" style="display:none;"></div>
-              <div class="form-hint" style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
-                <small style="color:var(--muted); font-size:0.72rem;" id="stdEngraveHint">Inverted silver laser-etched directly onto back plate • Any language & format supported</small>
-                <span id="charCountDisplay" style="font-family:'DM Mono', monospace; font-size:0.68rem; color:var(--muted);">0/40</span>
-              </div>
             </div>
 
             <!-- BACK SIDE CUSTOMIZATION OPTION BOX (EXCLUSIVE ONLY TO METAL KEYCHAIN mtl001: None: Free | Text: ₹50 | Image: ₹99) -->
             <div class="back-customization-box" id="backCustomizationBox" style="display: none;">
               <div class="back-custom-header">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="font-family:'Space Grotesk', sans-serif; font-size:0.92rem; font-weight:700; color:var(--cream); text-transform:uppercase; letter-spacing:0.04em;">
-                    Metal Back Customization
-                  </span>
-                  <span class="back-custom-badge" id="backCustomBadge" style="background:rgba(212,175,55,0.18); border-color:var(--gold); color:var(--gold);">Metal Exclusive</span>
-                </div>
-                <span style="font-size:0.7rem; color:var(--muted); font-family:'DM Mono', monospace;">None (₹0) • Text (+₹50) • Image (+₹99)</span>
+                <span style="font-family:'Space Grotesk', sans-serif; font-size:0.92rem; font-weight:700; color:var(--cream); text-transform:uppercase; letter-spacing:0.04em;">
+                  Metal Back Customization
+                </span>
               </div>
 
               <!-- 3 Interactive Option Cards -->
@@ -3615,7 +3586,7 @@
                       <span class="back-option-name">None (Plain / Clean Back)</span>
                       <span class="back-option-price free-pill">FREE</span>
                     </div>
-                    <p class="back-option-desc">Clean gloss back with no custom engraving (₹0 extra).</p>
+                    <p class="back-option-desc">Sleek blank glossy obsidian plate with no back engraving (₹0 extra).</p>
                   </div>
                 </div>
 
@@ -3649,7 +3620,7 @@
               <div class="form-group" id="backTextPanel" style="display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(241,234,218,0.14);">
                 <div class="form-label" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                   <label for="metalEngravingText" style="margin-bottom:0; cursor:pointer;">
-                    Custom Text on Back <small style="color:var(--gold); font-weight:600;">(+₹50 • Laser engraving)</small>
+                    Custom Text on Back <small style="color:var(--gold); font-weight:600;">(+₹50)</small>
                   </label>
                   <div class="text-size-stepper" aria-label="Adjust engraved text size" title="Adjust text size (10px - 72px)">
                     <span class="size-stepper-label">Text Size:</span>
@@ -3658,12 +3629,8 @@
                     <button type="button" class="size-step-btn" id="btnTextSizePlus" title="Increase text size (max 72px)" aria-label="Increase text size">+</button>
                   </div>
                 </div>
-                <input type="text" id="metalEngravingText" class="form-input" maxlength="40" placeholder="Any language & format • e.g. Kavya & Arjun • 24.11.2024 / राहुल / அன்புடன்" value="" />
+                <input type="text" id="metalEngravingText" class="form-input" maxlength="40" placeholder="" value="" />
                 <div class="field-error-msg" id="metalEngravingError" style="display:none;"></div>
-                <div class="form-hint" style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
-                  <small style="color:var(--muted); font-size:0.72rem;">Silver laser-etched • Any language, script, date, or format supported</small>
-                  <span id="metalCharCountDisplay" style="font-family:'DM Mono', monospace; font-size:0.68rem; color:var(--muted);">0/40</span>
-                </div>
               </div>
 
               <!-- CONDITIONAL PANEL 2: IMAGE UPLOAD (Visible when "image" is selected) -->
@@ -3716,21 +3683,15 @@
               <!-- Spotify Link for Keychain 2 -->
               <div class="form-group" style="position:relative;">
                 <label class="form-label" for="spotifyUrl2">
-                  <span>Spotify Link for Keychain 2 <small style="color:var(--crimson-bright); font-weight:700;">Required • Live Scannable Code</small></span>
+                  <span>Spotify Link for Keychain 2</span>
                 </label>
                 <div style="position:relative;">
-                  <input type="url" id="spotifyUrl2" class="form-input" style="padding-right: 90px;" placeholder="Paste song, playlist, album, or user link for 2nd tag..." />
+                  <input type="url" id="spotifyUrl2" class="form-input" style="padding-right: 90px;" placeholder="" />
                   <button type="button" class="spotify-paste-btn" id="btnPasteClipboard2" title="Paste from clipboard">
                     📋 Paste
                   </button>
                 </div>
                 <div class="field-error-msg" id="spotifyUrl2Error" style="display:none;"></div>
-                <div class="spotify-example-pills" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; align-items:center;">
-                  <span style="font-size:0.68rem; color:var(--muted); font-family:'DM Mono', monospace;">Try Samples:</span>
-                  <button type="button" class="spotify-example-btn2" data-url="https://open.spotify.com/track/7ouMYWpwJ422jRcDASZB7P">🎵 Track</button>
-                  <button type="button" class="spotify-example-btn2" data-url="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M">📑 Playlist</button>
-                  <button type="button" class="spotify-example-btn2" data-url="https://open.spotify.com/user/spotify">👤 Profile</button>
-                </div>
 
                 <!-- Live Spotify Preview Section for Keychain 2 -->
                 <div class="spotify-live-preview" id="spotifyLivePreview2" style="display:none;">
@@ -3756,7 +3717,7 @@
               <div class="form-group" id="duoEngravingGroup2" style="display: block; margin-top: 16px;">
                 <div class="form-label" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                   <label for="engravingText2" id="duoEngraveLabel2" style="margin-bottom:0; cursor:pointer;">
-                    🖤 Keychain 2 Name on Back <small style="color:var(--muted); font-weight:400;">(Optional — Free laser engraving)</small>
+                    🖤 Keychain 2 Name on Back
                   </label>
                   <div class="text-size-stepper" aria-label="Adjust engraved text size for Keychain 2" title="Adjust text size (10px - 72px)">
                     <span class="size-stepper-label">Text Size:</span>
@@ -3765,21 +3726,16 @@
                     <button type="button" class="size-step-btn" id="btnTextSizePlus2" title="Increase text size (max 72px)" aria-label="Increase text size">+</button>
                   </div>
                 </div>
-                <input type="text" id="engravingText2" class="form-input" maxlength="40" placeholder="Any text • e.g. Arjun / Sam — 24.11.2024 / राहुल & पूजा" value="" />
+                <input type="text" id="engravingText2" class="form-input" maxlength="40" placeholder="" value="" />
                 <div class="field-error-msg" id="engravingError2" style="display:none;"></div>
-                <div class="form-hint" style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
-                  <small style="color:var(--muted); font-size:0.72rem;">Inverted silver laser-etched directly onto Keychain 2 plate • Any language & format supported</small>
-                  <span id="charCountDisplay2" style="font-family:'DM Mono', monospace; font-size:0.68rem; color:var(--muted);">0/40</span>
-                </div>
               </div>
 
 
             </div>
 
-            <div class="form-group" id="plaInlayGroup">
-              <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="form-group" id="plaInlayGroup" style="display: none;">
+              <label class="form-label">
                 <span>3D Printed PLA Filament Tone</span>
-                <small style="color:var(--gold); font-size:0.7rem; font-weight:600;">Gold in Matte Black (Standard)</small>
               </label>
               <div class="finish-options">
                 <div class="finish-btn active" data-finish="Silk Gold PLA" title="Matte Black base with Silk Gold PLA filament inlay">
@@ -3795,9 +3751,6 @@
                   <span>Matte Black + Emerald PLA</span>
                 </div>
               </div>
-              <p class="form-hint" style="margin-top:6px; font-size:0.72rem; color:var(--muted);">
-                Precision dual-extrusion 3D printed: durable matte black structure inlaid with lustrous metallic PLA filament.
-              </p>
             </div>
           </div>
 
@@ -3806,7 +3759,7 @@
             <div class="form-group">
               <label class="form-label">Rocky Figure Hardware Color</label>
               <div class="finish-options" style="grid-template-columns: 1fr 1fr;">
-                <div class="finish-btn active" data-rocky="Silver Keyring">Silver Hardware</div>
+                <div class="finish-btn active" data-rocky="Silver Steel Ring">Silver Steel Hardware</div>
                 <div class="finish-btn" data-rocky="Matte Black Ring">Gunmetal Black Hardware</div>
               </div>
               <p class="form-hint">Precision 3D printed resin figure with maze topographic patterns.</p>
@@ -3860,9 +3813,6 @@
                 <span>View Cart (<span class="cart-count-badge">0</span>)</span>
               </button>
             </div>
-            <p style="font-size: 0.72rem; color: var(--muted); text-align: center; margin: 0;">
-              💡 Customize multiple keychains, add them to your cart, and check out as a single order.
-            </p>
           </div>
 
         </div>
@@ -3877,28 +3827,28 @@
 
           <form id="shippingForm" onsubmit="return false;">
             <div class="form-group">
-              <label class="form-label" for="custName">Full Name <small>Required</small></label>
-              <input type="text" id="custName" class="form-input" placeholder="e.g. Rahul Sharma" required />
+              <label class="form-label" for="custName"><span>Full Name <span class="req-star">*</span></span></label>
+              <input type="text" id="custName" class="form-input" placeholder="" required />
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="custPhone">WhatsApp Number <small>For Shipping Updates</small></label>
-              <input type="tel" id="custPhone" class="form-input" placeholder="e.g. +91 98765 43210" required />
+              <label class="form-label" for="custPhone"><span>WhatsApp Number <span class="req-star">*</span></span> <small>For Shipping Updates</small></label>
+              <input type="tel" id="custPhone" class="form-input" placeholder="" required />
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="custAddress">Full Delivery Address <small>Required</small></label>
-              <textarea id="custAddress" class="form-textarea" rows="2" placeholder="House/Flat No., Building, Street, Locality" required></textarea>
+              <label class="form-label" for="custAddress"><span>Full Delivery Address <span class="req-star">*</span></span></label>
+              <textarea id="custAddress" class="form-textarea" rows="2" placeholder="" required></textarea>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="custCity">City</label>
-                <input type="text" id="custCity" class="form-input" placeholder="e.g. Mumbai" required />
+                <label class="form-label" for="custCity"><span>City <span class="req-star">*</span></span></label>
+                <input type="text" id="custCity" class="form-input" placeholder="" required />
               </div>
               <div class="form-group">
-                <label class="form-label" for="custPincode">Pincode</label>
-                <input type="text" id="custPincode" class="form-input" maxlength="6" placeholder="e.g. 400001" required />
+                <label class="form-label" for="custPincode"><span>Pincode <span class="req-star">*</span></span></label>
+                <input type="text" id="custPincode" class="form-input" maxlength="6" placeholder="" required />
               </div>
             </div>
 
@@ -3935,9 +3885,9 @@
                 <span>Luxury Gift Box Packaging</span>
                 <span id="summaryGiftBoxPrice">₹99</span>
               </div>
-              <div class="summary-row" id="backEngraveSummaryRow">
-                <span id="summaryBackEngraveLabel">Back Customization (Standard Art)</span>
-                <span id="summaryBackEngravePrice" class="free-badge">FREE</span>
+              <div class="summary-row" id="backEngraveSummaryRow" style="display: none;">
+                <span id="summaryBackEngraveLabel">Metal Back Customization</span>
+                <span id="summaryBackEngravePrice">+₹50</span>
               </div>
               <div class="summary-row">
                 <span>Tracked Shipping Across India</span>
@@ -4016,7 +3966,7 @@
               Laser Engraving Crop Studio
             </div>
             <div style="font-size:0.72rem; color:var(--muted); font-family:'DM Mono', monospace;">
-              Drag to move & scale photo
+              Obsidian Engraving Ratio: 3.14 : 1 • Drag to move & scale photo
             </div>
           </div>
         </div>
@@ -4029,7 +3979,7 @@
           <img id="cropTargetImg" src="" alt="Cropping image" draggable="false" />
           <div class="crop-guide-box">
             <div class="crop-guide-grid"></div>
-            <span class="crop-badge-ratio">Engraving Frame</span>
+            <span class="crop-badge-ratio">3.06 : 1 Obsidian Frame</span>
           </div>
         </div>
         <div class="crop-drag-hint">👆 Drag image to reposition • Scroll or use slider to zoom</div>
@@ -4099,7 +4049,7 @@
       product: 'mtl001', // Only model in stock for instant purchase
       basePrice: 169,
       productName: 'Spotify Metal Tag',
-      finish: 'Obsidian Chrome Metal',
+      finish: 'Metallic Edition',
       song: '',
       artist: '',
       spotifyUrl: '',
@@ -4149,6 +4099,7 @@
     const visualizerInlayText = document.getElementById('visualizerInlayText');
     const customFieldsSpotify = document.getElementById('customFieldsSpotify');
     const customFieldsRocky = document.getElementById('customFieldsRocky');
+    const plaInlayGroup = document.getElementById('plaInlayGroup');
     const finishBtns = document.querySelectorAll('.finish-btn');
     const qtyVal = document.getElementById('qtyVal');
     const qtyMinus = document.getElementById('qtyMinus');
@@ -4470,13 +4421,13 @@
         if (standardEngravingGroup) standardEngravingGroup.style.display = 'block';
         if (duoEngravingGroup2) duoEngravingGroup2.style.display = isChecked ? 'block' : 'none';
         if (isChecked) {
-          if (stdEngraveLabel) stdEngraveLabel.innerHTML = '🔑 Keychain 1 Text on Back <small style="color:var(--muted); font-weight:400;">(Optional — Inverted laser engraving)</small>';
-          if (stdEngraveHint) stdEngraveHint.textContent = 'Inverted silver laser-etched directly onto Keychain 1 plate • Any language & format supported';
-          if (engraveInput) engraveInput.placeholder = 'Any text • e.g. Kavya / Alex — 24.11.2024 / राहुल';
+          if (stdEngraveLabel) stdEngraveLabel.innerHTML = '🔑 Keychain 1 Text on Back';
+          if (stdEngraveHint) stdEngraveHint.textContent = '';
+          if (engraveInput) engraveInput.placeholder = '';
         } else {
-          if (stdEngraveLabel) stdEngraveLabel.innerHTML = 'Custom Text on Back <small style="color:var(--muted); font-weight:400;">(Optional — Inverted laser engraving on both)</small>';
-          if (stdEngraveHint) stdEngraveHint.textContent = 'Inverted silver laser-etched directly onto both keychains • Any language & format supported';
-          if (engraveInput) engraveInput.placeholder = 'Any text • e.g. Kavya & Arjun — 24.11.2024 / राहुल & पूजा';
+          if (stdEngraveLabel) stdEngraveLabel.innerHTML = 'Custom Text on Back';
+          if (stdEngraveHint) stdEngraveHint.textContent = '';
+          if (engraveInput) engraveInput.placeholder = '';
         }
       }
 
@@ -4506,9 +4457,7 @@
 
       const label1 = document.getElementById('spotifyUrlLabelText');
       if (label1) {
-        label1.innerHTML = isChecked ?
-          `Spotify Link for Keychain 1 <small style="color:var(--crimson-bright); font-weight:700;">Required • Live Scannable Code</small>` :
-          `Spotify Link <small style="color:var(--crimson-bright); font-weight:700;">Required • Live Scannable Code</small>`;
+        label1.textContent = isChecked ? 'Spotify Link for Keychain 1' : 'Spotify Link or Code';
       }
 
       switchDuoPreviewTag(isChecked ? (state.activeDuoPreviewTag || 1) : 1);
@@ -5032,7 +4981,7 @@
         } else if (key === 'mtl001') {
           posterImg.src = 'POSTER%203.jpg?v=20261028_0215';
           posterTitle.textContent = 'Spotify Metal Tag';
-          posterSub.textContent = 'Premium Metallic Edition • Launch Offer ₹169';
+          posterSub.textContent = 'Metallic Edition • Launch Offer ₹169';
         } else if (key === 'nfc001') {
           posterImg.src = 'POSTER%204.jpg?v=20261028_0215';
           posterTitle.textContent = 'Vinyl Record NFC Tag';
@@ -5141,22 +5090,22 @@
       if (standardEngravingGroup) {
         if (key === 'spt001') {
           standardEngravingGroup.style.display = 'block';
-          if (stdEngraveLabel) stdEngraveLabel.innerHTML = 'Custom Text on Back <small style="color:var(--muted); font-weight:400;">(Optional • Free laser engraving)</small>';
-          if (stdEngraveHint) stdEngraveHint.textContent = 'Silver laser-etched directly onto back plate';
-          if (engraveInput) engraveInput.placeholder = 'e.g. KAVYA & ARJUN • 24.11.2024';
+          if (stdEngraveLabel) stdEngraveLabel.innerHTML = 'Custom Text on Back';
+          if (stdEngraveHint) stdEngraveHint.textContent = '';
+          if (engraveInput) engraveInput.placeholder = '';
           if (duoEngravingGroup2) duoEngravingGroup2.style.display = 'none';
         } else if (key === 'duo001') {
           standardEngravingGroup.style.display = 'block';
           const isSep = Boolean(state.isDuoSeparate);
           if (duoEngravingGroup2) duoEngravingGroup2.style.display = isSep ? 'block' : 'none';
           if (isSep) {
-            if (stdEngraveLabel) stdEngraveLabel.innerHTML = '🔑 Keychain 1 Text on Back <small style="color:var(--muted); font-weight:400;">(Optional — Inverted laser engraving)</small>';
-            if (stdEngraveHint) stdEngraveHint.textContent = 'Inverted silver laser-etched directly onto Keychain 1 plate • Any language & format supported';
-            if (engraveInput) engraveInput.placeholder = 'Any text • e.g. Kavya / Alex — 24.11.2024 / राहुल';
+            if (stdEngraveLabel) stdEngraveLabel.innerHTML = '🔑 Keychain 1 Text on Back';
+            if (stdEngraveHint) stdEngraveHint.textContent = '';
+            if (engraveInput) engraveInput.placeholder = '';
           } else {
-            if (stdEngraveLabel) stdEngraveLabel.innerHTML = 'Custom Text on Back <small style="color:var(--muted); font-weight:400;">(Optional — Inverted laser engraving on both)</small>';
-            if (stdEngraveHint) stdEngraveHint.textContent = 'Inverted silver laser-etched directly onto both keychains • Any language & format supported';
-            if (engraveInput) engraveInput.placeholder = 'Any text • e.g. Kavya & Arjun — 24.11.2024 / राहुल & पूजा';
+            if (stdEngraveLabel) stdEngraveLabel.innerHTML = 'Custom Text on Back';
+            if (stdEngraveHint) stdEngraveHint.textContent = '';
+            if (engraveInput) engraveInput.placeholder = '';
           }
         } else {
           standardEngravingGroup.style.display = 'none';
@@ -5196,6 +5145,7 @@
 
       if (key === 'duo001') {
         state.finish = 'Silk Gold PLA'; // Default 3D printed filament option: Gold in Matte Black
+        if (plaInlayGroup) plaInlayGroup.style.display = 'block';
         document.querySelectorAll('.finish-options .finish-btn').forEach(b => {
           if (b.dataset.finish) {
             b.classList.toggle('active', b.dataset.finish === 'Silk Gold PLA');
@@ -5209,7 +5159,7 @@
         if (metalPreviewWrap) metalPreviewWrap.style.display = 'none';
         if (vinylWrap) vinylWrap.style.display = 'none';
         if (tagToggle) tagToggle.style.display = 'inline-flex';
-        if (flipHint) flipHint.style.display = 'flex';
+        if (flipHint) flipHint.style.display = 'none';
         mockups.forEach(m => {
           m.style.border = '2px solid #f43f5e';
           m.style.boxShadow = '0 12px 36px rgba(244,63,94,0.22), inset 0 0 16px rgba(244,63,94,0.12)';
@@ -5226,6 +5176,7 @@
         updateDuoFrontModelImage();
       } else if (key === 'nfc001') {
         state.finish = 'Grooved Vinyl Record PLA + Silk Gold Emblem (Pure NFC)';
+        if (plaInlayGroup) plaInlayGroup.style.display = 'none';
         customFieldsSpotify.style.display = 'block';
         customFieldsRocky.style.display = 'none';
         document.getElementById('visualizerWrap').style.display = 'flex';
@@ -5238,13 +5189,14 @@
         if (vinylWrap) vinylWrap.style.display = 'flex';
         if (keychainNfcIndicator) keychainNfcIndicator.style.display = 'none';
         if (sampleRefBadge) {
-          sampleRefBadge.textContent = 'Vinyl NFC Model';
+          sampleRefBadge.textContent = 'Vinyl NFC Model (For Reference Only)';
         }
         if (visualizerInlayText) {
           visualizerInlayText.textContent = 'Pure NFC • Grooved Vinyl PLA';
         }
       } else if (key === 'mtl001') {
-        state.finish = 'Obsidian Chrome Metal';
+        state.finish = 'Metallic Edition';
+        if (plaInlayGroup) plaInlayGroup.style.display = 'none';
         customFieldsSpotify.style.display = 'block';
         customFieldsRocky.style.display = 'none';
         document.getElementById('visualizerWrap').style.display = 'flex';
@@ -5283,21 +5235,22 @@
           }
         }
         if (tagToggle) tagToggle.style.display = 'inline-flex';
-        if (flipHint) flipHint.style.display = 'flex';
+        if (flipHint) flipHint.style.display = 'none';
         mockups.forEach(m => {
           m.style.border = '2px solid #e2e8f0';
           m.style.boxShadow = '0 12px 36px rgba(226,232,240,0.18), inset 0 0 16px rgba(255,255,255,0.08)';
         });
         if (sampleRefBadge) {
-          sampleRefBadge.textContent = hasMetalCode ? 'Live Spotify Code ✓' : 'Sample Preview';
+          sampleRefBadge.textContent = hasMetalCode ? 'Custom Spotify Code ✓' : 'Sample Code (For Reference Only)';
           sampleRefBadge.classList.toggle('is-live', hasMetalCode);
         }
-        if (visualizerInlayText) {
-          visualizerInlayText.textContent = 'Obsidian Chrome';
+        if (visualizerInlayBadge) {
+          visualizerInlayBadge.style.display = 'none';
         }
         updateNfcKeychainIndicator(state.hasNfc);
       } else if (key === 'rky001') {
-        state.finish = 'Silver Hardware';
+        state.finish = 'Silver Steel Hardware';
+        if (plaInlayGroup) plaInlayGroup.style.display = 'none';
         customFieldsSpotify.style.display = 'none';
         customFieldsRocky.style.display = 'block';
         document.getElementById('visualizerWrap').style.display = 'none';
@@ -5307,6 +5260,7 @@
         if (vinylWrap) vinylWrap.style.display = 'none';
       } else { // spt001
         state.finish = 'Matte Black + Silk Gold PLA Inlay';
+        if (plaInlayGroup) plaInlayGroup.style.display = 'block';
         customFieldsSpotify.style.display = 'block';
         customFieldsRocky.style.display = 'none';
         document.getElementById('visualizerWrap').style.display = 'flex';
@@ -5314,14 +5268,14 @@
         if (duoPreviewWrap) duoPreviewWrap.style.display = 'none';
         if (metalPreviewWrap) metalPreviewWrap.style.display = 'none';
         if (tagToggle) tagToggle.style.display = 'inline-flex';
-        if (flipHint) flipHint.style.display = 'flex';
+        if (flipHint) flipHint.style.display = 'none';
         if (vinylWrap) vinylWrap.style.display = 'none';
         mockups.forEach(m => {
           m.style.border = '1px solid rgba(245,208,97,0.3)';
           m.style.boxShadow = 'none';
         });
         if (sampleRefBadge) {
-          sampleRefBadge.textContent = 'Sample Preview';
+          sampleRefBadge.textContent = 'Sample Code (For Reference Only)';
         }
         if (visualizerInlayText) {
           visualizerInlayText.textContent = 'Silk Gold PLA Inlay';
@@ -5771,7 +5725,7 @@
       if (state.product === 'mtl001') {
         textColor = '#f1f5f9';
         glowColor = 'rgba(255,255,255,0.5)';
-        inlayLabel = 'Obsidian Chrome';
+        inlayLabel = 'Metallic Edition';
       } else if (state.product === 'nfc001') {
         textColor = '#e5b84c';
         glowColor = 'rgba(229,184,76,0.6)';
@@ -5878,6 +5832,9 @@
         inlayDot.style.background = textColor;
         inlayDot.style.boxShadow = `0 0 8px ${glowColor}`;
       }
+      if (visualizerInlayBadge) {
+        visualizerInlayBadge.style.display = (state.product === 'mtl001' || state.product === 'rky001') ? 'none' : 'inline-flex';
+      }
       tagBars.forEach(b => {
         b.style.background = textColor;
         b.style.boxShadow = 'none';
@@ -5910,7 +5867,7 @@
           updateCodeFilterColor(state.finish);
         }
         if (sampleRefBadge && !state.uploadedCodeImg) {
-          sampleRefBadge.textContent = 'Sample Preview';
+          sampleRefBadge.textContent = 'Sample Code (For Reference Only)';
           sampleRefBadge.classList.remove('is-live');
         }
         return;
@@ -6091,7 +6048,7 @@
             updateCodeFilterColor(state.finish);
           }
           if (sampleRefBadge) {
-            sampleRefBadge.textContent = 'Tag 2 Sample Code';
+            sampleRefBadge.textContent = 'Tag 2 Sample Code (For Reference Only)';
             sampleRefBadge.classList.remove('is-live');
           }
         }
@@ -6356,7 +6313,7 @@
             updateCodeFilterColor(state.finish);
           }
           if (sampleRefBadge) {
-            sampleRefBadge.textContent = 'Sample Preview';
+            sampleRefBadge.textContent = 'Sample Code (For Reference Only)';
             sampleRefBadge.classList.remove('is-live');
           }
           if (duoCodeOverlay1) duoCodeOverlay1.style.display = 'none';
@@ -6553,7 +6510,7 @@
             updateCodeFilterColor(state.finish);
           }
           if (sampleRefBadge) {
-            sampleRefBadge.textContent = 'Sample Preview';
+            sampleRefBadge.textContent = 'Sample Code (For Reference Only)';
             sampleRefBadge.classList.remove('is-live');
           }
           setKeychainView('front');
@@ -6613,7 +6570,7 @@
           } else if (item.backCustomization === 'text') {
             backNote = ` • ✍️ Back Text (+₹50): "${item.engrave || 'Personalized'}"`;
           } else {
-            backNote = ' • Back: Standard Art (Free)';
+            backNote = '';
           }
 
           html += `
@@ -6680,9 +6637,8 @@
           giftBoxRow.style.display = 'none';
         }
 
-        const hasMetalInCart = cart.some(i => i.productKey === 'mtl001');
         if (backEngraveSummaryRow) {
-          backEngraveSummaryRow.style.display = hasMetalInCart ? 'flex' : 'none';
+          backEngraveSummaryRow.style.display = (totalBackEngrave > 0) ? 'flex' : 'none';
         }
         if (summaryBackEngraveLabel && summaryBackEngravePrice) {
           if (totalBackEngrave > 0) {
@@ -6692,11 +6648,6 @@
             summaryBackEngravePrice.style.fontFamily = "'DM Mono', monospace";
             summaryBackEngravePrice.style.color = 'var(--gold)';
             summaryBackEngravePrice.style.fontWeight = '700';
-          } else {
-            summaryBackEngraveLabel.textContent = 'Metal Back Customization (Standard Art)';
-            summaryBackEngravePrice.textContent = 'FREE';
-            summaryBackEngravePrice.className = 'free-badge';
-            summaryBackEngravePrice.style = '';
           }
         }
 
@@ -6730,11 +6681,11 @@
           } else if (state.backCustomization === 'text') {
             backDesc = ` • ✍️ Back Text (+₹50)${metalEngraveVal ? `: "${metalEngraveVal}"` : ''}`;
           } else {
-            backDesc = ' • Back: Standard Art (Free)';
+            backDesc = '';
           }
         } else {
           if (engraveVal) {
-            backDesc = ` • ✍️ Back Engraving (Free): "${engraveVal}"`;
+            backDesc = ` • ✍️ Back Engraving: "${engraveVal}"`;
           }
         }
 
@@ -6753,8 +6704,7 @@
                 <div style="margin-bottom:3px;"><strong style="color:#f43f5e;">❤️ Tag 1:</strong> ${spotifyVal ? `🎵 ${state.song || 'Spotify Link Connected'} ${engraveVal ? `• ✍️ "${engraveVal}"` : ''}` : 'Paste Spotify Link 1'}</div>
                 <div style="margin-bottom:3px;"><strong style="color:#f43f5e;">🖤 Tag 2:</strong> ${spotifyVal2 ? `🎵 ${state.song2 || 'Spotify Link Connected'} ${engraveVal2 ? `• ✍️ "${engraveVal2}"` : ''}` : 'Paste Spotify Link 2'}</div>
                 <div style="color:#f43f5e; font-weight:600;">✨ Separate Customization (+₹99)</div>
-              ` : (state.product === 'rky001' ? `✨ Hardware: ${state.finish}` : ((spotifyVal || state.uploadedCodeImg) ? `${codeSummaryText}${backDesc}` : 'Paste your Spotify link or upload code above, then click <b>Add Keychain to Cart</b>.'))}
-              ${backDesc}
+              ` : (state.product === 'rky001' ? `✨ Hardware: ${state.finish}` : ((spotifyVal || state.uploadedCodeImg) ? `${codeSummaryText}${backDesc}` : ''))}
               ${state.hasNfc ? ' • 📶 NFC Added (+₹80)' : ''}
               ${state.hasGiftBox ? ' • 🎁 Gift Box Added (+₹99)' : ''}
             </div>
@@ -6762,7 +6712,7 @@
         `;
 
         if (backEngraveSummaryRow) {
-          backEngraveSummaryRow.style.display = isMetal ? 'flex' : 'none';
+          backEngraveSummaryRow.style.display = (isMetal && state.backCustomization !== 'none') ? 'flex' : 'none';
         }
         if (isMetal && summaryBackEngraveLabel && summaryBackEngravePrice) {
           if (state.backCustomization === 'text') {
@@ -6779,11 +6729,6 @@
             summaryBackEngravePrice.style.fontFamily = "'DM Mono', monospace";
             summaryBackEngravePrice.style.color = 'var(--gold)';
             summaryBackEngravePrice.style.fontWeight = '700';
-          } else {
-            summaryBackEngraveLabel.textContent = 'Metal Back Customization (Standard Art)';
-            summaryBackEngravePrice.textContent = 'FREE';
-            summaryBackEngravePrice.className = 'free-badge';
-            summaryBackEngravePrice.style = '';
           }
         }
 
@@ -6842,15 +6787,19 @@
         customerName: name,
         phone: phone,
         address: `${address}, ${city} - ${pincode}`,
+        streetAddress: address,
+        city: city,
+        pincode: pincode,
         items: items,
         totalPrice: total
       };
     }
 
     // Formats Consolidated WhatsApp Order Text
-    function formatWhatsAppText(o) {
+    function formatWhatsAppText(o, orderId) {
       let text = `*NEW TUNETAGZ CONSOLIDATED ORDER* 🎵%0A` +
         `----------------------------------------%0A` +
+        (orderId ? `*Order ID:* ${encodeURIComponent(orderId)}%0A` : '') +
         `*Customer:* ${encodeURIComponent(o.customerName)}%0A` +
         `*Phone:* ${encodeURIComponent(o.phone)}%0A` +
         `*Delivery Address:* ${encodeURIComponent(o.address)}%0A` +
@@ -6891,8 +6840,6 @@
             } else if (item.backCustomization === 'text') {
               text += `   • *Back Engraving:* ✍️ "${encodeURIComponent(item.engrave || '')}" (+₹50)%0A`;
               if (item.textSize) text += `   • *Text Size:* ${encodeURIComponent(item.textSize)}%0A`;
-            } else {
-              text += `   • *Back Engraving:* None / Standard Art (Free)%0A`;
             }
           } else {
             if (item.engrave && item.engrave !== 'N/A') text += `   • *Engraving:* ${encodeURIComponent(item.engrave)}%0A`;
@@ -6914,9 +6861,10 @@
     }
 
     // Formats Consolidated Instagram DM text
-    function formatInstagramText(o) {
+    function formatInstagramText(o, orderId) {
       let text = `TuneTagZ Consolidated Order Request 🎵\n` +
         `----------------------------------------\n` +
+        (orderId ? `Order ID: ${orderId}\n` : '') +
         `Customer: ${o.customerName}\n` +
         `Phone: ${o.phone}\n` +
         `Address: ${o.address}\n` +
@@ -6948,8 +6896,6 @@
             } else if (item.backCustomization === 'text') {
               text += `   Back Engraving: ✍️ "${item.engrave || ''}" (+₹50)\n`;
               if (item.textSize) text += `   Text Size: ${item.textSize}\n`;
-            } else {
-              text += `   Back Engraving: None / Standard Art (Free)\n`;
             }
           } else {
             if (item.engrave && item.engrave !== 'N/A') text += `   Engraving: ${item.engrave}\n`;
@@ -6968,14 +6914,28 @@
     }
 
     function validateShipping() {
-      const name = document.getElementById('custName').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const address = document.getElementById('custAddress').value.trim();
-      const city = document.getElementById('custCity').value.trim();
-      const pincode = document.getElementById('custPincode').value.trim();
+      const name = document.getElementById('custName') ? document.getElementById('custName').value.trim() : '';
+      const phone = document.getElementById('custPhone') ? document.getElementById('custPhone').value.trim() : '';
+      const address = document.getElementById('custAddress') ? document.getElementById('custAddress').value.trim() : '';
+      const city = document.getElementById('custCity') ? document.getElementById('custCity').value.trim() : '';
+      const pincode = document.getElementById('custPincode') ? document.getElementById('custPincode').value.trim() : '';
 
-      if (!name || !phone || !address || !city || !pincode) {
-        alert('Please fill in your name, phone number, and delivery address before proceeding.');
+      if (!name) {
+        showToast('Please enter your name in the shipping form');
+        const el = document.getElementById('custName');
+        if (el) { el.focus(); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        return false;
+      }
+      if (!phone) {
+        showToast('Please enter your WhatsApp phone number');
+        const el = document.getElementById('custPhone');
+        if (el) { el.focus(); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        return false;
+      }
+      if (!address || !city || !pincode) {
+        showToast('Please enter complete delivery address and pincode');
+        const target = !address ? document.getElementById('custAddress') : (!city ? document.getElementById('custCity') : document.getElementById('custPincode'));
+        if (target) { target.focus(); target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
         return false;
       }
       return true;
@@ -6993,49 +6953,115 @@
     const GOOGLE_SHEET_WEBHOOK_URL = window.TUNETAGZ_GOOGLE_SHEET_URL || "https://script.google.com/macros/s/AKfycbxJP3sjMcebZMvm6homRv9GZahTwJkMnHSEjWqehyEjcjhpEvzgAUhXl5EHS3UE1Tg7/exec";
 
     function formatOrderPayloadForSync(o, orderId, channel) {
+      const itemsList = [];
+      let globalUnitIdx = 1;
+
+      // Calculate total units across all items in cart
+      const totalUnits = o.items.reduce((sum, item) => sum + (parseInt(item.quantity, 10) || 1), 0);
+
+      o.items.forEach((item) => {
+        const qty = parseInt(item.quantity, 10) || 1;
+        const isMetal = (item.productKey === 'mtl001');
+        const itemBackPrice = isMetal ? (item.backCustomization === 'image' ? 99 : (item.backCustomization === 'text' ? 50 : (parseInt(item.backPrice, 10) || 0))) : 0;
+        const unitTotal = (parseInt(item.unitPrice, 10) || 0) + (item.isDuoSeparate ? 99 : 0) + (item.hasGiftBox ? 99 : 0) + (item.hasNfc ? 80 : 0) + itemBackPrice;
+
+        // Add each keychain unit as its own entry sharing the exact same orderId
+        for (let q = 1; q <= qty; q++) {
+          const unitLabel = qty > 1 ? `Unit ${q} of ${qty}` : `1 of 1`;
+          itemsList.push({
+            orderId: orderId,
+            itemNumber: globalUnitIdx,
+            totalUnits: totalUnits,
+            unitLabel: unitLabel,
+            productKey: item.productKey || 'spt001',
+            productName: item.name || 'Spotify Keychain',
+            finish: item.finish || 'Standard',
+            quantity: 1,
+            unitBasePrice: item.unitPrice || 0,
+            unitTotalPrice: unitTotal,
+            // Spotify track details:
+            spotifySource: item.uploadedCodeImg ? 'Custom Uploaded Image' : (item.spotifyUrl ? 'Spotify Track Link' : (item.song ? 'Song Title' : 'N/A')),
+            songTitle: (item.song && item.song !== 'N/A') ? item.song : '',
+            artist: (item.artist && item.artist !== 'N/A') ? item.artist : '',
+            spotifyUrl: (item.spotifyUrl && item.spotifyUrl !== 'N/A') ? item.spotifyUrl : '',
+            uploadedCodeImg: item.uploadedCodeImg || '',
+            uploadedCodeName: item.uploadedCodeName || '',
+            // Duo Set Tag 2 details:
+            isDuoSeparate: Boolean(item.isDuoSeparate),
+            song2: (item.song2 && item.song2 !== 'N/A') ? item.song2 : '',
+            artist2: (item.artist2 && item.artist2 !== 'N/A') ? item.artist2 : '',
+            spotifyUrl2: (item.spotifyUrl2 && item.spotifyUrl2 !== 'N/A') ? item.spotifyUrl2 : '',
+            engrave2: (item.engrave2 && item.engrave2 !== 'N/A') ? item.engrave2 : '',
+            textSize2: item.textSize2 || '',
+            // Back Customization details:
+            backCustomization: isMetal ? (item.backCustomization || 'none') : (item.engrave ? 'text' : 'none'),
+            backText: (item.engrave && item.engrave !== 'N/A') ? item.engrave : '',
+            backTextSize: item.textSize || '18px',
+            uploadedBackImg: item.uploadedBackImg || '',
+            uploadedBackImgName: item.uploadedBackImgName || '',
+            // Hardware features:
+            hasNfc: Boolean(item.hasNfc),
+            hasGiftBox: Boolean(item.hasGiftBox)
+          });
+          globalUnitIdx++;
+        }
+      });
+
+      // Human-readable summary for email & logs
       const itemsFormatted = o.items.map((item, idx) => {
         let details = `${idx + 1}. ${item.name} (Qty: ${item.quantity})`;
         if (item.isDuoSeparate) {
-          details += `\n   • Tag 1: Song: ${item.song || 'N/A'} | Link: ${item.spotifyUrl || 'N/A'} | Engraving: "${item.engrave || ''}" (${item.textSize || 'Normal'})`;
-          details += `\n   • Tag 2: Song: ${item.song2 || 'N/A'} | Link: ${item.spotifyUrl2 || 'N/A'} | Engraving: "${item.engrave2 || ''}" (${item.textSize2 || 'Normal'})`;
+          details += `\n   • Tag 1: Song: ${item.song || 'N/A'} | Link: ${item.spotifyUrl || 'N/A'} | Back: "${item.engrave || ''}" (${item.textSize || '18px'})`;
+          details += `\n   • Tag 2: Song: ${item.song2 || 'N/A'} | Link: ${item.spotifyUrl2 || 'N/A'} | Back: "${item.engrave2 || ''}" (${item.textSize2 || '18px'})`;
           details += `\n   • Separate Customization: Yes (+₹99)`;
         } else {
-          if (item.song && item.song !== 'N/A') details += `\n   • Song: ${item.song}`;
+          if (item.song && item.song !== 'N/A') details += `\n   • Song: ${item.song} ${item.artist ? '(' + item.artist + ')' : ''}`;
           if (item.spotifyUrl && item.spotifyUrl !== 'N/A') details += `\n   • Spotify Link: ${item.spotifyUrl}`;
-          if (item.engrave && item.engrave !== 'N/A') details += `\n   • Engraving: "${item.engrave}" (${item.textSize || 'Normal'})`;
+          if (item.uploadedCodeName) details += `\n   • Uploaded Code Image: ${item.uploadedCodeName}`;
+          if (item.productKey === 'mtl001') {
+            if (item.backCustomization === 'image') {
+              details += `\n   • Back: Custom Image Uploaded (+₹99) [${item.uploadedBackImgName || 'Photo'}]`;
+            } else if (item.backCustomization === 'text') {
+              details += `\n   • Back Text: "${item.engrave || ''}" (${item.textSize || '18px'}) (+₹50)`;
+            } else {
+              details += `\n   • Back: None (Plain)`;
+            }
+          } else {
+            if (item.engrave && item.engrave !== 'N/A') details += `\n   • Back Engraving: "${item.engrave}" (${item.textSize || '18px'})`;
+          }
         }
-        if (item.finish) details += `\n   • Finish: ${item.finish}`;
+        if (item.finish) details += `\n   • Finish / Tone: ${item.finish}`;
         if (item.hasNfc) details += `\n   • Smart NFC: YES (+₹80)`;
         if (item.hasGiftBox) details += `\n   • Gift Box: YES (+₹99)`;
         return details;
       }).join('\n\n');
 
+      const custName = document.getElementById('custName') ? document.getElementById('custName').value.trim() : o.customerName;
+      const custPhone = document.getElementById('custPhone') ? document.getElementById('custPhone').value.trim() : o.phone;
+      const custAddress = document.getElementById('custAddress') ? document.getElementById('custAddress').value.trim() : '';
+      const custCity = document.getElementById('custCity') ? document.getElementById('custCity').value.trim() : '';
+      const custPincode = document.getElementById('custPincode') ? document.getElementById('custPincode').value.trim() : '';
+      const fullAddress = o.address || `${custAddress}, ${custCity} - ${custPincode}`;
+
       return {
         orderId: orderId,
-        customerName: o.customerName,
-        phone: o.phone,
-        address: o.address,
+        customerName: custName,
+        phone: custPhone,
+        streetAddress: custAddress,
+        city: custCity,
+        pincode: custPincode,
+        fullAddress: fullAddress,
+        address: fullAddress,
         totalAmount: o.totalPrice,
         itemsCount: o.items.length,
+        totalUnits: totalUnits,
         itemsSummary: itemsFormatted,
         channel: channel || 'Online Order',
+        paymentMethod: channel || 'Online Checkout',
+        paymentStatus: channel === 'Direct Receipt Checkout' ? 'Receipt Logged (Direct Confirmation)' : 'Pending Verification (Chat Checkout)',
         createdAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-        items: o.items.map(it => ({
-          name: it.name || 'Spotify Keychain',
-          quantity: it.quantity || 1,
-          song: (it.song && it.song !== 'N/A') ? it.song : '',
-          spotifyUrl: (it.spotifyUrl && it.spotifyUrl !== 'N/A') ? it.spotifyUrl : '',
-          engrave: (it.engrave && it.engrave !== 'N/A') ? it.engrave : '',
-          textSize: it.textSize || 'Normal',
-          isDuoSeparate: !!it.isDuoSeparate,
-          song2: (it.song2 && it.song2 !== 'N/A') ? it.song2 : '',
-          spotifyUrl2: (it.spotifyUrl2 && it.spotifyUrl2 !== 'N/A') ? it.spotifyUrl2 : '',
-          engrave2: (it.engrave2 && it.engrave2 !== 'N/A') ? it.engrave2 : '',
-          textSize2: it.textSize2 || 'Normal',
-          finish: it.finish || 'Matte Black',
-          hasNfc: !!it.hasNfc,
-          hasGiftBox: !!it.hasGiftBox
-        }))
+        timestampIso: new Date().toISOString(),
+        items: itemsList
       };
     }
 
@@ -7048,10 +7074,10 @@
         await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(payload)
         });
-        console.log(`✅ TuneTagz: Order #${payload.orderId} successfully synced to Google Sheet & Email alert sent!`);
+        console.log(`✅ TuneTagz: Order #${payload.orderId} (${payload.items.length} keychain row(s)) successfully synced to Google Sheet & Email alert sent!`);
       } catch (err) {
         console.warn("⚠️ TuneTagz: Failed to sync order to Google Sheet:", err);
       }
@@ -7065,7 +7091,7 @@
       const orderId = 'TZ-' + Math.floor(10000 + Math.random() * 90000);
       const payload = formatOrderPayloadForSync(order, orderId, 'WhatsApp Checkout');
       syncOrderToGoogleSheet(payload);
-      const waText = formatWhatsAppText(order);
+      const waText = formatWhatsAppText(order, orderId);
       window.open(`https://wa.me/919447776106?text=${waText}`, '_blank');
     });
 
@@ -7077,7 +7103,7 @@
       const orderId = 'TZ-' + Math.floor(10000 + Math.random() * 90000);
       const payload = formatOrderPayloadForSync(o, orderId, 'Instagram DM Checkout');
       syncOrderToGoogleSheet(payload);
-      const clipboardText = formatInstagramText(o);
+      const clipboardText = formatInstagramText(o, orderId);
       
       navigator.clipboard.writeText(clipboardText).then(() => {
         showToast('Order copied! Paste in @tune.tagz Instagram DM');
@@ -7116,7 +7142,7 @@
               </div>
             ` : `
               ${item.song && item.song !== 'N/A' ? `Song: <i>${item.song}</i><br/>` : ''}
-              ${item.productKey === 'mtl001' ? (item.backCustomization === 'image' ? `Back: 🖼️ Custom Image Uploaded (+₹99)${item.uploadedBackImgName ? ` <i>[${item.uploadedBackImgName}]</i>` : ''}<br/>` : (item.backCustomization === 'text' ? `Back Engraving: ✍️ <i>"${item.engrave || ''}"</i> (+₹50)<br/>` : `Back Engraving: Standard Art (Free)<br/>`)) : (item.engrave && item.engrave !== 'N/A' ? `Engraving: <i>"${item.engrave}"</i><br/>` : '')}
+              ${item.productKey === 'mtl001' ? (item.backCustomization === 'image' ? `Back: 🖼️ Custom Image Uploaded (+₹99)${item.uploadedBackImgName ? ` <i>[${item.uploadedBackImgName}]</i>` : ''}<br/>` : (item.backCustomization === 'text' ? `Back Engraving: ✍️ <i>"${item.engrave || ''}"</i> (+₹50)<br/>` : '')) : (item.engrave && item.engrave !== 'N/A' ? `Engraving: <i>"${item.engrave}"</i><br/>` : '')}
             `}
             ${item.finish ? `Finish: ${item.finish}<br/>` : ''}
             ${item.hasNfc ? `Smart NFC: Included (+₹80)<br/>` : ''}
@@ -7137,7 +7163,7 @@
       `;
 
       document.getElementById('modalWaBtn').onclick = () => {
-        const waText = formatWhatsAppText(o);
+        const waText = formatWhatsAppText(o, orderId);
         window.open(`https://wa.me/919447776106?text=${waText}`, '_blank');
       };
 
