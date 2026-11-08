@@ -1907,14 +1907,14 @@
     /* Finish radio buttons */
     .finish-options {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
     .finish-btn {
       background: var(--bg2);
       border: 1px solid var(--surface-border);
       border-radius: 4px;
-      padding: 9px 10px;
+      padding: 9px 12px;
       text-align: center;
       cursor: pointer;
       font-size: 0.74rem;
@@ -1924,6 +1924,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
+      position: relative;
       transition: border-color 0.2s, background 0.2s, transform 0.15s;
     }
     .finish-btn:hover { border-color: rgba(229,184,76,0.4); transform: translateY(-1px); }
@@ -1933,6 +1934,40 @@
       color: #fff;
       font-weight: 700;
       box-shadow: 0 0 10px rgba(229,184,76,0.25);
+    }
+    .finish-btn.finish-upcoming {
+      border-style: dashed;
+      border-color: rgba(148, 163, 184, 0.35);
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .finish-btn.finish-upcoming:hover {
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+    .finish-btn.finish-upcoming.active {
+      border-color: #94a3b8;
+      border-style: solid;
+      background: linear-gradient(135deg, rgba(148, 163, 184, 0.2), rgba(148, 163, 184, 0.06));
+      box-shadow: 0 0 10px rgba(148, 163, 184, 0.2);
+    }
+    .finish-pill-upcoming {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      background: rgba(148, 163, 184, 0.14);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 1px 5px;
+      border-radius: 999px;
+      line-height: 1.2;
+      white-space: nowrap;
+      margin-left: 2px;
+    }
+    .finish-btn.active .finish-pill-upcoming {
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.15);
     }
     .finish-dot {
       display: inline-block;
@@ -2747,18 +2782,18 @@
         margin-left: 0 !important;
       }
 
-      /* Compact 3-Column Filament Swatch Selector */
+      /* Compact 2-Column Filament Swatch Selector */
       .finish-options {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 6px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
       }
       .finish-btn {
         flex-direction: column;
-        padding: 9px 4px;
+        padding: 9px 6px;
         font-size: 0.7rem;
         text-align: center;
-        gap: 4px;
-        min-height: 48px;
+        gap: 5px;
+        min-height: 52px;
         justify-content: center;
       }
       .finish-dot {
@@ -3742,13 +3777,19 @@
                   <span class="finish-dot" style="background:#e5b84c; box-shadow:0 0 6px rgba(229,184,76,0.85);"></span>
                   <span>Matte Black + Gold PLA</span>
                 </div>
-                <div class="finish-btn" data-finish="Silk Silver PLA" title="Matte Black base with Silk Silver PLA filament inlay">
+                <div class="finish-btn" data-finish="Stealth Black PLA" title="Matte Black base with Stealth Black PLA filament">
+                  <span class="finish-dot" style="background:#111; border:1px solid rgba(255,255,255,0.35); box-shadow:0 0 6px rgba(0,0,0,0.9);"></span>
+                  <span>Stealth Black PLA</span>
+                </div>
+                <div class="finish-btn finish-upcoming" data-finish="Silk Silver PLA" title="Matte Black base with Silk Silver PLA filament inlay (Upcoming)">
                   <span class="finish-dot" style="background:#f1f5f9; box-shadow:0 0 6px rgba(255,255,255,0.85);"></span>
                   <span>Matte Black + Silver PLA</span>
+                  <span class="finish-pill-upcoming">UPCOMING</span>
                 </div>
-                <div class="finish-btn" data-finish="Emerald PLA" title="Matte Black base with Emerald Green PLA filament inlay">
+                <div class="finish-btn finish-upcoming" data-finish="Emerald PLA" title="Matte Black base with Emerald Green PLA filament inlay (Upcoming)">
                   <span class="finish-dot" style="background:#22c55e; box-shadow:0 0 6px rgba(34,197,94,0.85);"></span>
                   <span>Matte Black + Emerald PLA</span>
+                  <span class="finish-pill-upcoming">UPCOMING</span>
                 </div>
               </div>
             </div>
@@ -5114,11 +5155,13 @@
       const visualizerInlayText = document.getElementById('visualizerInlayText');
 
       if (key === 'duo001') {
-        state.finish = 'Silk Gold PLA'; // Default 3D printed filament option: Gold in Matte Black
+        const validPlaFinishes = ['Silk Gold PLA', 'Stealth Black PLA', 'Silk Silver PLA', 'Emerald PLA'];
+        const currentPla = validPlaFinishes.includes(state.finish) ? state.finish : 'Silk Gold PLA';
+        state.finish = currentPla;
         if (plaInlayGroup) plaInlayGroup.style.display = 'block';
         document.querySelectorAll('.finish-options .finish-btn').forEach(b => {
           if (b.dataset.finish) {
-            b.classList.toggle('active', b.dataset.finish === 'Silk Gold PLA');
+            b.classList.toggle('active', b.dataset.finish === currentPla);
           }
         });
         customFieldsSpotify.style.display = 'block';
@@ -5145,8 +5188,15 @@
         updateNfcKeychainIndicator(state.hasNfc);
         updateDuoFrontModelImage();
       } else if (key === 'nfc001') {
-        state.finish = 'Grooved Vinyl Record PLA + Silk Gold Emblem (Pure NFC)';
-        if (plaInlayGroup) plaInlayGroup.style.display = 'none';
+        const validPlaFinishes = ['Silk Gold PLA', 'Stealth Black PLA', 'Silk Silver PLA', 'Emerald PLA'];
+        const currentPla = validPlaFinishes.includes(state.finish) ? state.finish : 'Silk Gold PLA';
+        state.finish = currentPla;
+        if (plaInlayGroup) plaInlayGroup.style.display = 'block';
+        document.querySelectorAll('.finish-options .finish-btn').forEach(b => {
+          if (b.dataset.finish) {
+            b.classList.toggle('active', b.dataset.finish === currentPla);
+          }
+        });
         customFieldsSpotify.style.display = 'block';
         customFieldsRocky.style.display = 'none';
         document.getElementById('visualizerWrap').style.display = 'flex';
@@ -5161,8 +5211,8 @@
         if (sampleRefBadge) {
           sampleRefBadge.textContent = 'Vinyl NFC Model (For Reference Only)';
         }
-        if (visualizerInlayText) {
-          visualizerInlayText.textContent = 'Pure NFC • Grooved Vinyl PLA';
+        if (visualizerInlayBadge) {
+          visualizerInlayBadge.style.display = 'flex';
         }
       } else if (key === 'mtl001') {
         state.finish = 'Metallic Edition';
@@ -5229,8 +5279,15 @@
         if (metalPreviewWrap) metalPreviewWrap.style.display = 'none';
         if (vinylWrap) vinylWrap.style.display = 'none';
       } else { // spt001
-        state.finish = 'Matte Black + Silk Gold PLA Inlay';
+        const validPlaFinishes = ['Silk Gold PLA', 'Stealth Black PLA', 'Silk Silver PLA', 'Emerald PLA'];
+        const currentPla = validPlaFinishes.includes(state.finish) ? state.finish : 'Silk Gold PLA';
+        state.finish = currentPla;
         if (plaInlayGroup) plaInlayGroup.style.display = 'block';
+        document.querySelectorAll('.finish-options .finish-btn').forEach(b => {
+          if (b.dataset.finish) {
+            b.classList.toggle('active', b.dataset.finish === currentPla);
+          }
+        });
         customFieldsSpotify.style.display = 'block';
         customFieldsRocky.style.display = 'none';
         document.getElementById('visualizerWrap').style.display = 'flex';
@@ -5643,6 +5700,10 @@
         btn.classList.add('active');
         state.finish = btn.dataset.finish || btn.dataset.rocky;
         updateCodeFilterColor(state.finish);
+        updateMobileStickyBar();
+        if (btn.classList.contains('finish-upcoming')) {
+          showToast(`ℹ️ ${btn.dataset.finish} is an upcoming filament tone (dropping in next batch)`);
+        }
       });
     });
 
@@ -5696,29 +5757,40 @@
         textColor = '#f1f5f9';
         glowColor = 'rgba(255,255,255,0.5)';
         inlayLabel = 'Metallic Edition';
-      } else if (state.product === 'nfc001') {
-        textColor = '#e5b84c';
-        glowColor = 'rgba(229,184,76,0.6)';
-        inlayLabel = 'Pure NFC • Grooved Vinyl PLA';
-      } else if (!finish || finish.includes('Gold')) {
-        // Silk Gold PLA (Default 3D printed filament option: Gold in Matte Black)
-        textColor = '#e5b84c';
-        glowColor = 'rgba(229,184,76,0.75)';
-        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Matte Black + Gold PLA' : 'Matte Black + Gold PLA';
-      } else if (finish.includes('Silver') || finish.includes('Chrome') || finish.includes('Steel')) {
-        // Silk Silver PLA
+      } else if (finish && (finish.includes('Black') || finish.includes('Stealth'))) {
+        textColor = '#475569';
+        glowColor = 'rgba(255,255,255,0.2)';
+        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Stealth Black PLA' : (state.product === 'nfc001') ? 'Vinyl Record • Stealth Black PLA' : 'Stealth Black PLA';
+      } else if (finish && (finish.includes('Silver') || finish.includes('Chrome') || finish.includes('Steel'))) {
         textColor = '#f1f5f9';
         glowColor = 'rgba(255,255,255,0.75)';
-        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Matte Black + Silver PLA' : 'Matte Black + Silver PLA';
-      } else if (finish.includes('Emerald')) {
-        // Emerald Tone
+        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Silver PLA (Upcoming)' : (state.product === 'nfc001') ? 'Vinyl Record • Silver PLA (Upcoming)' : 'Matte Black + Silver PLA (Upcoming)';
+      } else if (finish && finish.includes('Emerald')) {
         textColor = '#22c55e';
         glowColor = 'rgba(34,197,94,0.75)';
-        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Matte Black + Emerald PLA' : 'Matte Black + Emerald PLA';
+        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Emerald PLA (Upcoming)' : (state.product === 'nfc001') ? 'Vinyl Record • Emerald PLA (Upcoming)' : 'Matte Black + Emerald PLA (Upcoming)';
       } else {
         textColor = '#e5b84c';
         glowColor = 'rgba(229,184,76,0.75)';
-        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Matte Black + Gold PLA' : 'Matte Black + Gold PLA';
+        inlayLabel = (state.product === 'duo001') ? 'Duo Set • Matte Black + Gold PLA' : (state.product === 'nfc001') ? 'Vinyl Record • Gold PLA' : 'Matte Black + Gold PLA';
+      }
+
+      // Update Vinyl Record NFC Waves, Center Pulse & Image Glow
+      if (state.product === 'nfc001') {
+        const vinylWaves = document.querySelectorAll('.vinyl-nfc-waves');
+        const vinylPulse = document.querySelector('.vinyl-nfc-center-pulse');
+        const vinylImg = document.getElementById('vinylModelImg');
+        if (vinylWaves) {
+          vinylWaves.forEach(w => {
+            w.style.color = textColor;
+          });
+        }
+        if (vinylPulse) {
+          vinylPulse.style.background = `radial-gradient(circle, ${glowColor} 0%, transparent 70%)`;
+        }
+        if (vinylImg) {
+          vinylImg.style.filter = `drop-shadow(0 14px 26px rgba(0,0,0,0.85)) drop-shadow(0 0 16px ${glowColor})`;
+        }
       }
 
       const dropShadowFilter = `drop-shadow(0 0 2.5px ${glowColor}) drop-shadow(0 1px 2px rgba(0,0,0,0.95))`;
@@ -7095,13 +7167,16 @@
       // Determine short tone and dot color
       let toneName = 'Gold PLA';
       let dotColor = '#e5b84c';
-      if (state.product === 'duo001' || state.product === 'spt001') {
+      if (state.product === 'duo001' || state.product === 'spt001' || state.product === 'nfc001') {
         if (state.finish && state.finish.includes('Emerald')) {
           toneName = 'Emerald PLA';
           dotColor = '#22c55e';
         } else if (state.finish && state.finish.includes('Silver')) {
           toneName = 'Silver PLA';
           dotColor = '#f1f5f9';
+        } else if (state.finish && (state.finish.includes('Black') || state.finish.includes('Stealth'))) {
+          toneName = 'Black PLA';
+          dotColor = '#475569';
         } else {
           toneName = 'Gold PLA';
           dotColor = '#e5b84c';
@@ -7109,9 +7184,6 @@
       } else if (state.product === 'mtl001') {
         toneName = 'Obsidian Chrome';
         dotColor = '#94a3b8';
-      } else if (state.product === 'nfc001') {
-        toneName = 'Vinyl Record';
-        dotColor = '#f5d061';
       } else if (state.product === 'rky001') {
         toneName = state.finish || '3D Resin';
         dotColor = '#a855f7';

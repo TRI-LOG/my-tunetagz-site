@@ -11,7 +11,7 @@
   const PRODUCT_META = {
     'spt001': { name: 'Spotify Code Tag (Pooled Selling)', price: 249, poster: 'POSTER 1.png', defaultFinish: 'Matte Black + Silk Gold PLA' },
     'mtl001': { name: 'Spotify Metal Tag (Available Now)', price: 169, poster: 'POSTER 3.jpg', defaultFinish: 'Metallic Edition' },
-    'nfc001': { name: 'Vinyl Record NFC Tag', price: 199, poster: 'POSTER 4.jpg', defaultFinish: 'Grooved Vinyl PLA (Pure NFC)' },
+    'nfc001': { name: 'Vinyl Record NFC Tag', price: 199, poster: 'POSTER 4.jpg', defaultFinish: 'Matte Black + Silk Gold PLA' },
     'duo001': { name: 'Spotify Duo Set', price: 349, poster: 'POSTER 5.jpg', defaultFinish: 'Dual Matte Black + Silk Gold PLA' },
     'rky001': { name: 'Rocky Keychain', price: 300, poster: 'POSTER 2.png', defaultFinish: 'Matte Black Maze' },
     'bundle': { name: 'Duet Bundle', price: 899, poster: 'POSTER 1.png', defaultFinish: 'Matte Black + Silk Gold PLA' }
